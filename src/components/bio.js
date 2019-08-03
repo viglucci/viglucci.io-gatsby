@@ -62,12 +62,14 @@ const Bio = () => {
         }}
       />
       <div>
-        <p>
-          Kevin is a software engineer from Austin, Texas working on the official <a href="https://worldofwarcraft.com">World of Warcraft</a> website and <a href="https://develop.battle.net/">APIs</a> at <a href="https://blizzard.com">Blizzard Entertainment</a>.
-        </p>
-        <p>
-          You can find Kevin around the internet on <a href={social.twitter.url}>Twitter</a>, <a href={social.github.url}>Github</a>, and <a href={social.linkedin.url}>Linkedin</a>.
-        </p>
+        <div>
+          Kevin is a software engineer from Austin, Texas working on the official <a target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">World of Warcraft</a> website and <a target="_blank" rel="noopener noreferrer" href="https://develop.battle.net/">APIs</a> at <a target="_blank" rel="noopener noreferrer" href="https://blizzard.com">Blizzard Entertainment</a>.
+          <br/>
+          <span style={{
+            display: "block",
+            paddingTop: 5
+          }}>You can find Kevin around the internet on <a target="_blank" rel="noopener noreferrer" href={social.twitter.url}>Twitter</a>, <a target="_blank" rel="noopener noreferrer" href={social.github.url}>Github</a>, and <a target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>Linkedin</a>.</span>
+        </div>
       </div>
     </div>
   )
