@@ -38,7 +38,7 @@
   "devDependencies": {
     "prettier": "^1.18.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/viglucci/viglucci.io-gatsby#readme",
   "keywords": [
     "gatsby"
   ],
@@ -46,7 +46,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/viglucci/viglucci.io-gatsby.git"
   },
   "scripts": {
     "build": "gatsby build",
