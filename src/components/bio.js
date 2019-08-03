@@ -25,7 +25,15 @@ const Bio = () => {
         siteMetadata {
           author
           social {
-            twitter
+            twitter {
+              url
+            }
+            github {
+              url
+            }
+            linkedin {
+              url
+            }
           }
         }
       }
@@ -53,14 +61,14 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
       />
-      <p>
-        Written by <strong>{author}</strong> who lives and works in San
-        Francisco building useful things.
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
-        </a>
-      </p>
+      <div>
+        <p>
+          Kevin is a software engineer from Austin, Texas who works at <a href="https://blizzard.com">Blizzard Entertainment</a> on the official <a href="https://worldofwarcraft.com">World of Warcraft</a> website and <a href="https://develop.battle.net/">APIs</a>.
+        </p>
+        <p>
+          You can find Kevin around the internet on <a href={social.twitter.url}>Twitter</a>, <a href={social.github.url}>Github</a>, and <a href={social.linkedin.url}>Linkedin</a>.
+        </p>
+      </div>
     </div>
   )
 }
