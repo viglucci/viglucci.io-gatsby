@@ -1,6 +1,6 @@
 ---
 title: Framework X - Whats in a Framework?
-date: "2016-12-04T00:12:06.0004Z"
+date: "2018-04-02T00:12:06.0000Z"
 description: "Thoughts about developing my own HTTP framework built on Express"
 ---
 

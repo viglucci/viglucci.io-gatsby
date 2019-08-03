@@ -1,7 +1,7 @@
 ---
-title: Laravel - Dealing With Captcha in Tests
+title: Handling captcha in Laravel unit testing
 date: "2018-10-05T10:29:00.0000Z"
-description: "Hello World"
+description: "Considerations when unit testing Laravel applications that use Captchas on forms and HTTP POST requests."
 ---
 
 

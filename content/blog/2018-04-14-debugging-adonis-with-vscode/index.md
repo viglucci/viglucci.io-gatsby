@@ -1,7 +1,7 @@
 ---
 title: Debugging AdonisJS with vscode
 date: "2018-04-14T00:11:33.0000Z"
-description: "Hello World"
+description: "Configuration and considerations for using VScode to debug AdonisJS applications."
 ---
 
 For Node.js developers, there isn't alot of options if you are looking for a full featured MVC framework, but there is one that i've been expirementing with lately, [AdonisJs](https://adonisjs.com/).
