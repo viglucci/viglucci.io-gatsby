@@ -1,9 +1,12 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "viglucci.io-gatsby",
   "private": true,
   "description": "Blog for viglucci.io powered by Gatsby and Markdown",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Kevin Viglucci <viglucci.io-gatsby+kviglucci@gmail.com>",
+  "contributors": [
+    "Kyle Mathews <mathews.kyle@gmail.com>"
+  ],
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
