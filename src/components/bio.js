@@ -64,29 +64,16 @@ const Bio = () => {
       />
       <div>
         <div>
-          Kevin is a software engineer from Austin, Texas working on the
-          official{" "}
-          <OutboundLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://worldofwarcraft.com"
-          >
+          Kevin is a software engineer from Austin, Texas working on the official{" "}
+          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
             World of Warcraft
           </OutboundLink>{" "}
           website and{" "}
-          <OutboundLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://develop.battle.net/"
-          >
+          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://develop.battle.net/">
             APIs
           </OutboundLink>{" "}
           at{" "}
-          <OutboundLink
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://blizzard.com"
-          >
+          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
             Blizzard Entertainment
           </OutboundLink>
           .
@@ -98,27 +85,15 @@ const Bio = () => {
             }}
           >
             You can find Kevin around the internet on{" "}
-            <OutboundLink
-              target="_blank"
-              rel="noopener noreferrer"
-              href={social.twitter.url}
-            >
+            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
               Twitter
             </OutboundLink>
             ,{" "}
-            <OutboundLink
-              target="_blank"
-              rel="noopener noreferrer"
-              href={social.github.url}
-            >
+            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.github.url}>
               Github
             </OutboundLink>
             , and{" "}
-            <OutboundLink
-              target="_blank"
-              rel="noopener noreferrer"
-              href={social.linkedin.url}
-            >
+            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
               Linkedin
             </OutboundLink>
             .
