@@ -3,7 +3,7 @@
     "alias": "viglucci.io",
     "builds": [
         {
-            "src": "build.sh",
+            "src": "package.json",
             "use": "@now/static-build",
             "config": {
                 "distDir": "public"
