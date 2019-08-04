@@ -95,7 +95,7 @@ new Ignitor(require('@adonisjs/fold'))
 
 For reasons that are unknown to me, this file is named `ace` rather than `ace.js` by default, and this unfortunately causes vscode to complain that it cannot find the file when trying to invoke it with node in a launch configuration.
 
-![vscode error dialog]({{ "/assets/img/debugging-addonis-with-vscode/vscode-ace-error-dialog.jpg" | absolute_url }})
+![vscode error dialog](./vscode-ace-error-dialog.jpg)
 
 To overcome this, we can rely on the ability for Node.js to require a file and attempt to interpret it as Javascript, regardless of its extension. This allows us to create a `ace.js` file in our project that simply requires the `ace` file.
 
