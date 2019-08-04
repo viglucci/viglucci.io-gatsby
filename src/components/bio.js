@@ -8,6 +8,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import { rhythm } from "../utils/typography"
 
@@ -63,12 +64,12 @@ const Bio = () => {
       />
       <div>
         <div>
-          Kevin is a software engineer from Austin, Texas working on the official <a target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">World of Warcraft</a> website and <a target="_blank" rel="noopener noreferrer" href="https://develop.battle.net/">APIs</a> at <a target="_blank" rel="noopener noreferrer" href="https://blizzard.com">Blizzard Entertainment</a>.
+          Kevin is a software engineer from Austin, Texas working on the official <OutboundLink target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">World of Warcraft</OutboundLink> website and <OutboundLink target="_blank" rel="noopener noreferrer" href="https://develop.battle.net/">APIs</OutboundLink> at <OutboundLink target="_blank" rel="noopener noreferrer" href="https://blizzard.com">Blizzard Entertainment</OutboundLink>.
           <br/>
           <span style={{
             display: "block",
             paddingTop: 5
-          }}>You can find Kevin around the internet on <a target="_blank" rel="noopener noreferrer" href={social.twitter.url}>Twitter</a>, <a target="_blank" rel="noopener noreferrer" href={social.github.url}>Github</a>, and <a target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>Linkedin</a>.</span>
+          }}>You can find Kevin around the internet on <OutboundLink target="_blank" rel="noopener noreferrer" href={social.twitter.url}>Twitter</OutboundLink>, <OutboundLink target="_blank" rel="noopener noreferrer" href={social.github.url}>Github</OutboundLink>, and <OutboundLink target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>Linkedin</OutboundLink>.</span>
         </div>
       </div>
     </div>
