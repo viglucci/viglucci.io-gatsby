@@ -1,11 +1,11 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { DiscussionEmbed } from "disqus-react"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import { DiscussionEmbed } from "disqus-react";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import { rhythm, scale } from "../utils/typography";
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -14,7 +14,7 @@ export const pageQuery = graphql`
         title
         author
         disgus {
-         shortName
+          shortName
         }
       }
     }
@@ -29,30 +29,27 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName
-    const { previous, next } = this.props.pageContext
-    const { title, description } = post.frontmatter
+    const post = this.props.data.markdownRemark;
+    const siteTitle = this.props.data.site.siteMetadata.title;
+    const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName;
+    const { previous, next } = this.props.pageContext;
+    const { title, description } = post.frontmatter;
     const disqusConfig = {
       shortname: disgusShortName,
       config: {
         identifier: this.props.location.href,
         url: this.props.location.href,
-        title
-      }
-    }
+        title,
+      },
+    };
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={title}
-          description={description || post.excerpt}
-        />
+        <SEO title={title} description={description || post.excerpt} />
         <h1
           style={{
             marginTop: rhythm(1),
@@ -105,8 +102,8 @@ class BlogPostTemplate extends React.Component {
           </li>
         </ul>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
