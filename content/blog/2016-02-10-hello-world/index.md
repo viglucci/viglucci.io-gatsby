@@ -1,5 +1,6 @@
 ---
 title: Hello World
+slug: hello-world
 date: "2016-12-04T00:12:06.0000Z"
 description: "Hello World... is this thing on?"
 ---

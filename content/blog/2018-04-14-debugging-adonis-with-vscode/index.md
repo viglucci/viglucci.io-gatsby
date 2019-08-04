@@ -1,5 +1,6 @@
 ---
 title: Debugging AdonisJS with vscode
+slug: debugging-adonis-with-vscode
 date: "2018-04-14T00:11:33.0000Z"
 description: "Configuration and considerations for using VScode to debug AdonisJS applications."
 ---

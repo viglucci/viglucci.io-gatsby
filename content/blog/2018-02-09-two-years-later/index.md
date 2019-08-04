@@ -1,5 +1,6 @@
 ---
 title: Two Years Later
+slug: two-years-later
 date: "2018-02-09T00:00:11.0000Z"
 description: "A reflection on the past two years since the repository for this blog was created."
 ---

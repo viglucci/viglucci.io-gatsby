@@ -68,12 +68,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-disqus`,
-      options: {
-        shortname: `viglucci-io`
-      }
-    },
-    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
