@@ -1,22 +1,57 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { DiscussionEmbed } from "disqus-react"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        author
+        disgus {
+         shortName
+        }
+      }
+    }
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
+      html
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        description
+      }
+    }
+  }
+`
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
+    const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName
     const { previous, next } = this.props.pageContext
+    const { title, description } = post.frontmatter
+    const disqusConfig = {
+      shortname: disgusShortName,
+      config: {
+        identifier: this.props.location.href,
+        url: this.props.location.href,
+        title
+      }
+    }
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
+          title={title}
+          description={description || post.excerpt}
         />
         <h1
           style={{
@@ -42,6 +77,8 @@ class BlogPostTemplate extends React.Component {
           }}
         />
         <Bio />
+
+        <DiscussionEmbed {...disqusConfig} />
 
         <ul
           style={{
@@ -73,24 +110,3 @@ class BlogPostTemplate extends React.Component {
 }
 
 export default BlogPostTemplate
-
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-      }
-    }
-  }
-`

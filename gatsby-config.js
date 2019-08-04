@@ -18,6 +18,9 @@ module.exports = {
         url: `https://www.linkedin.com/in/kevin-viglucci-a0010078/`
       }
     },
+    disgus: {
+      shortName: `viglucci-io`
+    }
   },
   plugins: [
     {
@@ -50,19 +53,25 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+          { resolve: `gatsby-remark-prismjs` },
+          { resolve: `gatsby-remark-copy-linked-files` },
+          { resolve: `gatsby-remark-smartypants` },
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    { resolve: `gatsby-transformer-sharp` },
+    { resolve: `gatsby-plugin-sharp` },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: `UA-88454306-1`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `viglucci-io`
+      }
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -129,13 +138,13 @@ module.exports = {
         icon: `content/assets/favicon.png`,
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
+    { resolve: `gatsby-plugin-offline` },
+    { resolve: `gatsby-plugin-react-helmet` },
     {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
-    },
+    }
   ],
 }
