@@ -1,0 +1,11 @@
+{
+    "name": "viglucci-io",
+    "alias": "viglucci.io",
+    "builds": [
+      {
+        "src": "build.sh",
+        "use": "@now/static-build",
+        "config": { "distDir": "public" }
+      }
+    ]
+  }
