@@ -3,6 +3,7 @@ title: Two Years Later
 slug: two-years-later
 date: "2018-02-09T00:00:11.0000Z"
 description: "A reflection on the past two years since the repository for this blog was created."
+ogimage: "../../assets/favicon.png"
 ---
 
 When I sat down this evening to write this post I really didn't think it would be special in any kind of way, or really be anything more than a skeleton of a post so I could once again see Jenkins do all of the automated things I've seen it do hundreds of times before, however, it quickly gained a significance that I never intended.
