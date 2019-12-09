@@ -3,6 +3,7 @@ title: Reviewing Distributed System Architectures
 slug: reviewing-distributed-system-architectures
 date: "2019-12-08T16:41:00.000Z"
 description: "A high-level overview of distributed system architecture implementations covering Webhooks, Message Bus', WebSockets, and finally RSocket."
+ogimage: "./message-bus-uml.png"
 ---
 
 Real-time reactive systems are some of my favorite types of systems to
