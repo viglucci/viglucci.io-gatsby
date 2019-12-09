@@ -64,7 +64,7 @@ const Bio = () => {
       />
       <div>
         <div>
-          Kevin is a software engineer from Austin, Texas working on the official{" "}
+          Kevin is a software engineer from Austin, Texas, working on the official{" "}
           <OutboundLink target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
             World of Warcraft
           </OutboundLink>{" "}
@@ -89,12 +89,12 @@ const Bio = () => {
               Twitter
             </OutboundLink>
             ,{" "}
-            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.github.url}>
-              Github
-            </OutboundLink>
-            , and{" "}
             <OutboundLink target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
               Linkedin
+            </OutboundLink>
+            , and{" "}
+            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.github.url}>
+              Github
             </OutboundLink>
             .
           </span>
