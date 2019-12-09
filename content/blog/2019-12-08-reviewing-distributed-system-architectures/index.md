@@ -6,8 +6,7 @@ description: "A high-level overview of distributed system architecture implement
 ogimage: "./message-bus-uml.png"
 ---
 
-Real-time reactive systems are some of my favorite types of systems to
-build; however, they can be daunting tasks to approach, especially when learning a new programming language or ecosystem along the way. This notion was recently reinforced for me as I set out to build a "simple" real-time client/server application utilizing Javascript/React & Java/Spring,  where I quickly learned of several new messaging protocols (Stomp & RSocket).
+Real-time reactive systems are some of my favorite types of systems to build; however, they can be daunting tasks to approach, especially when learning a new programming language or ecosystem along the way. This notion was recently reinforced for me as I set out to build a "simple" real-time client/server application utilizing Javascript/React & Java/Spring,  where I quickly learned of several new messaging protocols (Stomp & RSocket).
 
 Apart from serving as an exercise in [Cunningham's Law](https://meta.wikimedia.org/wiki/Cunningham%27s_Law), this article aims to expedite the start of your real-time distributed system research and save you some of the time investment that I have already spent scouring the internet, and [screaming into the void on Twitter](https://twitter.com/vigs072/status/1169987607008296960).
 
@@ -17,9 +16,9 @@ This article serves as a high-level overview of topics related to building real-
 
 ## What is a distributed system?
 
-Distributed systems posses a core characteristic in that a network boundary separates the individual system components. Additionally, in a real-time distributed system, each component reacts to changes as they happen across the system topology, automatically, without components of the system being required to keep tabs on or regularly check with other parts of the systems to see if something has changed. Implementing such a system using primarily stateless communication protocols such as HTTP is generally considered bad practice, as it quickly leads to implementations that rely on wasteful polling techniques. However, there exist numerous patterns to overcome the wasteful characteristics of HTTP polling.
+Distributed systems posses a core characteristic in that a network boundary separates the individual system components. Additionally, in a real-time distributed system, each component reacts to changes as they happen across the system topology, automatically, without existing a requirement for components of the system to keep tabs on or regularly check with other parts of the systems to see if something has changed. Implementing such a system using primarily stateless communication protocols such as HTTP is generally considered bad practice, as it quickly leads to implementations that rely on wasteful polling techniques. However, there exist numerous patterns to overcome the wasteful characteristics of HTTP polling.
 
-Some common patterns you may see today include Webhooks, Messaging systems (Buses,Brokers, & Queues), and duplex data streams implemented using a persistent connection protocol such as TCP, WebSockets, and less commonly Aeron.
+Some common patterns you may see today include Webhooks, Messaging systems (Buses, Brokers, & Queues), and duplex data streams implemented using a persistent connection protocol such as TCP, WebSockets, and less commonly Aeron.
 
 ### Webhooks
 
@@ -80,7 +79,7 @@ An example message in this protocol may look something like the below:
 
 Given such a protocol, a participant in communications that leverage it would have everything needed to handle incoming messages in an expected and understood manner. In a real-world application, this could manifest as the application invoking the `userCreated` method on a `UserEventHandler` class, in which the application is implemented to invoke anytime it receives a message with an `id` of `user_created`.
 
-For the most simple of systems and even some moderately active/complex systems, such a protocol would be sufficiently featured to allow for the successful development of the system, with examples of relatively simple (yet still sufficiently complex and featured) protocols such as this including [Stomp](https://stomp.github.io/), and [XMPP](https://xmpp.org/). While these protocols do not offer mechanisms for overcoming issues related to over-loaded consumers, some protocols consider this, such as [RSocket](http://rsocket.io/), through the notion of [back-pressure](https://www.reactivemanifesto.org/glossary#Back-Pressure).
+For the most simple of systems and even some moderately active/complex systems, such a protocol would contains sufficient features to allow for the successful development of the system, with examples of relatively simple (yet still sufficiently complex and featured) protocols such as this including [Stomp](https://stomp.github.io/), and [XMPP](https://xmpp.org/). Extensive usage of protocols similar to these exists in today's modern applications. Yet, they do not offer mechanisms for overcoming the common pitfall of over-loaded consumers; some more recent development in protocols, however, do consider this, such as [RSocket](http://rsocket.io/), through the notion of [back-pressure](https://www.reactivemanifesto.org/glossary#Back-Pressure).
 
 ### The highest of RSocket overviews
 
@@ -110,4 +109,4 @@ Although RSocket is a relatively new technology, the protocol can be implemented
 
 We covered much ground reviewing Webhooks, Message Bus', WebSockets, and finally, an overview of RSocket. With any luck, this article has assisted you with learning something new and assisted you with deciding which architecture(s) best fit your application's use cases and requirements.
 
-If you found this article helpful, let me know in the comments below, drop me a note on Twitter (link in the bio below), or give if you would be so kind, share it on your favorite social media network. If you found this article to widely inaccurate, or take other issues with any of the content, feel free to send me your favorite disdainful meme on Twitter. Might I suggest a [current trend](https://knowyourmeme.com/memes/woman-yelling-at-a-cat)?
+If you found this article helpful, let me know in the comments below, drop me a note on Twitter (link in the bio below), or if you would be so kind, share it on your favorite social media network. If you found this article to be widely inaccurate, or take other issues with any of the content, feel free to send me your favorite disdainful meme on Twitter. Might I suggest a [current trend](https://knowyourmeme.com/memes/woman-yelling-at-a-cat)?
