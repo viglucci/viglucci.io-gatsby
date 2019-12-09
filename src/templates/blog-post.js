@@ -26,6 +26,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        ogimage {
+          childImageSharp {
+            fixed {
+              src
+            }
+          }
+        }
       }
     }
   }
@@ -37,7 +44,8 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title;
     const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName;
     const { previous, next } = this.props.pageContext;
-    const { title, description } = post.frontmatter;
+    const { title, description, ogimage } = post.frontmatter;
+    const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
     const disqusConfig = {
       shortname: disgusShortName,
       config: {
@@ -49,7 +57,7 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={title} description={description || post.excerpt} />
+        <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
         <h1
           style={{
             marginTop: rhythm(1),
