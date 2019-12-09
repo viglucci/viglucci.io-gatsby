@@ -6,11 +6,13 @@ description: "A high-level overview of distributed system architecture implement
 ---
 
 Real-time reactive systems are some of my favorite types of systems to
-Develop; however, they aren't always the most straightforward systems to get started with, especially when learning a new programming language or ecosystem along the way. A recent experience I had where I wanted to build a reactive client/server architecture using Java/Spring, and Javascript/React reinforced this notion for me. I hope that apart from serving as an exercise in [Cunningham's Law](https://meta.wikimedia.org/wiki/Cunningham%27s_Law), this blog serves to expedite the start of your real-time reactive system, and save you some of the time investment that I have already spent scouring the internet, and screaming into the void on Twitter.
+build; however, they can be daunting tasks to approach, especially when learning a new programming language or ecosystem along the way. This notion was recently reinforced for me as I set out to build a "simple" real-time client/server application utilizing Javascript/React & Java/Spring,  where I quickly learned of several new messaging protocols (Stomp & RSocket).
+
+Apart from serving as an exercise in [Cunningham's Law](https://meta.wikimedia.org/wiki/Cunningham%27s_Law), this article aims to expedite the start of your real-time distributed system research and save you some of the time investment that I have already spent scouring the internet, and [screaming into the void on Twitter](https://twitter.com/vigs072/status/1169987607008296960).
 
 **What should you expect from this article?**
 
-This article serves as a high-level overview of topics related to building real-time/reactive systems using several common patterns, ultimately discussing the RSocket protocol. The goal of this article is not to provide fully working complete code samples, or in-depth deep dive into any one topic. Instead, this article aims to guide the reader with understanding the common terminology and concepts so that they can more easily gather a more in-depth understanding as they continue their research elsewhere.
+This article serves as a high-level overview of topics related to building real-time/distributed systems using several common patterns, ultimately providing a high-level overview of the RSocket protocol. The goal of this article is not to provide fully working complete code samples, or in-depth deep dive into any one topic. Instead, this article aims to guide the reader with understanding the common terminology and concepts so that they can more easily gather a more in-depth understanding as they continue their research elsewhere.
 
 ## What is a distributed system?
 
