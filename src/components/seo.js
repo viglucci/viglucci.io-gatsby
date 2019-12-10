@@ -81,6 +81,10 @@ function SEO({ description, lang, meta, title, image }) {
         {
           property: "image",
           content: ogImageUrl
+        },
+        {
+          name: "google-site-verification",
+          content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
         }
       ].concat(meta)}
     />
