@@ -79,7 +79,7 @@ An example message in this protocol may look something like the below:
 
 Given such a protocol, a participant in communications that leverage it would have everything needed to handle incoming messages in an expected and understood manner. In a real-world application, this could manifest as the application invoking the `userCreated` method on a `UserEventHandler` class, in which the application has implemented to invoke anytime it receives a message with an `id` of `user_created`.
 
-For the most simple of systems and even some moderately active/complex systems, such a protocol would contains sufficient features to allow for the successful development of the system, with examples of relatively simple (yet still sufficiently complex and featured) protocols such as this including [Stomp](https://stomp.github.io/), and [XMPP](https://xmpp.org/). Extensive usage of protocols similar to these exists in today's modern applications. Yet, they do not offer mechanisms for overcoming the common pitfall of overloaded consumers; some more recent development in protocols, however, do consider this, such as [RSocket](http://rsocket.io/), through the notion of [back-pressure](https://www.reactivemanifesto.org/glossary#Back-Pressure).
+For the most simple of systems and even some moderately active/complex systems, such a protocol would contain sufficient features to allow for the successful development of the system, with examples of relatively simple (yet still sufficiently complex and featured) protocols such as this including [Stomp](https://stomp.github.io/), and [XMPP](https://xmpp.org/). Extensive usage of protocols similar to these exists in today's modern applications. Yet, they do not offer mechanisms for overcoming the common pitfall of overloaded consumers; some more recent development in protocols, however, do consider this, such as [RSocket](http://rsocket.io/), through the notion of [back-pressure](https://www.reactivemanifesto.org/glossary#Back-Pressure).
 
 ### The highest of RSocket overviews
 
@@ -103,7 +103,7 @@ __Request Channel__ - The client and server each prepare themselves to transmit 
 
 **Multiple Language Implementations**
 
-Although RSocket is a relatively new technology, the protocol can be implemented in any language or runtime, which can utilize either TCP directly or WebSockets. This characteristic of the protocol has allowed for client/server implementations in Java, Javascript, GO, .NET, C++, and Kotlin. The full list of language implementations and the full set of protocol features can be reviewed on the official [RSocket website](http://rsocket.io/).
+Although RSocket is a relatively new technology, the protocol can be implemented in any language or runtime, which can utilize either TCP directly or WebSockets. This characteristic of the protocol has allowed for client/server implementations in Java, Javascript, Go, .NET, C++, and Kotlin. The full list of language implementations and the full set of protocol features can be reviewed on the official [RSocket website](http://rsocket.io/).
 
 ### Webhooks, Message Buses, and WebSockets, oh my!
 
