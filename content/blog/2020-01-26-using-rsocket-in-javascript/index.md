@@ -32,13 +32,54 @@ Javascript developers have become widely acustomed (myself included) to leveragi
 
 ## What support exists today?
 
-Even though the open source landscape for RSocket in Javascript is relatively up and coming, there is enough to build *something* with what is currently available. And dare I say, there is likely enough to build something that you would run in production, though your mileage may vary.
+Even though the open source landscape for RSocket in Javascript is relatively up and coming, there is enough to build *something* with what is currently available. And dare I say, there is likely enough to build something that you *could* run in production, though your mileage may vary when it comes to monitoring, telemetry and other production considerations.
 
 ### rsocket-js
 
-[rsocket-js](https://github.com/rsocket/rsocket-js) is the primary implementation of RSocket for Javascript, which as far as I can tell was developed either in-part or solely by Facebook engineers at some point, and has received varying levels of contribution from open source contributors, as well as engineers at companies such as [Pivotal](https://pivotal.io/) and [Netifi](https://www.netifi.com/).
+[rsocket-js](https://github.com/rsocket/rsocket-js) is the primary reference implementation of RSocket for Javascript and although you can consumer it directly to implement RSocket requesters and responders, it is much more practical to create abrasction wrappers, such as [rsokcet-rpc-js](https://github.com/rsocket/rsocket-rpc-js).
 
-**Uncertain Ownership**
+**Core team/ownership**
 
-In contrast to the Java implementation of RSocket ([rsocket-java](https://github.com/rsocket/rsocket-java)), where investment and contribution from companies such as Netflix and Pivotal give consumers confidence and security in its continued development, I am not sure that there is a clear maintainer, owner, or history of continued development and support in regards to rsocket-js.
+As far as ownership is concerned, it appears that the library was developed either in part or mostly by Facebook engineers, and has received varying levels of contribution from open source contributors, as well as engineers at companies such as [Pivotal](https://pivotal.io/) and [Netifi](https://www.netifi.com/).
 
+Several of the licenses in the repository reference Facebook, and your are expected to accept the Facebook OSS agreement when contributing, which implies to me that Facebook may be the primary maintainer of the project, however I blieve there is some uncertainty in that regard.
+
+**Uncertainty**
+
+In contrast to the Java implementation of RSocket ([rsocket-java](https://github.com/rsocket/rsocket-java)), where investment and contribution from companies such as Netflix and Pivotal give consumers confidence and security in its continued development, I am not sure that rsocket-js currently has a clear set of core maintainers with a defined road map.
+
+The documentation for rsocket-js states that there exist parts of the spec that are yet to be implemented, and it is unclear if the library has experienced enough dog fooding to work out any quirks or edge cases, so consumers will likely need to make their  own determination as to if the library is mature enough to ship to code in production.
+
+### rsocket-rpc-js
+
+[rsokcet-rpc-js](https://github.com/rsocket/rsocket-rpc-js), in its own words, is "The Standard RPC implementation for RSocket" in Javascript. In practical terms rsocket-rpc-js is likely the interface you as an applications developer would consume when writing RSocket services as it provides a level of abstraction ontop of RSocket that adds commonly required functionality, such as message routing.
+
+**Opinionated**
+
+rsocket-rpc-js and other RPC style client/server implementations are generally opinionated about how consumers implement clients and servers and how messages are framed and formatted.
+
+For some consumers this may cause frustration if you find yourself in a situation where your use-case doesn't fit into the established convention, yet it also adds the ability to develop tooling and standardized universal integrations. For instance, because rsocket-rpc-js and other RSocket RPC implementations follow an established spec, it is possible to generate source code for clients, servers, and message payloads using common tools such as protoc.
+
+An example of consuming a client service generated with protoc and the [rsocket-rpc-protobuf protoc plugin](https://github.com/rsocket/rsocket-rpc-js/tree/master/rsocket-rpc-protobuf) may look something like the below:
+
+```js
+const request = new HelloRequest();
+request.setName('John Doe');
+helloServiceClient.sayHello(request).subscribe({
+    onComplete: (response) => {
+        console.log(`HelloService response recieved with message: ${response.getMessage()}`);
+    },
+    onError: (error) => {
+        console.log(`HelloService responded with error: ${error.name}`);
+        console.error(error);
+    }
+});
+```
+
+Additionally, having a standardized opinionated implementation also allows for the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that solves many common service mesh orchestration problems.
+
+## Whats next
+
+While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the Javascript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
+
+If you are passionate about RSocket and a seasoned Javascript developer, now may be a good time for get involed with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSockets visibility in the Javascript community.
