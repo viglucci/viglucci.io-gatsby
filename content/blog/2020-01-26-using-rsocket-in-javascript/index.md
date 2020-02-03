@@ -78,6 +78,15 @@ helloServiceClient.sayHello(request).subscribe({
 
 Additionally, having a standardized opinionated implementation also allows for the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that solves many common service mesh orchestration problems.
 
+### rsocket-flowable
+
+[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an interface for interacting with Reactive Streams in Javascript. rsocket-flowable is deeply engrained into both rsocket-js and rsocket-rpc-js, so learning its API is going to be paramount to succesfully working with either project.
+
+is that you are going to need to change your mental model of thinking from "perform a operation and receive a return value", to "perform an operation and subscribe to the side effects of said operation".
+
+
+If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket-flowable will likely feel familiar to you. If you are not familiar with RxJS, or reactive programming paradigms, then you are likely going to experience a learning curve.
+
 ## Whats next
 
 While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the Javascript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
