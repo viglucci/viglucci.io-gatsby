@@ -1,38 +1,46 @@
 ---
 title: Approaching RSocket in Javascript
-slug: state-of-rsocket-with-javascript
-date: "2020-01-26T16:41:00.000Z"
-description: "Quick overview of using RSocket with Javascript"
+slug: approaching-rsocket-in-javascript
+date: "2020-03-15T16:41:00.000Z"
+description: "******************TODO******************"
 ogimage: "./og-image.jpg"
 ---
 
-In my [previous article](/reviewing-distributed-system-architectures) we learned briefly about a somewhat new addition to the network/application protocol space called RSocket. In this article we will first set the stage, and then review some of the ways RSocket is supported in the Javascript ecosystem today.
+RSocket is an exciting new advancement in the distributed systems space, however, it hasn't quite picked up the same popularity in the Javascript ecosystem as other networking techonologies, such as GraphQL. In contrast to GraphQL where entire conferences, companies, and library suites have taken life, RSocket is missing a similar level of investment from Javascript developers and big time Javascript consumers.
 
-## Setting the stage: RSocket is young
+## RSocket Hasn't Gained Popularity
 
-Although Google shows search trends dating back to 2015 for RSocket, its popularity as a search term appears to have been rather stagnant until late 2018, where it started to pickup some momentum.
+Let's compare RSocket's search popularity with [GraphQL's](https://graphql.org/), which is another networking and application protocol.
 
-![graph showing rsocket search popularity on Google Trends](./rsocket-search-trends.png)
+RSocket's search popularity only started picking up steam in late 2018.
 
-Why is this relevant?
+![Graph showing RSocket search popularity on Google Trends](./rsocket-search-trends.png)
 
-If we use Google Trends as a tool/lense to determine industry adoption we can see that when compared to other protocols that have gained adoption and momentum, such  as GraphQL (denoted in red below), RSocket (denoted in blue below) has yet to experience the same boom and growth that would signify a similar adoption.
+Source: [Google Trends](https://trends.google.com/trends/explore?date=2015-01-01%202020-03-15&q=rsocket)
 
-![graph showing rsocket vs graphql search popularity on Google Trends](./rsocket-search-trends-vs-graphql.png)
+In contrast, GraphQL has experienced a much steeper increase in search popularity.
 
-In my opinion the search trend data represents somewhat closely the level of support and development occurring in the Javascript ecosystem for RSocket. I also believe that the popularity and boom in adoption of GraphQL is due in part to the great support and adoption that GraphQL has found in the Javascript ecosystem, not to mention its backing by large companies such as Facebook. If RSocket were to gain popularity with Javascript developers, and additionally gain some additional enterprise backing, I believe it has the potential to experience similar growth in regards to adoption.
+![Graph showing RSocket search popularity on Google Trends](./graphql-search-trends.png)
 
-Why is any of that relevant?
+Source: [Google Trends](https://trends.google.com/trends/explore?date=2015-01-01%202020-03-15&q=graphql)
 
-Javascript developers have become widely accustomed (myself included) to leveraging hundreds or thousands of open source packages to solve a wide range of problems, but that ecosystem of libraries and abstractions around RSocket hasn't quite developed just yet. So if you expect to be able to `npm install` your way to victory with RSocket, your going to have a bad time.
+If we draw a parallel between search popularity and industry adoption, RSocket has yet to experience the same search popularity growth as GraphQL, signifying that it hasn't adopted the same level of adoption.
 
-![super cool ski instructor meme from southpark](./npm-rsocket-bad-time-meme.jpg)
+![Graph showing RSocket vs GraphQL search popularity on Google Trends](./rsocket-search-trends-vs-graphql.png)
 
-*[know your meme: super cool ski instructor](https://knowyourmeme.com/memes/super-cool-ski-instructor)*
+GraphQL in red. RSocket in blue.
+<br/>
+Source: [Google Trends](https://trends.google.com/trends/explore?date=2015-01-01%202020-03-15&q=rsocket,graphql)
+
+The popularity of GraphQL can be attributed to its conception at Facebook as well as investment into its ecosystem from startups such as [Apollo GraphQL](https://www.apollographql.com/). If RSocket were to gain popularity with large enterprise companies and Javascript developers, it has the potential to experience similar adoption.
+
+Javascript developers have become accustomed to leveraging open source packages to solve a wide range of problems. Unfortunately, RSocket's ecosystem hasn't quite developed yet; there is only a single reference implementation of RSocket for Javascript and no well established supporting libraries. If you expect to be able to `npm install` your way to victory, you're going to have a bad time.
+
+![Image of "super cool ski instructor" meme from Southpark](./npm-rsocket-bad-time-meme.jpg)
 
 ## What support exists today?
 
-Even though the open source landscape for RSocket in Javascript is relatively up and coming, there is enough to build *something* with what is currently available. And dare I say, there is likely enough to build something that you *could* run in production, though your mileage may vary when it comes to monitoring, telemetry and other production considerations.
+There exists enough library support to build *something* with RSocket in Javascript. When it comes to running an application in production, your mileage may vary when considering monitoring, telemetry, and other common production needs.
 
 ### rsocket-js
 
@@ -94,3 +102,5 @@ If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket
 While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the Javascript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
 
 If you are passionate about RSocket and a seasoned Javascript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSockets visibility in the Javascript community.
+
+In my [previous article](/reviewing-distributed-system-architectures) we learned briefly about a somewhat new addition to the network/application protocol space called RSocket.
