@@ -58,7 +58,7 @@ The documentation for rsocket-js states that there exist parts of the spec that 
 
 rsocket-rpc-js and other RPC style client/server implementations are generally opinionated about how consumers implement clients and servers and how messages are framed and formatted.
 
-For some consumers this may cause frustration if you find yourself in a situation where your use-case doesn't fit into the established convention, yet it also adds the ability to develop tooling and standardized universal integrations. For instance, because rsocket-rpc-js and other RSocket RPC implementations follow an established spec, it is possible to generate source code for clients, servers, and message payloads using common tools such as protoc.
+For some consumers this may cause frustration if you find yourself in a situation where your use-case doesn't fit into the established convention, however, it empowers developers to develop tooling and standardized universal integrations. For instance, because rsocket-rpc-js and other RSocket RPC implementations follow an established spec, it is possible to generate source code for clients, servers, and message payloads using common tools such as protoc.
 
 An example of consuming a client service generated with protoc and the [rsocket-rpc-protobuf protoc plugin](https://github.com/rsocket/rsocket-rpc-js/tree/master/rsocket-rpc-protobuf) may look something like the below:
 
@@ -67,16 +67,18 @@ const request = new HelloRequest();
 request.setName('John Doe');
 helloServiceClient.sayHello(request).subscribe({
     onComplete: (response) => {
-        console.log(`HelloService response recieved with message: ${response.getMessage()}`);
+        console.log(`HelloService.sayHello response recieved with message: ${response.getMessage()}`);
     },
     onError: (error) => {
-        console.log(`HelloService responded with error: ${error.name}`);
+        console.log(`HelloService.sayHello response recieved with error: ${error.name}`);
         console.error(error);
     }
 });
 ```
 
-Additionally, having a standardized opinionated implementation also allows for the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that solves many common service mesh orchestration problems.
+In this example we have implemented a service with a method that is utilizing the Request Response flow, where the client makes a response and expects a single response from the server. You can review the full list of interactions between client and server on the [rsocket.io website](https://rsocket.io/docs/Protocol#stream-sequences-and-lifetimes).
+
+Having a standardized opinionated spec and implementation also allows for the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that aims to solve many of the common service mesh orchestration.
 
 ### rsocket-flowable
 
