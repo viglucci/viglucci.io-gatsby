@@ -64,19 +64,18 @@ const Bio = () => {
       />
       <div>
         <div>
-          Kevin is a software engineer from Austin, Texas, working on the official{" "}
+
+          Kevin is a software engineer from Austin, Texas. During the day he supports {" "}
           <OutboundLink target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
             World of Warcraft
-          </OutboundLink>{" "}
-          website and{" "}
-          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://develop.battle.net/">
-            APIs
-          </OutboundLink>{" "}
-          at{" "}
+          </OutboundLink>{" "} at {" "}
           <OutboundLink target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
             Blizzard Entertainment
           </OutboundLink>
-          .
+          , and on nights and weekends he is building {" "}
+          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://forlater.io">
+            forlater.io
+          </OutboundLink>.
           <br />
           <span
             style={{
