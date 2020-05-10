@@ -75,7 +75,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
-        <article dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div className="markdown" dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
             marginBottom: rhythm(1),
