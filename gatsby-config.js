@@ -134,14 +134,23 @@ module.exports = {
     },
     { resolve: `gatsby-plugin-offline` },
     { resolve: `gatsby-plugin-react-helmet` },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `src/utils/typography`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-postcss`
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          `gatsby-remark-reading-time`,
+          // ...
+        ],
+      },
     }
   ],
 }

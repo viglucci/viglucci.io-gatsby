@@ -3,7 +3,7 @@ title: Reviewing Distributed System Architectures
 slug: reviewing-distributed-system-architectures
 date: "2019-12-08T16:41:00.000Z"
 description: "A high-level overview of distributed system architecture implementations covering Webhooks, Message Buses, WebSockets, and finally RSocket."
-ogimage: "./message-bus-uml.png"
+ogimage: "./message-bus-uml-og-image.jpg"
 ---
 
 Real-time reactive systems are some of my favorite types of systems to build; however, they can be daunting tasks to approach, especially when learning a new programming language or ecosystem along the way. This notion was recently reinforced for me as I set out to build a "simple" real-time client/server application utilizing Javascript/React & Java/Spring,  where I quickly learned of several new messaging protocols (Stomp & RSocket).
