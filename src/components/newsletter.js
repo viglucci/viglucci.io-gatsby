@@ -24,9 +24,9 @@ const Newsletter = () => {
           <p className="mt-3 text-sm leading-5 text-gray-300">
             <span>We care about the protection of your data. Read our</span>
             {" "}
-            <a className="text-white font-medium underline">
+            {/* <a href="javascript:void(0)" className="text-white font-medium underline">
               Privacy Policy.
-            </a>
+            </a> */}
           </p>
         </div>
       </div>

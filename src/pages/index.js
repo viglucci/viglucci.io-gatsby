@@ -64,7 +64,7 @@ const PostList = ({
           </h2>
           <div class="mt-3 sm:mt-4 lg:grid lg:grid-cols-2 lg:gap-5 lg:items-center">
             <p class="text-xl leading-7 text-gray-500">
-              I enjoy writing about Software Architecture, Javascript, APIs, and various other topics. You can find my latest articles below.
+              Kevin enjoys writing about Software Architecture, Javascript, APIs, and various other topics. You can find his latest articles below.
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ const Header = () => {
                 Kevin Viglucci
               </h2>
               <div className="mt-3 max-w-3xl text-lg leading-6 text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Kevin is a software engineer from Austin Texas where he supports World of Warcraft at Blizzard Entertainment.
+                Kevin is a software engineer from Austin, Texas where he builds tools, APIs, and experiences on the web that support World of Warcraft at Blizzard Entertainment.
               </div>
             </div>
           </div>
@@ -107,11 +107,11 @@ const Header = () => {
 class BlogIndex extends React.Component {
   render() {
     const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+    // const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges.map(post => post.node);
     return (
       <Layout location={this.props.location} title={""}>
-        <SEO title="All posts" />
+        <SEO title="x" />
         <Header />
         {/* <Bio /> */}
         <PostList posts={posts} />
