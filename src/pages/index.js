@@ -91,7 +91,7 @@ const Header = () => {
                 Kevin Viglucci
               </h2>
               <div className="mt-3 max-w-3xl text-lg leading-6 text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Kevin is a software engineer from Austin, Texas where he builds tools, APIs, and experiences on the web that support World of Warcraft at Blizzard Entertainment.
+                Kevin is a software engineer from Austin, Texas where he works at Blizzard Entertainment building tools, APIs, and experiences that support World of Warcraft on the web.
               </div>
             </div>
           </div>
