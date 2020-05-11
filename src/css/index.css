@@ -71,4 +71,10 @@
 .markdown table {
   @apply mb-6;
 }
+
+/* Pre & Code */
+.markdown pre {
+  @apply p-2 rounded-md mb-4;
+}
+
 /* purgecss end ignore */

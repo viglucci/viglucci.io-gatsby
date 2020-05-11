@@ -56,6 +56,7 @@ module.exports = {
           { resolve: `gatsby-remark-prismjs` },
           { resolve: `gatsby-remark-copy-linked-files` },
           { resolve: `gatsby-remark-smartypants` },
+          { resolve: `gatsby-remark-reading-time` }
         ],
       },
     },
@@ -134,23 +135,6 @@ module.exports = {
     },
     { resolve: `gatsby-plugin-offline` },
     { resolve: `gatsby-plugin-react-helmet` },
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
-    {
-      resolve: `gatsby-plugin-postcss`
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          `gatsby-remark-reading-time`,
-          // ...
-        ],
-      },
-    }
+    { resolve: `gatsby-plugin-postcss` },
   ],
 }
