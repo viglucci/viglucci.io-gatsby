@@ -128,7 +128,7 @@ module.exports = {
         short_name: `viglucci.io`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#252f3f`,
         display: `minimal-ui`,
         icon: `content/assets/favicon.png`,
       },
