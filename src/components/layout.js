@@ -43,7 +43,7 @@ class Layout extends React.Component {
           marginRight: `auto`,
         }}
       >
-        <header>{header}</header>
+        {/* <header>{header}</header> */}
         <main>{children}</main>
         <Newsletter />
         <Footer />

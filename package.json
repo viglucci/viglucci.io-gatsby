@@ -46,6 +46,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.2.0",
     "autoprefixer": "^9.7.6",
+    "classnames": "^2.2.6",
     "prettier": "^1.18.2",
     "tailwindcss": "^1.4.6"
   },

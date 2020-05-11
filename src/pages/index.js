@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
+import Nav from "../components/Nav";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import indexHeader from "../../content/assets/index-header.jpg";
@@ -83,13 +84,13 @@ const Header = () => {
           <svg className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-gray-800 transform translate-x-1/2" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
-          <div className="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
+          <Nav />
           <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="sm:text-center lg:text-left">
+            <div className="text-left">
               <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl sm:leading-none md:text-6xl">
                 Kevin Viglucci
               </h2>
-              <div className="mt-3 max-w-3xl text-lg leading-6 text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <div className="mt-3 max-w-3xl text-lg leading-6 text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl lg:mx-0">
                 Kevin is a software engineer from Austin, Texas where he works at Blizzard Entertainment building experiences, APIs, and tools that support World of Warcraft on the web.
               </div>
             </div>
@@ -110,7 +111,7 @@ class BlogIndex extends React.Component {
     const posts = data.allMarkdownRemark.edges.map(post => post.node);
     return (
       <Layout location={this.props.location} title={""}>
-        <SEO title="x" />
+        <SEO title="Kevin Viglucci" />
         <Header />
         {/* <Bio /> */}
         <PostList posts={posts} />

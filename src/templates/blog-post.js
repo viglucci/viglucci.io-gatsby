@@ -5,7 +5,7 @@ import { DiscussionEmbed } from "disqus-react";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { rhythm, scale } from "../utils/typography";
+import Nav from "../components/nav";
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -22,6 +22,12 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+        readingTime {
+          text
+        }
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -45,6 +51,7 @@ class BlogPostTemplate extends React.Component {
     const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName;
     const { previous, next } = this.props.pageContext;
     const { title, description, ogimage } = post.frontmatter;
+    const { fields } = post;
     const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
     const disqusConfig = {
       shortname: disgusShortName,
@@ -52,63 +59,77 @@ class BlogPostTemplate extends React.Component {
         identifier: this.props.location.href,
         url: this.props.location.href,
         title,
-      },
+      }
     };
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
-        <h1
-          style={{
-            marginTop: rhythm(1),
-            marginBottom: 0,
-          }}
-        >
-          {post.frontmatter.title}
-        </h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        <div className="markdown" dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio />
+        <Nav />
+        <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+          <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
+          <article className="markdown px-4 xl:px-0">
+            <h1 className="my-0 mb-2 text-4xl font-bold">
+              {post.frontmatter.title}
+            </h1>
+            <div className="flex items-center mb-6">
+              <div className="flex text-sm leading-5 text-gray-500">
+                <time>
+                  {post.frontmatter.date}
+                </time>
+                <span className="mx-1">
+                  &middot;
+                </span>
+                <span>
+                  {fields.readingTime.text}
+                </span>
+              </div>
+            </div>
+            {/* <p
+              style={{
+                ...scale(-1 / 5),
+                display: `block`,
+                marginBottom: rhythm(1),
+              }}
+            >
+              {post.frontmatter.date}
+            </p> */}
+            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            <hr className="my-4" />
+          </article>
 
-        <DiscussionEmbed {...disqusConfig} />
+          <Bio />
 
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+          <div className="mt-8 mb-16">
+            <DiscussionEmbed {...disqusConfig} />
+          </div>
+
+          <div className="my-8">
+            <ul
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              <li>
+                {previous && (
+                  <Link to={previous.fields.slug} rel="prev">
+                    ← {previous.frontmatter.title}
+                  </Link>
+                )}
+              </li>
+              <li>
+                {next && (
+                  <Link to={next.fields.slug} rel="next">
+                    {next.frontmatter.title} →
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
       </Layout>
     );
   }
