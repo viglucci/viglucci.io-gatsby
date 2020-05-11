@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 
-import Nav from "../components/Nav";
+import Nav from "../components/nav";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import indexHeader from "../../content/assets/index-header.jpg";
