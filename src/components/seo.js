@@ -37,6 +37,12 @@ function SEO({ description, lang, meta, title, image }) {
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      link={[
+        {
+          rel: "stylesheet",
+          href: "https://rsms.me/inter/inter.css"
+        }
+      ]}
       meta={[
         {
           property: `description`,

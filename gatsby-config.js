@@ -56,6 +56,7 @@ module.exports = {
           { resolve: `gatsby-remark-prismjs` },
           { resolve: `gatsby-remark-copy-linked-files` },
           { resolve: `gatsby-remark-smartypants` },
+          { resolve: `gatsby-remark-reading-time` }
         ],
       },
     },
@@ -134,11 +135,12 @@ module.exports = {
     },
     { resolve: `gatsby-plugin-offline` },
     { resolve: `gatsby-plugin-react-helmet` },
+    { resolve: `gatsby-plugin-postcss` },
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-mailchimp`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        endpoint: 'https://viglucci.us18.list-manage.com/subscribe/post?u=67ef840f69d44e533a8ff6e5c&amp;id=21a097d753',
       },
-    }
+    },
   ],
 }
