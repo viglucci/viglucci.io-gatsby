@@ -68,7 +68,7 @@ class BlogPostTemplate extends React.Component {
         <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
           <article className="markdown">
-            <h1 className="my-0 mb-2 text-4xl font-bold">
+            <h1 className="my-0 mb-2 leading-tight text-4xl font-bold">
               {post.frontmatter.title}
             </h1>
             <div className="flex items-center mb-6">
@@ -107,7 +107,7 @@ class BlogPostTemplate extends React.Component {
               <li>
                 {previous && (
                   <Link to={previous.fields.slug} rel="prev">
-                    <span className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
+                    <span className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 mb-4 md:mb-0">
                       ← {previous.frontmatter.title}
                     </span>
                   </Link>

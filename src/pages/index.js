@@ -2,6 +2,7 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 
 import Nav from "../components/nav";
+import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import indexHeader from "../../content/assets/index-header.jpg";
@@ -16,14 +17,7 @@ const Header = () => {
           </svg>
           <Nav />
           <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="text-left">
-              <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl sm:leading-none md:text-6xl">
-                Kevin Viglucci
-              </h2>
-              <div className="mt-3 max-w-3xl text-lg leading-6 text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl md:mt-5 md:text-xl lg:mx-0">
-                Kevin is a software engineer from Austin, Texas. Kevin works at Blizzard Entertainment where he builds tools, APIs, and experiences that support World of Warcraft on the web.
-              </div>
-            </div>
+            <Bio avatar={false} />
           </div>
         </div>
       </div>

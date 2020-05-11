@@ -10,7 +10,12 @@ import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-const Bio = () => {
+const Bio = ({
+  avatar
+}) => {
+  if (typeof avatar === 'undefined') {
+    avatar = true;
+  }
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/orc-selfie.jpg/" }) {
@@ -42,7 +47,7 @@ const Bio = () => {
   const { author, social } = data.site.siteMetadata;
   return (
     <div className="flex bg-gray-800 rounded-md p-4 leading-6 text-gray-300">
-      <Image
+      {avatar && (<Image
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
         style={{
@@ -53,43 +58,39 @@ const Bio = () => {
           borderRadius: `50%`,
         }}
         className="mr-4"
-      />
+      />)}
       <div>
-        <div>
-          Kevin is a software engineer from Austin, Texas. Kevin works at {" "}
-          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
-            Blizzard Entertainment
-          </OutboundLink>
-          {" "}
-          where he builds tools, APIs, and experiences that support
-          {" "}
-          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
-            World of Warcraft
-          </OutboundLink>
-          {" "}
-          on the web.
-          <br />
-          <span
-            style={{
-              display: "block",
-              paddingTop: 5,
-            }}
-          >
-            You can find Kevin around the web on{" "}
-            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
-              Twitter
+        Kevin is a software engineer from Austin, Texas working at {" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
+          Blizzard Entertainment
+        </OutboundLink>
+        {" "}
+        where he builds tools, APIs, and experiences that support
+        {" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
+          World of Warcraft
+        </OutboundLink>.
+        <br />
+        <span
+          style={{
+            display: "block",
+            paddingTop: 5,
+          }}
+        >
+          You can find Kevin around the web on{" "}
+          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
+            Twitter
             </OutboundLink>
             ,{" "}
-            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
-              Linkedin
+          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
+            LinkedIn
             </OutboundLink>
             , and{" "}
-            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>
-              Github
+          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>
+            GitHub
             </OutboundLink>
             .
           </span>
-        </div>
       </div>
     </div>
   );
