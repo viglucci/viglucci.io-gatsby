@@ -3,7 +3,7 @@
   "private": true,
   "description": "Blog for viglucci.io powered by Gatsby and Markdown",
   "version": "0.1.0",
-  "author": "Kevin Viglucci <viglucci.io-gatsby+kviglucci@gmail.com>",
+  "author": "Kevin Viglucci <kviglucci+viglucci.io-gatsby@gmail.com>",
   "contributors": [
     "Kyle Mathews <mathews.kyle@gmail.com>"
   ],
@@ -24,7 +24,6 @@
     "gatsby-plugin-postcss": "^2.3.1",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "gatsby-plugin-sharp": "^2.2.9",
-    "gatsby-plugin-typography": "^2.3.2",
     "gatsby-remark-copy-linked-files": "^2.1.4",
     "gatsby-remark-images": "^3.1.7",
     "gatsby-remark-prismjs": "^3.3.3",
@@ -37,12 +36,7 @@
     "prismjs": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-helmet": "^5.2.1",
-    "react-typography": "^0.16.19",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75",
-    "typography": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "react-helmet": "^5.2.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.2.0",
