@@ -43,39 +43,33 @@ const Bio = () => {
 
   const { author, social } = data.site.siteMetadata;
   return (
-    <div
-      style={{
-        display: `flex`,
-        marginBottom: rhythm(2.5),
-      }}
-    >
+    <div className="flex bg-gray-800 rounded-md p-4 leading-6 text-gray-300">
       <Image
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
         style={{
-          marginRight: rhythm(1 / 2),
-          marginBottom: 0,
           minWidth: 50,
           borderRadius: `100%`,
         }}
         imgStyle={{
           borderRadius: `50%`,
         }}
+        className="mr-4"
       />
       <div>
         <div>
-
-          Kevin is a software engineer from Austin, Texas. During the day he supports {" "}
-          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
-            World of Warcraft
-          </OutboundLink>{" "} at {" "}
-          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
+          Kevin is a software engineer from Austin, Texas. Kevin works at {" "}
+          <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
             Blizzard Entertainment
           </OutboundLink>
-          , and on nights and weekends he is building {" "}
-          <OutboundLink target="_blank" rel="noopener noreferrer" href="https://forlater.io">
-            forlater.io
-          </OutboundLink>.
+          {" "}
+          where he builds tools, APIs, and experiences that support
+          {" "}
+          <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
+            World of Warcraft
+          </OutboundLink>
+          {" "}
+          on the web.
           <br />
           <span
             style={{
@@ -83,16 +77,16 @@ const Bio = () => {
               paddingTop: 5,
             }}
           >
-            You can find Kevin around the internet on{" "}
-            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
+            You can find Kevin around the web on{" "}
+            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
               Twitter
             </OutboundLink>
             ,{" "}
-            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
+            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
               Linkedin
             </OutboundLink>
             , and{" "}
-            <OutboundLink target="_blank" rel="noopener noreferrer" href={social.github.url}>
+            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.github.url}>
               Github
             </OutboundLink>
             .
