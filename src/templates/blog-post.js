@@ -67,7 +67,7 @@ class BlogPostTemplate extends React.Component {
         <Nav />
         <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
-          <article className="markdown px-4 xl:px-0">
+          <article className="markdown">
             <h1 className="my-0 mb-2 text-4xl font-bold">
               {post.frontmatter.title}
             </h1>
