@@ -10,8 +10,6 @@ import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 
-import { rhythm } from "../utils/typography";
-
 const Bio = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
@@ -59,13 +57,13 @@ const Bio = () => {
       <div>
         <div>
           Kevin is a software engineer from Austin, Texas. Kevin works at {" "}
-          <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
+          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
             Blizzard Entertainment
           </OutboundLink>
           {" "}
           where he builds tools, APIs, and experiences that support
           {" "}
-          <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
+          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
             World of Warcraft
           </OutboundLink>
           {" "}
@@ -78,15 +76,15 @@ const Bio = () => {
             }}
           >
             You can find Kevin around the web on{" "}
-            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
+            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
               Twitter
             </OutboundLink>
             ,{" "}
-            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
+            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
               Linkedin
             </OutboundLink>
             , and{" "}
-            <OutboundLink className="text-blue-300" target="_blank" rel="noopener noreferrer" href={social.github.url}>
+            <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>
               Github
             </OutboundLink>
             .

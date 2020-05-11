@@ -136,5 +136,11 @@ module.exports = {
     { resolve: `gatsby-plugin-offline` },
     { resolve: `gatsby-plugin-react-helmet` },
     { resolve: `gatsby-plugin-postcss` },
+    {
+      resolve: `gatsby-plugin-mailchimp`,
+      options: {
+        endpoint: 'https://viglucci.us18.list-manage.com/subscribe/post?u=67ef840f69d44e533a8ff6e5c&amp;id=21a097d753',
+      },
+    },
   ],
 }
