@@ -114,17 +114,12 @@ In addition to promoting the creation of tooling, a standardized opinionated spe
 
 ### rsocket-flowable
 
-[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an interface for interacting with Reactive Streams in JavaScript. rsocket-flowable is deeply ingrained into both rsocket-js and rsocket-rpc-js, so learning its API is going to be paramount to successfully working with either project.
-
-is that you are going to need to change your mental model of thinking from "perform an operation and receive a return value", to "perform an operation and subscribe to the side effects of said operation".
-
+[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an interface implementation for Reactive Streams in JavaScript, and is deeply ingrained into both rsocket-js and rsocket-rpc-js. Learning the rsocket-flowable API, and what it means to work with Reactive libraries and patterns is going to be paramount to successfully working rsocket-js and rsocket-rpc-js.
 
 If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket-flowable will likely feel familiar to you. If you are not familiar with RxJS, or reactive programming paradigms, then you are likely going to experience a learning curve.
 
-## Whats next
+## What to expect next
 
 While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the JavaScript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
 
-If you are passionate about RSocket and a seasoned JavaScript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSockets visibility in the JavaScript community.
-
-In my [previous article](/reviewing-distributed-system-architectures) we learned briefly about a somewhat new addition to the network/application protocol space called RSocket.
+If you are passionate about RSocket and a seasoned JavaScript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSocket's visibility in the JavaScript community.
