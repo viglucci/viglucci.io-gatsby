@@ -88,7 +88,7 @@ class BlogPostTemplate extends React.Component {
             <hr className="my-4" />
           </article>
 
-          <h3 className="my-0 mb-4 leading-tight text-xl">About the author</h3>
+          <h3 className="mt-6 mb-4 text-xl font-semibold">About the author</h3>
           <Bio />
 
           <div className="mt-8 mb-16">
