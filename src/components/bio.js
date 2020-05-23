@@ -67,30 +67,11 @@ const Bio = ({
         {" "}
         where he builds tools, APIs, and experiences that support
         {" "}
-        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">
-          World of Warcraft
-        </OutboundLink>.
-        <br />
-        <span
-          style={{
-            display: "block",
-            paddingTop: 5,
-          }}
-        >
-          You can find Kevin around the web on{" "}
-          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>
-            Twitter
-            </OutboundLink>
-            ,{" "}
-          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>
-            LinkedIn
-            </OutboundLink>
-            , and{" "}
-          <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>
-            GitHub
-            </OutboundLink>
-            .
-          </span>
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">World of Warcraft</OutboundLink>.
+        You can find Kevin around the web on{" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>Twitter</OutboundLink>,{" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>LinkedIn</OutboundLink>, and{" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>GitHub</OutboundLink>.
       </div>
     </div>
   );
