@@ -13,9 +13,13 @@
 
 /* Headers */
 .markdown h2 {
-  @apply text-2xl my-6 font-bold;
+  @apply text-3xl my-6 font-bold;
 }
-.markdown h3,
+
+.markdown h3 {
+  @apply text-2xl my-4 font-semibold;
+}
+
 .markdown h4,
 .markdown h5,
 .markdown h6 {
