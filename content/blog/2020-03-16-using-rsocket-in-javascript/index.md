@@ -1,12 +1,12 @@
 ---
-title: Considerations for Using RSocket in Javascript
+title: Considerations for Using RSocket in JavaScript
 slug: considerations-for-using-rsocket-in-javascript
 date: "2020-03-16T16:41:00.000Z"
 description: "******************TODO******************"
 ogimage: "./og-image.jpg"
 ---
 
-RSocket is an exciting new advancement in the distributed systems space, however, it hasn't quite picked up the same popularity in the Javascript ecosystem as other networking techonologies, such as GraphQL. In contrast to GraphQL where entire conferences, companies, and library suites have taken life, RSocket is missing a similar level of investment from Javascript developers and big time Javascript consumers.
+RSocket is an exciting new advancement in the distributed systems space, however, it hasn't quite picked up the same popularity in the JavaScript ecosystem as other networking techonologies, such as GraphQL. In contrast to GraphQL where entire conferences, companies, and library suites have taken life, RSocket is missing a similar level of investment from JavaScript developers and big time JavaScript consumers.
 
 ## RSocket Hasn't Gained Popularity
 
@@ -32,45 +32,49 @@ GraphQL in red. RSocket in blue.
 <br/>
 Source: [Google Trends](https://trends.google.com/trends/explore?date=2015-01-01%202020-03-15&q=rsocket,graphql)
 
-The popularity of GraphQL can be attributed to its conception at Facebook as well as investment into its ecosystem from startups such as [Apollo GraphQL](https://www.apollographql.com/). If RSocket were to gain popularity with large enterprise companies and Javascript developers, it has the potential to experience similar adoption.
+The popularity of GraphQL can be attributed to its conception at Facebook as well as investment into its ecosystem from startups such as [Apollo GraphQL](https://www.apollographql.com/). If RSocket were to gain popularity with large enterprise companies and JavaScript developers, it has the potential to experience similar adoption.
 
-Javascript developers have become accustomed to leveraging open source packages to solve a wide range of problems. Unfortunately, RSocket's ecosystem hasn't quite developed yet; there is only a single reference implementation of RSocket for Javascript and no well established supporting libraries. If you expect to be able to `npm install` your way to victory, you're going to have a bad time.
+JavaScript developers have become accustomed to leveraging open source packages to solve a wide range of problems. Unfortunately, RSocket's ecosystem hasn't quite developed yet; there is only a single reference implementation of RSocket for JavaScript and no well established supporting libraries. If you expect to be able to `npm install` your way to victory, you're going to have a bad time.
 
 ![Image of "super cool ski instructor" meme from Southpark](./npm-rsocket-bad-time-meme.jpg)
 
-## Support for RSocket in Javascript
+## Support for RSocket in JavaScript
 
-There exists enough library support to build *something* with RSocket & Javascript, however, when it comes to running an application in production, your mileage may vary when considering monitoring, telemetry, and other common production needs.
+There exists enough library support to build *something* with RSocket & JavaScript, however, when it comes to running an application in production, and you start considering monitoring, telemetry, and other needs, your mileage may vary.
 
 ### rsocket-js
 
-[rsocket-js](https://github.com/rsocket/rsocket-js) is the primary reference implementation of RSocket for Javascript. The library provides the low level base implementations for several [transports](https://github.com/rsocket/rsocket/blob/master/Protocol.md#transport-protocol), as well as a [Reactive Streams](https://github.com/rsocket/rsocket/blob/master/Protocol.md#flow-control-reactive-streams) implemention.
+[rsocket-js](https://github.com/rsocket/rsocket-js) is the primary reference implementation of RSocket for JavaScript. The library provides the low level base implementations for several [transports](https://github.com/rsocket/rsocket/blob/master/Protocol.md#transport-protocol), as well as a [Reactive Streams](https://github.com/rsocket/rsocket/blob/master/Protocol.md#flow-control-reactive-streams) implemention.
 
 When building an application, developers will find it is much more practical to consume an abstraction library, such as [rsokcet-rpc-js](https://github.com/rsocket/rsocket-rpc-js), rather than consume rsocket-js directly. However, library authors would likely spend a majority of their time interfacing with rsocket-js directly.
 
-**Project Ownership**
+#### Project Ownership
 
-The rsocket-js project appears to have been developed primarily by engineers at Facebook. The project has also received varying levels of contribution from engineers at companies such as [Pivotal](https://pivotal.io/) and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
+At first glance, it can be difficult to determine the primary maintainers of the rsocket-js. The contributions as of late have primarily been from engineers who do not appear to be associated with Facebook, however, several of the licenses in the repository reference Facebook, and new contributors to the project are expected to accept the Facebook OSS agreement. Based on this, it appears that Facebook may not be taking a leading role in the libraries continued development, even if they did bootstrap and get the library off the ground initially. It is also important to note that the project has received varying levels of contribution from engineers at companies such as [Pivotal](https://pivotal.io/) and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
 
-At first glance, it can be difficult to determine the primary maintainers of the project. While several of the licenses in the repository reference Facebook, and contributors to the project are expected to accept the Facebook OSS agreement, the contributions as of late are from engineers who could not tie directly back to Facebook.
+#### Uncertain Ownership
 
-**Uncertain Ownership & Future**
-
-The Java implementation of RSocket ([rsocket-java](https://github.com/rsocket/rsocket-java)) has received heavy and continued contribution from engineers at companies such as Netflix and Pivotal. This continued investment provides consumers of RSocket in the Java ecosystem with a certain levle of confidence that the project has life, and as such, they can have added confidence in building their application with it.
-
-In contrast, it is uncertain if rsocket-js has a clear set of core maintainers, a defined road map, or is being used by any large companies.
+The Java implementation of RSocket for Java ([rsocket-java](https://github.com/rsocket/rsocket-java)) has received heavy and continued contribution from engineers at established well known companies, such as Netflix and Pivotal. This investment by leaders in the Java OSS space provides consumers of rsocket-java with a certain level of confidence that the project has a long life ahead of it, and as such, could feel more comfortable betting their project, and possibly their business of the technology. In contrast, it is uncertain if rsocket-js has a clear set of core maintainers, a defined road map, or is being used by any large companies.
 
 ### rsocket-rpc-js
 
-In its own words, [rsocket-rpc-js](https://github.com/rsocket/rsocket-rpc-js) is "The Standard RPC implementation for RSocket" in Javascript. In addition to exposing the reactive streams implementation behind a familiar service interface, the library also ties in nicely with RSocket message brokers that facilitate message routing, which is generally core to any distributed messaging system.
+rsocket-rpc-js is an abstraction library which consumes rsocket-js, and in practical terms, is likely the interface that most applications or developers would consume when working with RSocket in JavaScript.
 
-**Opinionated**
+> [rsocket-rpc-js](https://github.com/rsocket/rsocket-rpc-js) - "The Standard RPC implementation for RSocket" in JavaScript.
 
-RPC style client and server implementations are generally opinionated about the interfaces they expose and how messages are framed and formatted. In contrast to a restful API where you might consume a User resource by invoking an HTTP GET request to `/users/1`, where `1` is the user ID, in an RPC API it would more common to invoke a HTTP POST request to `/UserService/GetUserById` and include in the request body the ID of the user `{ "userId": 1 }`. rsocket-rpc-js encourages these types of RPC patterns and interfaces with implemented methods looking similar to `GetUserById(int: id)`.
+In addition to exposing the reactive streams implementation behind service interfaces that will be familiar to traditional OOP programmers, the library also ties in nicely with RSocket message brokers that facilitate message routing, which can core to any distributed messaging system.
 
-Following such patterns empowers developers to make tooling and standardized universal integrations. For instance, because rsocket-rpc-js and other RSocket RPC implementations follow an established spec, it is possible to generate source code for clients, servers, and message payloads using common tools such as protoc.
+#### Opinionated
 
-An example of consuming a client service generated with protoc and the [rsocket-rpc-protobuf protoc plugin](https://github.com/rsocket/rsocket-rpc-js/tree/master/rsocket-rpc-protobuf) may look something like the below:
+RPC style client and server implementations are generally opinionated about the interfaces they expose and how messages are framed/formatted.
+
+In contrast to a restful API where you might consume a User resource by invoking an HTTP GET request to `/users/1`, where `1` is the user ID, in an RPC API it would more common to invoke a HTTP POST request to `/UserService/GetUserById` and include in the request body the ID of the user `{ "userId": 1 }`. rsocket-rpc-js encourages these types of RPC patterns and interfaces. A method following this pattern could have a signature similar to the following: `getUserById(Number: id): Single<User>`.
+
+#### Tooling
+
+**Opinionated APIs and specifications empowers tooling** to be built which further standardizes integrations without requiring developers to work around new ideas that present their own unique challenges. For instance, because rsocket-rpc-js and other RSocket RPC implementations follow an established spec, it is possible to generate source code for clients, servers, and message payloads in a number of languages by leveraging common tools and interchange formats such as protoc and protobuf.
+
+An example of consuming a generated client service produced by protoc when combined with the [rsocket-rpc-protobuf protoc plugin](https://github.com/rsocket/rsocket-rpc-js/tree/master/rsocket-rpc-protobuf) would be similar to the below:
 
 ```js
 const request = new HelloRequest();
@@ -86,13 +90,31 @@ helloServiceClient.sayHello(request).subscribe({
 });
 ```
 
-In this example we have implemented a service with a method that is utilizing the Request Response flow, where the client makes a response and expects a single response from the server. You can review the full list of interactions between client and server on the [rsocket.io website](https://rsocket.io/docs/Protocol#stream-sequences-and-lifetimes).
+In the above example a service has been implemented that exposes a method that utilizes the "Request Response" flow (review the list of flows on the [rsocket.io website](https://rsocket.io/docs/Protocol#stream-sequences-and-lifetimes)), and this `helloServiceClient` implementation can be generated by protoc when given a protobuf defintion such as:
 
-Having a standardized opinionated spec and implementation also allows for the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that aims to solve many of the common service mesh orchestration.
+```protobuf
+syntax = "proto3";
+
+service HelloService {
+    rpc SayHello (HelloRequest) returns (HelloResponse) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string message = 1;
+}
+```
+
+#### Platforms
+
+In addition to promoting the creation of tooling, a standardized opinionated specification also supports the creation of platform services and solutions, such as [netifi](https://www.netifi.com/), which is a language agnostic broker for RSocket that aims to solve many of the common service mesh orchestration challenges.
 
 ### rsocket-flowable
 
-[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an interface for interacting with Reactive Streams in Javascript. rsocket-flowable is deeply ingrained into both rsocket-js and rsocket-rpc-js, so learning its API is going to be paramount to successfully working with either project.
+[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an interface for interacting with Reactive Streams in JavaScript. rsocket-flowable is deeply ingrained into both rsocket-js and rsocket-rpc-js, so learning its API is going to be paramount to successfully working with either project.
 
 is that you are going to need to change your mental model of thinking from "perform an operation and receive a return value", to "perform an operation and subscribe to the side effects of said operation".
 
@@ -101,8 +123,8 @@ If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket
 
 ## Whats next
 
-While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the Javascript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
+While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the JavaScript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
 
-If you are passionate about RSocket and a seasoned Javascript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSockets visibility in the Javascript community.
+If you are passionate about RSocket and a seasoned JavaScript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project(s) might not be your cup of tea, then sharing this article with your friends, coworkers, and your social networks would be a great way to increase RSockets visibility in the JavaScript community.
 
 In my [previous article](/reviewing-distributed-system-architectures) we learned briefly about a somewhat new addition to the network/application protocol space called RSocket.
