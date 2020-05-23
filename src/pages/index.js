@@ -26,7 +26,7 @@ const Header = () => {
       </div>
     </div>
   );
-}
+};
 
 const PostCard = (props) => {
   const {
@@ -112,7 +112,7 @@ class BlogIndex extends React.Component {
       </Layout>
     );
   }
-}
+};
 
 export default BlogIndex;
 
