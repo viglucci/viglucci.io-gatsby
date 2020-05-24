@@ -78,7 +78,7 @@ In addition to exposing the reactive streams implementation behind service inter
 
 RPC style client and server implementations are generally opinionated about the interfaces they expose and how messages are framed/formatted.
 
-In contrast to a restful API where you might consume a User resource by invoking an HTTP GET request to `/users/1`, where `1` is the user ID, in an RPC API it would more common to invoke a HTTP POST request to `/UserService/GetUserById` and include in the request body the ID of the user `{ "userId": 1 }`. rsocket-rpc-js encourages these types of RPC patterns and interfaces. A method following this pattern could have a signature similar to the following: `getUserById(Number: id): Single<User>`.
+In contrast to a restful API where a consumer requests a User resource by invoking an HTTP GET request to `/users/1`, where `1` is the user ID, in an RPC API it would more common to invoke a HTTP POST request to `/UserService/GetUserById` and include in the request body the ID of the user `{ "userId": 1 }`. rsocket-rpc-js encourages these types of RPC patterns and interfaces. A method following this pattern could have a signature similar to the following: `getUserById(Number: id): Single<User>`.
 
 #### Tooling
 
