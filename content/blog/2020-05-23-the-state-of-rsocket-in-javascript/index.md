@@ -124,7 +124,7 @@ In addition to promoting the creation of tooling, a standardized opinionated spe
 
 ### rsocket-flowable
 
-[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an implementation for Reactive Streams in JavaScript, and is deeply ingrained into both rsocket-js and rsocket-rpc-js. Learning the rsocket-flowable API, and what it means to work with Reactive libraries and paradigms is going to be paramount to successfully working rsocket-js and rsocket-rpc-js.
+[rsocket-flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) provides an implementation for Reactive Streams in JavaScript, and is deeply ingrained into both rsocket-js and rsocket-rpc-js. Learning the rsocket-flowable API, and what it means to work with Reactive libraries and paradigms is going to be paramount to successfully working with rsocket-js and rsocket-rpc-js.
 
 If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket-flowable will likely feel familiar to you. If you are not familiar with RxJS, or reactive programming paradigms, then you could experience a somewhat steep learning curve.
 
