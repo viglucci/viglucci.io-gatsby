@@ -100,12 +100,11 @@ const PostList = ({
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props;
-    // const siteTitle = data.site.siteMetadata.title;
+    const { data, location } = this.props;
     const posts = data.allMarkdownRemark.edges.map(post => post.node);
     return (
       <Layout location={this.props.location} title={""}>
-        <SEO title="Kevin Viglucci" />
+        <SEO title="Kevin Viglucci" url={location.href} />
         <Header />
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <PostList posts={posts} />
