@@ -132,6 +132,6 @@ If you are familiar with [RxJS](https://github.com/ReactiveX/rxjs), then rsocket
 
 While the bulk of ongoing development appears to be centered around the Java and C++ implementations of RSocket, it is my hope that the JavaScript implementation will continue to receive updates and additions to meet the full RSocket spec, but only time will tell.
 
-If you are passionate about RSocket and a seasoned JavaScript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project is not your cup of tea, then sharing this article amd RSocket with your friends, coworkers, and on your social networks would be a great way to increase RSocket's visibility in the JavaScript community.
+If you are passionate about RSocket and a seasoned JavaScript developer, now may be a good time to get involved with the project to leave your mark and assist in its continuity. If contributing to the project is not your cup of tea, then sharing this article and RSocket with your friends, coworkers, and on your social networks would be a great way to increase RSocket's visibility in the JavaScript community.
 
 Drop me a comment below, or tweet me on Twitter and let me know if this is the first you are hearing of RSocket, or if you are also closely watching its development, as I am.
