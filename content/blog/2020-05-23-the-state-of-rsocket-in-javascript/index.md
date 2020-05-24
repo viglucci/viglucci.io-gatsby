@@ -60,7 +60,7 @@ When building an application, developers will find it is much more practical to 
 
 #### Project Ownership
 
-At first glance, it can be difficult to determine the primary maintainers of the rsocket-js. The contributions as of late have primarily been from engineers who do not appear to be associated with Facebook, however, several of the licenses in the repository reference Facebook, and new contributors to the project are expected to accept the Facebook OSS agreement. Based on this, it appears that Facebook may not be taking a leading role in the libraries continued development, even if they did bootstrap and get the library off the ground initially. It is also important to note that the project has received varying levels of contribution from engineers at companies such as Pivotal and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
+At first glance, it can be difficult to determine the primary maintainers of the rsocket-js project. The contributions as of late have primarily been from engineers who do not appear to be associated with Facebook, however, several of the licenses in the repository reference Facebook, and new contributors to the project are expected to accept the Facebook OSS agreement. Based on this, it appears that Facebook may not be taking a leading role in the libraries continued development, even if they did bootstrap and get the library off the ground initially. It is also important to note that the project has received varying levels of contribution from engineers at companies such as Pivotal and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
 
 #### Uncertainty
 
