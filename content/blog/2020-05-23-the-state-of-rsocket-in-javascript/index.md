@@ -72,7 +72,7 @@ rsocket-rpc-js is an abstraction library which consumes rsocket-js, and in pract
 
 > [rsocket-rpc-js](https://github.com/rsocket/rsocket-rpc-js) - "The Standard RPC implementation for RSocket" in JavaScript.
 
-In addition to exposing the reactive streams implementation behind service interfaces that will be familiar to traditional OOP programmers, the library also ties in nicely with RSocket message brokers that facilitate message routing, which can core to any distributed messaging system.
+In addition to exposing the reactive streams implementation behind service interfaces that will be familiar to traditional OOP programmers, the library also ties in nicely with RSocket message brokers that facilitate message routing, which can be core to any distributed messaging system.
 
 #### Opinionated
 
