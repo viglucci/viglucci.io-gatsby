@@ -6,9 +6,9 @@ description: "There exists enough library support to build applications with RSo
 ogimage: "./state-of-rsocket-js-og-image.png"
 ---
 
-RSocket is an exciting new advancement in the application protocol space with decent adoption and support in the Java ecosystem, largely due to contributions to the Java implementation from companies such as Pivotal, and decent support for RSocket in the popular [Spring](https://spring.io) framework. With respect to JavaScript, RSocket hasn't quite picked up the same level of popularity, adoption, or investment as other protocols, such as [GraphQL](https://graphql.org/).
+RSocket is an exciting new advancement in the application protocol space with decent adoption and support in the Java ecosystem, largely due to contributions to the Java implementation from companies such as [Pivotal](https://pivotal.io/), and decent support for RSocket in the popular [Spring](https://spring.io) framework. With respect to JavaScript, RSocket hasn't quite picked up the same level of popularity, adoption, or investment as other protocols, such as [GraphQL](https://graphql.org/).
 
-## RSocket Has Stiff Competition
+## Stiff Competition
 
 Let's compare RSocket's search popularity with GraphQL's to help gauge popularity of each protocol.
 
@@ -60,7 +60,7 @@ When building an application, developers will find it is much more practical to 
 
 #### Project Ownership
 
-At first glance, it can be difficult to determine the primary maintainers of the rsocket-js. The contributions as of late have primarily been from engineers who do not appear to be associated with Facebook, however, several of the licenses in the repository reference Facebook, and new contributors to the project are expected to accept the Facebook OSS agreement. Based on this, it appears that Facebook may not be taking a leading role in the libraries continued development, even if they did bootstrap and get the library off the ground initially. It is also important to note that the project has received varying levels of contribution from engineers at companies such as [Pivotal](https://pivotal.io/) and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
+At first glance, it can be difficult to determine the primary maintainers of the rsocket-js. The contributions as of late have primarily been from engineers who do not appear to be associated with Facebook, however, several of the licenses in the repository reference Facebook, and new contributors to the project are expected to accept the Facebook OSS agreement. Based on this, it appears that Facebook may not be taking a leading role in the libraries continued development, even if they did bootstrap and get the library off the ground initially. It is also important to note that the project has received varying levels of contribution from engineers at companies such as Pivotal and [Netifi](https://www.netifi.com/), as well as contributors from the open source community.
 
 #### Uncertainty
 
