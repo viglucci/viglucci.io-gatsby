@@ -34,6 +34,7 @@ const PostCard = (props) => {
     frontmatter,
     excerpt
   } = props;
+  let cardBody = frontmatter.description || excerpt;
   let { title, ogimage } = frontmatter;
   title = frontmatter.title || fields.slug;
   const image = ogimage.childImageSharp.fixed.src;
@@ -52,7 +53,7 @@ const PostCard = (props) => {
             </h3>
           </Link>
           <p className="mt-3 text-base leading-6 text-gray-500">
-            {excerpt}
+            {cardBody}
           </p>
         </div>
         <div className="mt-6 flex items-center">
