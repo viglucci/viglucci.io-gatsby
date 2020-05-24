@@ -2,7 +2,7 @@
 title: The State of RSocket in JavaScript
 slug: the-state-of-rsocket-in-javascript
 date: "2020-05-23T00:00:00.000Z"
-description: "There exists enough library support to build applications with RSocket & JavaScript, however, minimal support and adoption could give you pause before you bet your business on it."
+description: "Sufficient support exists to build applications with RSocket & JavaScript, however, the level of support and adoption could give you pause before you bet your business on it."
 ogimage: "./state-of-rsocket-js-og-image.png"
 ---
 
