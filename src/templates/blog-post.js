@@ -36,6 +36,8 @@ export const pageQuery = graphql`
           childImageSharp {
             fixed {
               src
+              width
+              height
             }
           }
         }
@@ -53,6 +55,8 @@ class BlogPostTemplate extends React.Component {
     const { title, description, ogimage } = post.frontmatter;
     const { fields } = post;
     const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
+    const ogImageWidth = ogimage && ogimage.childImageSharp.fixed.width;
+    const ogImageHeight = ogimage && ogimage.childImageSharp.fixed.height;
     const url = this.props.location.href;
     const disqusConfig = {
       shortname: disgusShortName,
@@ -63,11 +67,20 @@ class BlogPostTemplate extends React.Component {
       }
     };
 
+    console.log(ogimage.childImageSharp.fixed)
+
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <Nav />
         <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <SEO title={title} description={description || post.excerpt} image={ogImagePath} url={url} />
+          <SEO
+            title={title}
+            description={description || post.excerpt}
+            image={ogImagePath}
+            imageHeight={ogImageWidth}
+            imageWidth={ogImageHeight}
+            url={url}
+          />
           <article className="markdown">
             <h1 className="my-0 mb-2 leading-tight text-4xl font-bold">
               {post.frontmatter.title}

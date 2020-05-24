@@ -11,7 +11,7 @@ import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import defaultOpenGraphImage from '../../content/assets/favicon.png'
 
-function SEO({ url, description, lang, meta, title, image }) {
+function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeight }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,16 +19,97 @@ function SEO({ url, description, lang, meta, title, image }) {
           siteMetadata {
             title
             description
-            author,
+            author
             siteUrl
+            social {
+              twitter {
+                username
+              }
+            }
           }
         }
       }
     `
   );
 
+  meta = meta || [];
+
   const metaDescription = description || site.siteMetadata.description;
   const ogImageUrl = site.siteMetadata.siteUrl + (image || defaultOpenGraphImage);
+
+  meta = [
+    ...meta,
+    {
+      property: `description`,
+      content: metaDescription,
+    },
+    {
+      property: "image",
+      content: ogImageUrl
+    },
+    {
+      property: `og:url`,
+      content: url,
+    },
+    {
+      property: `og:title`,
+      content: title,
+    },
+    {
+      property: `og:description`,
+      content: metaDescription,
+    },
+    {
+      property: `og:type`,
+      content: `website`,
+    },
+    {
+      property: `twitter:card`,
+      content: `summary`,
+    },
+    {
+      property: `twitter:creator`,
+      content: site.siteMetadata.social.twitter.username,
+    },
+    {
+      property: `twitter:title`,
+      content: title,
+    },
+    {
+      property: `twitter:description`,
+      content: metaDescription,
+    },
+    {
+      property: "twitter:image",
+      content: ogImageUrl
+    },
+    {
+      name: "google-site-verification",
+      content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
+    }
+  ];
+
+  meta = [
+    ...meta,
+    {
+      property: "og:image",
+      content: ogImageUrl
+    }
+  ];
+
+  if (image) {
+    meta = [
+      ...meta,
+      {
+        property: `og:image:width`,
+        content: imageWidth,
+      },
+      {
+        property: `og:image:height`,
+        content: imageHeight,
+      }
+    ];
+  }
 
   return (
     <Helmet
@@ -43,60 +124,7 @@ function SEO({ url, description, lang, meta, title, image }) {
           href: "https://rsms.me/inter/inter.css"
         }
       ]}
-      meta={[
-        {
-          property: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:url`,
-          content: url,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          property: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          property: `twitter:title`,
-          content: title,
-        },
-        {
-          property: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          property: "og:image",
-          content: ogImageUrl
-        },
-        {
-          property: "twitter:image",
-          content: ogImageUrl
-        },
-        {
-          property: "image",
-          content: ogImageUrl
-        },
-        {
-          name: "google-site-verification",
-          content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
-        }
-      ].concat(meta)}
+      meta={meta}
     />
   );
 }
