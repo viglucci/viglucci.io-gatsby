@@ -53,11 +53,12 @@ class BlogPostTemplate extends React.Component {
     const { title, description, ogimage } = post.frontmatter;
     const { fields } = post;
     const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
+    const url = this.props.location.href;
     const disqusConfig = {
       shortname: disgusShortName,
       config: {
         identifier: this.props.location.href,
-        url: this.props.location.href,
+        url,
         title,
       }
     };
@@ -66,7 +67,7 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <Nav />
         <div className="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <SEO title={title} description={description || post.excerpt} image={ogImagePath} />
+          <SEO title={title} description={description || post.excerpt} image={ogImagePath} url={url} />
           <article className="markdown">
             <h1 className="my-0 mb-2 leading-tight text-4xl font-bold">
               {post.frontmatter.title}

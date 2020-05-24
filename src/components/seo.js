@@ -11,7 +11,7 @@ import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import defaultOpenGraphImage from '../../content/assets/favicon.png'
 
-function SEO({ description, lang, meta, title, image }) {
+function SEO({ url, description, lang, meta, title, image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -47,6 +47,10 @@ function SEO({ description, lang, meta, title, image }) {
         {
           property: `description`,
           content: metaDescription,
+        },
+        {
+          property: `og:url`,
+          content: url,
         },
         {
           property: `og:title`,
@@ -108,6 +112,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default SEO;
