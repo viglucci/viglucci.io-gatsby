@@ -8,9 +8,9 @@ ogimage: "./state-of-rsocket-js-og-image.png"
 
 RSocket is an exciting new advancement in the application protocol space with decent adoption and support in the Java ecosystem, largely due to contributions to the Java implementation from companies such as Pivotal, and decent support for RSocket in the popular [Spring](https://spring.io) framework. With respect to JavaScript, RSocket hasn't quite picked up the same level of popularity, adoption, or investment as other protocols, such as [GraphQL](https://graphql.org/).
 
-## Overall RSocket Hasn't Gained Popularity
+## RSocket Has Stiff Competition
 
-Let's compare RSocket's search popularity with GraphQL's.
+Let's compare RSocket's search popularity with GraphQL's to help gauge popularity of each protocol.
 
 #### RSocket
 
@@ -22,7 +22,7 @@ Source: [Google Trends](https://trends.google.com/trends/explore?date=2015-01-01
 
 #### GraphQL
 
-In contrast, GraphQL has experienced a much steeper increase in search popularity.
+In contrast, GraphQL has experienced a much steeper increase in search popularity, starting in 2016.
 
 ![Graph showing RSocket search popularity on Google Trends](./graphql-search-trends.png)
 
