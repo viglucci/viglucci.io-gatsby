@@ -36,6 +36,7 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
 
   const metaDescription = description || site.siteMetadata.description;
   const ogImageUrl = site.siteMetadata.siteUrl + (ogImage || defaultOpenGraphImage);
+  const twitterImageUrl = site.siteMetadata.siteUrl + (twitterImage || defaultOpenGraphImage);
 
   meta = [
     ...meta,
@@ -81,7 +82,7 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
     },
     {
       property: "twitter:image",
-      content: twitterImage
+      content: twitterImageUrl
     },
     {
       name: "google-site-verification",
