@@ -11,7 +11,7 @@ import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import defaultOpenGraphImage from '../../content/assets/favicon.png'
 
-function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeight }) {
+function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogImageHeight, twitterImage }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -35,10 +35,15 @@ function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeig
   meta = meta || [];
 
   const metaDescription = description || site.siteMetadata.description;
-  const ogImageUrl = site.siteMetadata.siteUrl + (image || defaultOpenGraphImage);
+  const ogImageUrl = site.siteMetadata.siteUrl + (ogImage || defaultOpenGraphImage);
+  const twitterImageUrl = site.siteMetadata.siteUrl + (twitterImage || defaultOpenGraphImage);
 
   meta = [
     ...meta,
+    {
+      name: "google-site-verification",
+      content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
+    },
     {
       property: `description`,
       content: metaDescription,
@@ -65,7 +70,7 @@ function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeig
     },
     {
       property: `twitter:card`,
-      content: `summary`,
+      content: `summary_large_image`,
     },
     {
       property: `twitter:creator`,
@@ -81,12 +86,8 @@ function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeig
     },
     {
       property: "twitter:image",
-      content: ogImageUrl
+      content: twitterImageUrl
     },
-    {
-      name: "google-site-verification",
-      content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
-    }
   ];
 
   meta = [
@@ -97,16 +98,16 @@ function SEO({ url, description, lang, meta, title, image, imageWidth, imageHeig
     }
   ];
 
-  if (image) {
+  if (ogImage) {
     meta = [
       ...meta,
       {
         property: `og:image:width`,
-        content: imageWidth,
+        content: ogImageWidth,
       },
       {
         property: `og:image:height`,
-        content: imageHeight,
+        content: ogImageHeight,
       }
     ];
   }

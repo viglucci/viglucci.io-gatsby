@@ -4,6 +4,7 @@ slug: laravel-captcha-and-unit-testing
 date: "2018-10-05T10:29:00.0000Z"
 description: "Considerations when unit testing Laravel applications that use Captchas on forms and HTTP POST requests."
 ogimage: "./laravel-og-image.png"
+twitterimage: "./laravel-og-image.png"
 ---
 
 *Note: this article references laravel 5.1, or later. Behavior may differ depending on your application's framework version.*
