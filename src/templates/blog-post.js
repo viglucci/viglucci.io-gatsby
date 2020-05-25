@@ -41,6 +41,15 @@ export const pageQuery = graphql`
             }
           }
         }
+        twitterimage {
+          childImageSharp {
+            fixed {
+              src
+              width
+              height
+            }
+          }
+        }
       }
     }
   }
@@ -52,11 +61,12 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title;
     const disgusShortName = this.props.data.site.siteMetadata.disgus.shortName;
     const { previous, next } = this.props.pageContext;
-    const { title, description, ogimage } = post.frontmatter;
+    const { title, description, ogimage, twitterimage } = post.frontmatter;
     const { fields } = post;
     const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
     const ogImageWidth = ogimage && ogimage.childImageSharp.fixed.width;
     const ogImageHeight = ogimage && ogimage.childImageSharp.fixed.height;
+    const twitterImagePath = twitterimage && twitterimage.childImageSharp.fixed.src;
     const url = this.props.location.href;
     const disqusConfig = {
       shortname: disgusShortName,
@@ -67,8 +77,6 @@ class BlogPostTemplate extends React.Component {
       }
     };
 
-    console.log(ogimage.childImageSharp.fixed)
-
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <Nav />
@@ -76,9 +84,10 @@ class BlogPostTemplate extends React.Component {
           <SEO
             title={title}
             description={description || post.excerpt}
-            image={ogImagePath}
-            imageHeight={ogImageWidth}
-            imageWidth={ogImageHeight}
+            ogImage={ogImagePath}
+            ogImageHeight={ogImageWidth}
+            ogImageWidth={ogImageHeight}
+            twitterImage={twitterImagePath}
             url={url}
           />
           <article className="markdown">

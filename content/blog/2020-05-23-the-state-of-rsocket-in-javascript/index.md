@@ -4,6 +4,7 @@ slug: the-state-of-rsocket-in-javascript
 date: "2020-05-23T00:00:00.000Z"
 description: "Building applications with RSocket & JavaScript is possible and exciting, but consider this before you bet your business on it."
 ogimage: "./state-of-rsocket-js-og-image.png"
+twitterimage: "./state-of-rsocket-js-og-image.png"
 ---
 
 RSocket is an exciting new advancement in the application protocol space with decent adoption and support in the Java ecosystem, mainly due to contributions from companies such as [Pivotal](https://pivotal.io/), and leading support in the popular [Spring](https://spring.io) framework. With respect to JavaScript, RSocket hasn't quite picked up the same level of popularity or achieved as other protocols, such as [GraphQL](https://graphql.org/).
