@@ -41,6 +41,10 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
   meta = [
     ...meta,
     {
+      name: "google-site-verification",
+      content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
+    },
+    {
       property: `description`,
       content: metaDescription,
     },
@@ -84,10 +88,6 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
       property: "twitter:image",
       content: twitterImageUrl
     },
-    {
-      name: "google-site-verification",
-      content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
-    }
   ];
 
   meta = [
