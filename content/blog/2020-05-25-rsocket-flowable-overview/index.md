@@ -41,6 +41,32 @@ The Single is an observable interface that supports the following interactions:
 
 Apart from with the added functionality of being able to cancel observing and observable, these operations should feel familiar to JavaScript programmers as they are similiar to interacting with Promises, where a promise can only ever resolve or reject.
 
+##### Single Example
+
+A practical example of consuming the Single interface would be wraping a promise API/operation, such as the `fetch` API. In the below example we do just that, we create a new instance of Single, which when subscribed to will call to the Starwars API to retrieve data about Luke Skywalker.
+
+```js
+const { Single } = require("rsocket-flowable");
+const fetch = require("node-fetch");
+
+const observable = new Single(subscriber => {
+  fetch("https://swapi.dev/api/people/1")
+    .then(response => response.json())
+    .then(data => subscriber.onComplete(data))
+    .catch(error => subscriber.onError(error));
+  subscriber.onSubscribe();
+});
+
+observable.subscribe({
+  onComplete: lukeSkywalkerData => {
+    console.log(lukeSkywalkerData);
+  },
+  onError: err => {
+    console.error("There was a disturbance in the force!", err);
+  }
+});
+```
+
 #### Flowable
 
 The Flowable is an observable interface that supports the following interactions:
@@ -57,6 +83,78 @@ From the Reactive Manifesto:
 > ...back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it https://www.reactivemanifesto.org/glossary#Back-Pressure
 
 This concept of back-pressure is unique to observable implementations in JavaScript through rsocket-flowable, and in the simplest terms allows for an observer to control the rate and which an observable emits or "publishes" values.
+
+##### Flowable Example
+
+**The Flowable interface requires a bit more thought than Single**, primarily due to the support for back-pressure, and how supporting back-pressure generally requires some intermediary steps to save off partial data until it is requested by observers.
+
+To demonstrate this, below we've implemented a solution that leverages Flowable to construct an observable that will emit data retrieved from the Starwars API concerning every movie that contains the character Luke Skywalker. To accomplish this, we implement the request method of the subscription object passed to `filmsSubscriber.onSubscribe()` that roughly follows the following algorithm:
+
+The first time request is called:
+
+- Fetch data about Luke Skywalker from the Starwars API and save the promise. The promise is saved to ensure that we reference the previously loaded data about Luke Skywalker on subsequent calls to `request` (we only ever need to fetch Luke once).
+- When the promise resolves, save the contained list of URLs to data about the movies so we can fetch the detailed data later on.
+
+The first time request is called, and every subsequent call to request:
+
+- Loop over each URL to data about a movie containing Luke Skywalker.
+  - Break the loop if we have requested the number of movies that the observer requested (`requestedFilmsCount`).
+  - Break the loop if we have already loaded data for each movie for Luke Skywalker.
+- Remove a URL to a movie from the `pendingFilms` list.
+- Fetch the data about the movie removed from the `pendingFilms` list, and add the resulting promise to the unsettled promises array (`fetches`).
+  - Once the promise resolves, pass the resulting data to `filmsSubscriber.onNext(filmData)`.
+  - If the promise rejects, pass the resulting error to `filmsSubscriber.onError(err)`.
+- Once all the promises saved to the unsettled promises array (`fetches`) have settled, check if we still have movies we haven't loaded data for yet.
+  - If there are movies that still haven't loaded data for yet, do nothing and wait for the observer to perform a subsequent call to `request` on its subscription.
+  - If there are no more movies to load that have Luke Skywalker in them, call `filmsSubscriber.onComplete()` which will signify to the observer that all of the possible data has been loaded and it should not expect anything further.
+
+As you can see, this algorithm is substantially more complex than that of the simple case of using a Single to forward along a resolve or reject call from a Promise. Even though this algorithm is more complex, it is also substantially more powerful as it supports the observer controlling the rate at which the movie data is loaded, and with small adjustments, could also allow for the observer to cancel the whole operation should it choose to for any reason.
+
+```js
+const { Flowable } = require("rsocket-flowable");
+const fetch = require("node-fetch");
+
+const films$ = new Flowable(filmsSubscriber => {
+  let pendingFilms = null;
+  let fetchFilmsWithLukeSkywalker = null;
+  filmsSubscriber.onSubscribe({
+    request: requestedFilmsCount => {
+      if (!fetchFilmsWithLukeSkywalker) {
+        fetchFilmsWithLukeSkywalker = fetch("https://swapi.dev/api/people/1")
+          .then(response => response.json())
+          .then(({ films }) => {
+            pendingFilms = films;
+          });
+      }
+
+      fetchFilmsWithLukeSkywalker.then(() => {
+        const fetches = [];
+        while (requestedFilmsCount-- && pendingFilms.length) {
+          const nextFilm = pendingFilms.splice(0, 1)[0];
+          const promise = fetch(nextFilm)
+            .then(response => response.json())
+            .then(filmData => filmsSubscriber.onNext(filmData))
+            .catch(err => filmsSubscriber.onError(err));
+          fetches.push(promise);
+        }
+
+        Promise.allSettled(fetches).then(() => {
+          if (!pendingFilms.length) {
+            filmsSubscriber.onComplete();
+          }
+        });
+      });
+    }
+  });
+});
+
+films$.subscribe({
+  onComplete: () => console.log("All films fetched!"),
+  onError: err => console.error(err),
+  onNext: film => console.log(film.title),
+  onSubscribe: sub => sub.request(100)
+});
+```
 
 ### Lazy Observables
 
