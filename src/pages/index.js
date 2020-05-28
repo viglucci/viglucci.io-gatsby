@@ -86,7 +86,7 @@ const PostList = ({
           </h2>
           <div className="mt-3 sm:mt-4 lg:grid lg:grid-cols-1 lg:gap-5 lg:items-center">
             <p className="text-xl leading-7 text-gray-500">
-              Kevin enjoys writing about software architecture, web APIs, Javascript, and various other topics.
+              Kevin enjoys writing about software architecture, web APIs, JavaScript, and various other topics.
             </p>
           </div>
         </div>
