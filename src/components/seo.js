@@ -9,7 +9,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import defaultOpenGraphImage from '../../content/assets/favicon.png'
+import defaultOpenGraphImage from '../../content/assets/2x1-og-image.png'
 
 function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogImageHeight, twitterImage }) {
   const { site } = useStaticQuery(
