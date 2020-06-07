@@ -80,13 +80,15 @@ From the Reactive Manifesto:
 
 > ...back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it https://www.reactivemanifesto.org/glossary#Back-Pressure
 
-This concept of back-pressure is unique to observable implementations in JavaScript through rsocket-flowable, and in the simplest terms allows for an observer to control the rate and which an observable emits or "publishes" values.
+This concept of back-pressure is unique to observable implementations in JavaScript through rsocket-flowable, and in the simplest terms allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement the request method**. This request implementation is responsible for "publishing" values as they are request from an observer that has invoked `.subscribe()`.
 
-##### Flowable Example
+To see this in action, you can read the detailed explanation of an algorithm leveraging Flowable under "Flowable Code Example Explanation", or skip the explanation and jump to the Flowable Code Example section below that.
 
-**The Flowable interface requires a bit more thought than Single**, primarily due to the support for back-pressure, and how supporting back-pressure generally requires some intermediary steps to save off partial data until it is requested by observers.
+#### Flowable Code Example Explanation
 
-To demonstrate this, below we've implemented a solution that leverages Flowable to construct an observable that will emit data retrieved from the Starwars API concerning every movie that contains the character Luke Skywalker. To accomplish this, we implement the request method of the subscription object passed to `filmsSubscriber.onSubscribe()` that roughly follows the following algorithm:
+**The Flowable interface requires a bit more thought than Single**. This is primarily due to the support for back-pressure, and how supporting back-pressure can often require some caching to save off partial or staged data until it is requested by observers.
+
+To demonstrate this, below we've implemented a Flowable publisher which will emit data retrieved from the Starwars API for every movie that contains the character Luke Skywalker. To accomplish this, we implement the request method of the subscription object passed to `filmsSubscriber.onSubscribe()` that roughly follows the following algorithm:
 
 The first time request is called:
 
@@ -106,6 +108,8 @@ The first time request is called, and every subsequent call to request:
   - If there are no more movies to load that have Luke Skywalker in them, call `filmsSubscriber.onComplete()` which will signify to the observer that all of the possible data has been loaded and it should not expect anything further.
 
 As you can see, this algorithm is substantially more complex than that of the simple case of using a Single to forward along a resolve or reject call from a Promise. Even though this algorithm is more complex, it is also substantially more powerful as it supports the observer controlling the rate at which the movie data is loaded, and with small adjustments, could also allow for the observer to cancel the whole operation should it choose to for any reason.
+
+#### Flowable Code Example
 
 ```js
 const { Flowable } = require("rsocket-flowable");
