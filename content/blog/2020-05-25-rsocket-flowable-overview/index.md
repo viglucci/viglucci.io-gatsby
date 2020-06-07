@@ -90,14 +90,13 @@ To demonstrate this, below we've implemented a solution that leverages Flowable 
 
 The first time request is called:
 
-- Fetch data about Luke Skywalker from the Starwars API and save the promise. The promise is saved to ensure that we reference the previously loaded data about Luke Skywalker on subsequent calls to `request` (we only ever need to fetch Luke once).
-- When the promise resolves, save the contained list of URLs to data about the movies so we can fetch the detailed data later on.
+- Fetch data about Luke Skywalker from the Starwars API and destructured the array of films from the response. We then save the array of filmsto the `pendingFilms` variable so that we can reference it on subsequent calls to `request`.
 
 The first time request is called, and every subsequent call to request:
 
-- Loop over each URL to data about a movie containing Luke Skywalker.
+- Loop over each URL in the `pendingFilms` array to load data about a movie with Luke Skywalker as a character.
   - Break the loop if we have requested the number of movies that the observer requested (`requestedFilmsCount`).
-  - Break the loop if we have already loaded data for each movie for Luke Skywalker.
+  - Break the loop if there are no more movies to load data for.
 - Remove a URL to a movie from the `pendingFilms` list.
 - Fetch the data about the movie removed from the `pendingFilms` list, and add the resulting promise to the unsettled promises array (`fetches`).
   - Once the promise resolves, pass the resulting data to `filmsSubscriber.onNext(filmData)`.
@@ -110,38 +109,37 @@ As you can see, this algorithm is substantially more complex than that of the si
 
 ```js
 const { Flowable } = require("rsocket-flowable");
+const Promise = require("bluebird");
 const fetch = require("node-fetch");
 
-const films$ = new Flowable(filmsSubscriber => {
+const films$ = new Flowable((filmsSubscriber) => {
+
   let pendingFilms = null;
   let fetchFilmsWithLukeSkywalker = null;
+
   filmsSubscriber.onSubscribe({
-    request: requestedFilmsCount => {
+    request: async (requestedFilmsCount) => {
       if (!fetchFilmsWithLukeSkywalker) {
-        fetchFilmsWithLukeSkywalker = fetch("https://swapi.dev/api/people/1")
-          .then(response => response.json())
-          .then(({ films }) => {
-            pendingFilms = films;
-          });
+        const response = await fetch("https://swapi.dev/api/people/1");
+        const { films } = await response.json();
+        pendingFilms = films;
       }
 
-      fetchFilmsWithLukeSkywalker.then(() => {
-        const fetches = [];
-        while (requestedFilmsCount-- && pendingFilms.length) {
-          const nextFilm = pendingFilms.splice(0, 1)[0];
-          const promise = fetch(nextFilm)
-            .then(response => response.json())
-            .then(filmData => filmsSubscriber.onNext(filmData))
-            .catch(err => filmsSubscriber.onError(err));
-          fetches.push(promise);
-        }
+      const fetches = [];
+      while (requestedFilmsCount-- && pendingFilms.length) {
+        const nextFilm = pendingFilms.splice(0, 1)[0];
+        const promise = fetch(nextFilm)
+          .then(response => response.json())
+          .then(filmData => filmsSubscriber.onNext(filmData))
+          .catch(err => filmsSubscriber.onError(err));
+        fetches.push(promise);
+      }
 
-        Promise.allSettled(fetches).then(() => {
-          if (!pendingFilms.length) {
-            filmsSubscriber.onComplete();
-          }
-        });
-      });
+      await Promise.allSettled(fetches);
+
+      if (!pendingFilms.length) {
+        filmsSubscriber.onComplete();
+      }
     }
   });
 });
