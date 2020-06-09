@@ -44,11 +44,11 @@ Apart from with the added functionality of being able to cancel observing and ob
 A practical example of consuming the Single interface would be wraping a promise API/operation, such as the `fetch` API. In the below example we do just that, we create a new instance of Single, which when subscribed to will call to the Starwars API to retrieve data about Luke Skywalker.
 
 ```js
-const { Single } = require("rsocket-flowable");
-const fetch = require("node-fetch");
+const { Single } = require('rsocket-flowable');
+const fetch = require('node-fetch');
 
 const observable = new Single(subscriber => {
-  fetch("https://swapi.dev/api/people/1")
+  fetch('https://swapi.dev/api/people/1')
     .then(response => response.json())
     .then(data => subscriber.onComplete(data))
     .catch(error => subscriber.onError(error));
@@ -60,7 +60,7 @@ observable.subscribe({
     console.log(lukeSkywalkerData);
   },
   onError: err => {
-    console.error("There was a disturbance in the force!", err);
+    console.error('There was a disturbance in the force!', err);
   }
 });
 ```
@@ -74,7 +74,7 @@ The Flowable is an observable interface that supports the following interactions
 - emit one or more error values via the `subscriber.onError` callback
 - be cancelled via the `cancel` method passed to the subscribers `onSubscribe` callback
 
-Flowable differs from Single on a fundamental level in that the purpose of Flowable is to emit one or more values, compared to Single emitting a single or no values, **as well as Flowable supporting the concept of back-pressure**.
+Flowable differs from Single on a fundamental level in that the Flowable is expected to emit one or more values, where Single is expected to emit a single or no values. Additionally, Flowable supports the concept of back-pressure.
 
 From the Reactive Manifesto:
 
@@ -82,13 +82,11 @@ From the Reactive Manifesto:
 
 This concept of back-pressure is unique to observable implementations in JavaScript through rsocket-flowable, and in the simplest terms allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement the request method**. This request implementation is responsible for "publishing" values as they are request from an observer that has invoked `.subscribe()`.
 
-To see this in action, you can read the detailed explanation of an algorithm leveraging Flowable under "Flowable Code Example Explanation", or skip the explanation and jump to the Flowable Code Example section below that.
+To see this in action, you can read the detailed explanation of an algorithm leveraging Flowable under "Flowable Code Example Explanation", or skip the explanation and jump to the "Flowable Code Example" section below that.
 
 #### Flowable Code Example Explanation
 
-**The Flowable interface requires a bit more thought than Single**. This is primarily due to the support for back-pressure, and how supporting back-pressure can often require some caching to save off partial or staged data until it is requested by observers.
-
-To demonstrate this, below we've implemented a Flowable publisher which will emit data retrieved from the Starwars API for every movie that contains the character Luke Skywalker. To accomplish this, we implement the request method of the subscription object passed to `filmsSubscriber.onSubscribe()` that roughly follows the following algorithm:
+Below we've implemented a Flowable publisher which will emit data retrieved from the Starwars API for every movie that contains the character Luke Skywalker. To accomplish this, we implement the request method of the subscription object passed to `filmsSubscriber.onSubscribe()` that roughly follows the following algorithm:
 
 The first time request is called:
 
@@ -112,19 +110,18 @@ As you can see, this algorithm is substantially more complex than that of the si
 #### Flowable Code Example
 
 ```js
-const { Flowable } = require("rsocket-flowable");
-const Promise = require("bluebird");
-const fetch = require("node-fetch");
+const { Flowable } = require('rsocket-flowable');
+const Promise = require('bluebird');
+const fetch = require('node-fetch');
 
 const films$ = new Flowable((filmsSubscriber) => {
 
   let pendingFilms = null;
-  let fetchFilmsWithLukeSkywalker = null;
 
   filmsSubscriber.onSubscribe({
     request: async (requestedFilmsCount) => {
-      if (!fetchFilmsWithLukeSkywalker) {
-        const response = await fetch("https://swapi.dev/api/people/1");
+      if (!pendingFilms) {
+        const response = await fetch('https://swapi.dev/api/people/1');
         const { films } = await response.json();
         pendingFilms = films;
       }
@@ -133,9 +130,9 @@ const films$ = new Flowable((filmsSubscriber) => {
       while (requestedFilmsCount-- && pendingFilms.length) {
         const nextFilm = pendingFilms.splice(0, 1)[0];
         const promise = fetch(nextFilm)
-          .then(response => response.json())
-          .then(filmData => filmsSubscriber.onNext(filmData))
-          .catch(err => filmsSubscriber.onError(err));
+          .then((response) => response.json())
+          .then((filmData) => filmsSubscriber.onNext(filmData))
+          .catch((err) => filmsSubscriber.onError(err));
         fetches.push(promise);
       }
 
@@ -149,7 +146,7 @@ const films$ = new Flowable((filmsSubscriber) => {
 });
 
 films$.subscribe({
-  onComplete: () => console.log("All films fetched!"),
+  onComplete: () => console.log('All films fetched!'),
   onError: err => console.error(err),
   onNext: film => console.log(film.title),
   onSubscribe: sub => sub.request(100)
@@ -158,7 +155,7 @@ films$.subscribe({
 
 ### Lazy Observables
 
-The observable interfaces exposed by rsocket-flowable are "lazy", in that no "work" is started until a observer subscribes to the observable. This concept is also often referred to as a "cold observable", which is in contrast to a "hot observable", where the observable performs work and emits values regardless of the presence of any observers.
+The observable interfaces implemented by rsocket-flowable are "lazy", meaning that no "work" is started until a observer subscribes to the observable. This is also often referred to as a "cold observable", which is in contrast to a "hot observable", where the observable may emit values regardless of the presence of any observers.
 
 ```js
 const mySingle = new Single((subscriber) => {
@@ -186,6 +183,7 @@ In the above example, the `setTimeout` method  in the callback passed to the con
 
 ### Cancellation
 
+TODO
 
 ## Source Code
 
