@@ -7,7 +7,7 @@ ogimage: "./rsocket-flowable-overview-og-image.png"
 twitterimage: "./rsocket-flowable-overview-twitter-image.png"
 ---
 
-Asynchronous programming is a concept as paramount to working in JavaScript as any other, with developers generally familiar with patterns such as Promises, async/await, and callbacks. However, implementations of Reactive Streams, such as [RxJS](https://github.com/ReactiveX/rxjs), are not as widely taught or utilized. RxJS has done a great deal for normalizing reactive programming in JavaScript, largely in the Angular ecosystem, but today we are going to dig into a different implementation of Reactive Streams called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
+Asynchronous programming is a concept as paramount to working in JavaScript as any other, with developers generally familiar with patterns such as Promises, async/await, and callbacks. However, implementations of Reactive Streams, such as [RxJS](https://github.com/ReactiveX/rxjs), are not as widely taught or utilized. RxJS has done a great deal for normalizing reactive, largely in the Angular ecosystem, but today we are going to dig into a different implementation of Reactive Streams called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
 
 ## Core Concepts
 
@@ -17,16 +17,14 @@ At the core of RSocket Flowable is the Observer Pattern, implemented in rsocket-
 
 ### Single and Flowable Interfaces
 
-RSocket Flowable exports two primary interfaces, Single and Flowable, which in contrast to the more functional programming style that RxJS follows, are implemented and exposed using object oriented patterns.
-
 ```js
 const { Single, Flowable } = require('rsocket-flowable');
 
 // construct an instance of a Single
-const mySingle = new Single((subscriber) => {});
+const mySingle$ = new Single((subscriber) => {});
 
 // constuct an instance of a Flowable
-const myFlowable = new Flowable((subscriber) => {});
+const myFlowable$ = new Flowable((subscriber) => {});
 ```
 
 #### Single
@@ -35,9 +33,9 @@ The Single is an observable interface that supports the following interactions:
 
 - emit a single value via the `subscriber.onComplete` callback
 - emit an error value via the `subscriber.onError` callback
-- be cancelled via the `cancel` method passed to the subscribers `onSubscribe` callback
+- cancellation via the `cancel` callback passed to observers after calling `onSubscribe`
 
-Apart from with the added functionality of being able to cancel observing and observable, these operations should feel familiar to JavaScript programmers as they are similiar to interacting with Promises, where a promise can only ever resolve or reject.
+Apart from cancellation, these operations should feel familiar as they are essentially the same as interacting with Promises, as promises can only ever resolve or reject.
 
 ##### Single Example
 
@@ -47,7 +45,7 @@ A practical example of consuming the Single interface would be wraping a promise
 const { Single } = require('rsocket-flowable');
 const fetch = require('node-fetch');
 
-const observable = new Single(subscriber => {
+const luke$ = new Single(subscriber => {
   fetch('https://swapi.dev/api/people/1')
     .then(response => response.json())
     .then(data => subscriber.onComplete(data))
@@ -55,13 +53,16 @@ const observable = new Single(subscriber => {
   subscriber.onSubscribe();
 });
 
-observable.subscribe({
-  onComplete: lukeSkywalkerData => {
-    console.log(lukeSkywalkerData);
+luke$.subscribe({
+  onComplete: data => {
+    console.log(data);
   },
   onError: err => {
     console.error('There was a disturbance in the force!', err);
-  }
+  },
+  onSubscribe: cancel => {
+    /* calling cancel() will stop calls to onComplete/onError */
+  },
 });
 ```
 
@@ -114,11 +115,11 @@ const { Flowable } = require('rsocket-flowable');
 const Promise = require('bluebird');
 const fetch = require('node-fetch');
 
-const films$ = new Flowable((filmsSubscriber) => {
+const films$ = new Flowable((subscriber) => {
 
   let pendingFilms = null;
 
-  filmsSubscriber.onSubscribe({
+  subscriber.onSubscribe({
     request: async (requestedFilmsCount) => {
       if (!pendingFilms) {
         const response = await fetch('https://swapi.dev/api/people/1');
@@ -131,15 +132,15 @@ const films$ = new Flowable((filmsSubscriber) => {
         const nextFilm = pendingFilms.splice(0, 1)[0];
         const promise = fetch(nextFilm)
           .then((response) => response.json())
-          .then((filmData) => filmsSubscriber.onNext(filmData))
-          .catch((err) => filmsSubscriber.onError(err));
+          .then((filmData) => subscriber.onNext(filmData))
+          .catch((err) => subscriber.onError(err));
         fetches.push(promise);
       }
 
       await Promise.allSettled(fetches);
 
       if (!pendingFilms.length) {
-        filmsSubscriber.onComplete();
+        subscriber.onComplete();
       }
     }
   });
