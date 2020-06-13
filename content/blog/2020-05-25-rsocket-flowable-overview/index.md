@@ -33,7 +33,7 @@ The Single is an observable interface that supports the following interactions:
 
 - emit a single value via the `subscriber.onComplete` callback
 - emit an error value via the `subscriber.onError` callback
-- cancellation via the `cancel` callback passed to observers after calling `onSubscribe`
+- cancellation via the `cancel` callback passed to observers through the `onSubscribe` callback
 
 Apart from cancellation, these operations should feel familiar as they are essentially the same as interacting with Promises, as promises can only ever resolve or reject.
 
@@ -73,7 +73,7 @@ The Flowable is an observable interface that supports the following interactions
 - emit a single value via the `subscriber.onComplete` callback
 - emit one or more values via the `subscriber.onNext` callback when the subscriptions **request callback** is invoked
 - emit one or more error values via the `subscriber.onError` callback
-- be cancelled via the `cancel` method passed to the subscribers `onSubscribe` callback
+- cancellation via the `cancel` callback passed to observers through the `onSubscribe` callback
 
 Flowable differs from Single on a fundamental level in that the Flowable is expected to emit one or more values, where Single is expected to emit a single or no values. Additionally, Flowable supports the concept of back-pressure.
 
@@ -81,9 +81,34 @@ From the Reactive Manifesto:
 
 > ...back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it https://www.reactivemanifesto.org/glossary#Back-Pressure
 
-This concept of back-pressure is unique to observable implementations in JavaScript through rsocket-flowable, and in the simplest terms allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement the request method**. This request implementation is responsible for "publishing" values as they are request from an observer that has invoked `.subscribe()`.
+This concept of back-pressure isn't exactly unique to observable implementations in JavaScript through rsocket-flowable, but it is simpler compared to the backpressure support provided through RxJS. In the simplest terms, the back-pressure support in Flowable allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement a request method**. This request method acts as a callback that is responsible for "publishing" values as they are requested from an observer.
 
-To see this in action, you can read the detailed explanation of an algorithm leveraging Flowable under "Flowable Code Example Explanation", or skip the explanation and jump to the "Flowable Code Example" section below that.
+#### The Request Method
+
+As discussed above, the request method is responsible for publishing data as it is requested from an observer, with the observer able to control the flow of the data published by passing an integer value when invoking the request method.
+
+```js
+const { Flowable } = require('rsocket-flowable');
+
+const example$ = new Flowable(subscriber => {
+  subscriber.onSubscribe({
+    request: n => {
+      for(let i = 0; i < n; i++) {
+        subscriber.onNext(i);
+      }
+    }
+  });
+});
+
+example$.subscribe({
+  onNext: i => console.log(i),
+  onSubscribe: sub => sub.request(3)
+});
+```
+
+In this example, calling `sub.request(3)` would result in `onNext()` being called with the values `0, 1, 2`.
+
+For a more complex "real world" usage example of consuming Flowable, read the detailed explanation of an algorithm leveraging Flowable below labeled "Flowable Code Example Explanation", or jump straight the corresponding code sample labeled "Flowable Code Example".
 
 #### Flowable Code Example Explanation
 
@@ -106,7 +131,7 @@ The first time request is called, and every subsequent call to request:
   - If there are movies that still haven't loaded data for yet, do nothing and wait for the observer to perform a subsequent call to `request` on its subscription.
   - If there are no more movies to load that have Luke Skywalker in them, call `filmsSubscriber.onComplete()` which will signify to the observer that all of the possible data has been loaded and it should not expect anything further.
 
-As you can see, this algorithm is substantially more complex than that of the simple case of using a Single to forward along a resolve or reject call from a Promise. Even though this algorithm is more complex, it is also substantially more powerful as it supports the observer controlling the rate at which the movie data is loaded, and with small adjustments, could also allow for the observer to cancel the whole operation should it choose to for any reason.
+This algorithm is substantially more complex than the simpler case of forwarding along the result of a Promise by leveraging `Single`. Even though the complexity is much higher, the support for controlling the rate at which the movie data is loaded, and with small adjustments, being able to support cancellation of the whole operation at any time makes this much more powerful.
 
 #### Flowable Code Example
 
@@ -159,28 +184,30 @@ films$.subscribe({
 The observable interfaces implemented by rsocket-flowable are "lazy", meaning that no "work" is started until a observer subscribes to the observable. This is also often referred to as a "cold observable", which is in contrast to a "hot observable", where the observable may emit values regardless of the presence of any observers.
 
 ```js
-const mySingle = new Single((subscriber) => {
-  // closure is not invoked until mySingle.subscribe() is called.
+const mySingle$ = new Single((subscriber) => {
+  // closure is not invoked until mySingle$.subscribe() is invoked.
 });
 
-const myFlowable = new Flowable((subscriber) => {
-  // closure is not invoked until myFlowable.subscribe() is called.
+const myFlowable$ = new Flowable((subscriber) => {
+  // closure is not invoked until myFlowable$.subscribe() is invoked.
 });
 ```
 
-As a comparison, you may already be familiar with the concept of "eager" or "hot" interfaces in the form of Promises, which will begin executing the asynchronous operation as soon as the object is created (or on the next tick of the event loop if you want to get specific).
+In contrast, you may already be familiar with the concept of "eager" or "hot" interfaces in the form of Promises, where the callback passed to the Promise constructor is invoked as soon as the Promise instance is created (or on the next tick of the event loop if you want to get specific).
 
 ```js
 new Promise((resolve, reject) => {
+  const log = (msg) => console.log(`[${new Date().toISOString()}] ${msg}`);
+  log('callback called');
   setTimeout(() => {
     const randomInt = Math.floor(Math.random() * Math.floor(10));
-    console.log(`[${new Date().toISOString()}] ${randomInt}`);
+    log(`the random int is ${randomInt}`);
     resolve(randomInt);
   }, 1000);
 });
 ```
 
-In the above example, the `setTimeout` method  in the callback passed to the constructor for Promise is executed whether the `.then()`, or any other prototype methods has been called on the promise instance or not. You can verify this for yourself by copying the above example into your browsers devtools console, and you will see that after about one second, a random int value is printed to the console.
+In the above example, the `setTimeout` method  in the callback passed to the Promise constructor is invoked whether the `.then()` prototype method is invoked or not. You can verify this for yourself by copying the above example into your browsers devtools console, and you will see that a console log line is printed immediately, followed by a random int value about one second later.
 
 ### Cancellation
 
