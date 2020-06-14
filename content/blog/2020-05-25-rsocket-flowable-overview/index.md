@@ -215,4 +215,4 @@ TODO
 
 ## Source Code
 
-The source for roscket-flowable comes from the [rsocket-js](https://github.com/rsocket/rsocket-js) github repository, which is a monorepo  style repository housing numerous libraries and packages for working with the RSocket application protocol in JavaScript. The project is implemented using the Flow type system, which is not as popular as other type systems (such as Typescript) these days, but if you want to dig in you can find the source for rsocket-flowable at [https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/](https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/).
+The source for roscket-flowable comes from the [rsocket-js](https://github.com/rsocket/rsocket-js) github repository, which is a monorepo  style repository housing numerous libraries and packages for working with the RSocket application protocol in JavaScript. If you want to dig in you can find the source for rsocket-flowable at [https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/](https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/).
