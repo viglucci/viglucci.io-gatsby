@@ -9,6 +9,11 @@ twitterimage: "./rsocket-flowable-overview-twitter-image.png"
 
 Asynchronous programming is a concept as paramount to working in JavaScript as any other, with developers generally familiar with patterns such as Promises, async/await, and callbacks. However, implementations of Reactive Streams, such as [RxJS](https://github.com/ReactiveX/rxjs), are not as widely taught or utilized. RxJS has done a great deal for normalizing reactive, largely in the Angular ecosystem, but today we are going to dig into a different implementation of Reactive Streams called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
 
+### Source Code
+
+The source for roscket-flowable comes from the [rsocket-js](https://github.com/rsocket/rsocket-js) github repository, which is a monorepo  style repository housing numerous libraries and packages for working with the RSocket application protocol in JavaScript. If you want to dig in you can find the source for rsocket-flowable at [https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/](https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/).
+
+
 ## Core Concepts
 
 At the core of RSocket Flowable is the Observer Pattern, implemented in rsocket-flowable via the **Single** and **Flowable** interfaces.
@@ -211,8 +216,48 @@ In the above example, the `setTimeout` method  in the callback passed to the Pro
 
 ### Cancellation
 
-TODO
+Cancellation is powerful feature of observable interfaces, such as rsocket-flowable. Cancellation allows for a observer to indicate to the observable that they are no longer intersted in the result of any operations which may be ongoing. This is useful when programming user interfaces with frameworks such as ReactJS, as being able to cancel in-flight async operations is important for cleaning up state in order to avoid side effects when unmounting components. This cancellation support would also be useful when programming stateful webservices with protocols such as websockets, where a client could terminate their connection at anytime, and continuing to perform operations on their behalf after they've disconnected likely doesn't make sense.
 
-## Source Code
+#### Cancellation Example
 
-The source for roscket-flowable comes from the [rsocket-js](https://github.com/rsocket/rsocket-js) github repository, which is a monorepo  style repository housing numerous libraries and packages for working with the RSocket application protocol in JavaScript. If you want to dig in you can find the source for rsocket-flowable at [https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/](https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/).
+In the example below, we create an instance of a Flowable that will emit an integer value until it is canceled, with a subscriber requesting a random number of ints every 500 milliseconds. The subscriber will additionally cancel the stream of ints after three seconds. This example is similar to how you could implement a timeout for a async operation, such as a network request or file read.
+
+```js
+const { Flowable } = require('rsocket-flowable');
+
+let lastInt = 0;
+const ints$ = new Flowable(subscriber => {
+  subscriber.onSubscribe({
+    cancel: () => console.log('Stream canceled!'),
+    request: (n) => {
+      const upperBounds = lastInt + n;
+      for(let i = lastInt; i < upperBounds; i++) {
+        lastInt = i;
+        subscriber.onNext(i);
+      }
+    }
+  });
+});
+
+ints$.subscribe({
+  onComplete: () => { /* onComplete is never called */ },
+  onNext: i => console.log(i),
+  onSubscribe: sub => {
+    /**
+     * Request a random number of ints every 500 milliseconds.
+     */
+    const interval = setInterval(() => {
+      const n = Math.floor(Math.random() * Math.floor(10)) + 1;
+      sub.request(n);
+    }, 500);
+    
+    /**
+     * Cancel the stream after 3 seconds.
+     */
+    setTimeout(() => {
+      clearInterval(interval);
+      sub.cancel();
+    }, 3000)
+  }
+});
+```
