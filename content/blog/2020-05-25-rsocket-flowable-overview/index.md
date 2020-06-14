@@ -261,3 +261,9 @@ ints$.subscribe({
   }
 });
 ```
+
+It is important to understand that cancelling a observable stream only instructs the observable that the subscriber no longer cares to receive updates, it does not automatically cancel any async or other operations which the publisher may have been performing. If it is important for your observable to react to being canceled, then you can implement the cancel callback to cleanup as needed. Additionally, with `rsocket-flowable@0.0.14`, in order to avoid a TypeError, you must implement the cancel callback if you intend to invoke cancel from a subscriber.
+
+```
+TypeError: this._subscription.cancel is not a function
+```
