@@ -220,7 +220,7 @@ Cancellation is powerful feature of observable interfaces, such as rsocket-flowa
 
 #### Cancellation Example
 
-In the example below, we create an instance of a Flowable that will emit an integer value until it is canceled, with a subscriber requesting a random number of ints every 500 milliseconds. The subscriber will additionally cancel the stream of ints after three seconds. This example is similar to how you could implement a timeout for a async operation, such as a network request or file read.
+In the example below, we create an instance of a Flowable that will emit an integer value until it is canceled, with a subscriber requesting a random number of ints every 500 milliseconds (1/2 a second). The subscriber will additionally cancel the stream of ints after three seconds. This example is similar to how you could implement a timeout for a async operation, such as a network request or file read.
 
 ```js
 const { Flowable } = require('rsocket-flowable');
@@ -262,7 +262,9 @@ ints$.subscribe({
 });
 ```
 
-It is important to understand that cancelling a observable stream only instructs the observable that the subscriber no longer cares to receive updates, it does not automatically cancel any async or other operations which the publisher may have been performing. If it is important for your observable to react to being canceled, then you can implement the cancel callback to cleanup as needed. Additionally, with `rsocket-flowable@0.0.14`, in order to avoid a TypeError, you must implement the cancel callback if you intend to invoke cancel from a subscriber.
+It is important to understand that cancelling a observable stream only instructs the observable that the subscriber no longer cares to receive updates, it does not automatically cancel any operations which the publisher may have been performing. If it is important for your observable to react to being canceled, then you can implement the cancel callback to perform cleanup as needed.
+
+Lastly, with `rsocket-flowable@0.0.14`, in order to avoid the below TypeError, you must implement the cancel callback on the publisher if you intend to invoke cancel from a subscriber.
 
 ```
 TypeError: this._subscription.cancel is not a function
