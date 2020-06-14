@@ -250,14 +250,14 @@ ints$.subscribe({
       const n = Math.floor(Math.random() * Math.floor(10)) + 1;
       sub.request(n);
     }, 500);
-    
+
     /**
      * Cancel the stream after 3 seconds.
      */
     setTimeout(() => {
       clearInterval(interval);
       sub.cancel();
-    }, 3000)
+    }, 3000);
   }
 });
 ```
