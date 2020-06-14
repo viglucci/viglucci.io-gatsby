@@ -1,7 +1,7 @@
 ---
-title: Reactive Programming in JavaScript with RSocket Flowable
-slug: rsocket-flowable-overview
-date: "2020-05-25T00:00:00.000Z"
+title: Reactive Streams in JavaScript with RSocket Flowable
+slug: reactive-streams-in-javascript-with-rsocket-flowable
+date: "2020-06-14T00:00:00.000Z"
 description: "******PLACEHOLDER******."
 ogimage: "./rsocket-flowable-overview-og-image.png"
 twitterimage: "./rsocket-flowable-overview-twitter-image.png"
@@ -269,3 +269,11 @@ Lastly, with `rsocket-flowable@0.0.14`, in order to avoid the below TypeError, y
 ```
 TypeError: this._subscription.cancel is not a function
 ```
+
+### Final Thoughts
+
+Reactive Streams, and similiar patterns, such as ReactiveX (implemented as RxJS in JavaScript), have really grown on me after discovering RSocket, and I believe we'll continue to see continued growth and adoption of these patterns over the next couple of years. I believe this is supported by protocols such as RSocket, which models a stream of messages moving fluently through polyglot systems all leveraging familiar streaming protocols. A deeper understanding of the reactive streams implementations leveraged in each part of these systems will be beneficial to leveraging the full potential of protocols such as RSocket. I would recommend diving deeper into these concepts if building highly scalable reactive microservices and real-time interfaces intrigues you.
+
+#### The Future of RSocket Flowable
+
+In my previous article [The State of RSocket in JavaScript](/the-state-of-rsocket-in-javascript), we reviewed how the future of rsocket-js may be uncertain, and I feel the same way about RSocket Flowable. One of the maintainers of rsocket-js has stated that RSocket Flowable may be replaced in the future by a [new project](https://github.com/rsocket/rsocket-js/issues/45#issuecomment-522035252), but at this point, the projects github repo has not receieved any meaningful contributions for over 16 months, so it is hard to say if this will actually occur, or if the project is potentially in-development behind the scenes as closed source.
