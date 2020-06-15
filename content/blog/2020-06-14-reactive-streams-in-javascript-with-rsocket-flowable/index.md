@@ -270,11 +270,12 @@ Lastly, with `rsocket-flowable@0.0.14`, to avoid the below TypeError, you must i
 TypeError: this._subscription.cancel is not a function
 ```
 
+### The Future of RSocket Flowable
+
+In my previous article [The State of RSocket in JavaScript](/the-state-of-rsocket-in-javascript), we reviewed how the future of rsocket-js may be uncertain, and I feel the same way about RSocket Flowable. One of the maintainers of rsocket-js has stated that RSocket Flowable may be replaced in the future by a [new project](https://github.com/rsocket/rsocket-js/issues/45#issuecomment-522035252), which is primarily why I feel this way. However, at this point the GitHub repo for the proposed replacement has not received meaningful contributions for over 16 months, so it is hard to say if this will actually occur. It is however possible that the project could be in-development behind the scenes as closed source.
+
 ### Final Thoughts
 
-Reactive Streams, and similar patterns, such as ReactiveX (implemented as RxJS in JavaScript), have grown on me after discovering RSocket, and I believe we'll continue to see continued growth and adoption of these patterns over the next couple of years. Protocols such as RSocket support the continuation of these patterns, as RSocket models a stream of messages moving fluently through polyglot systems, where each leverages standard streaming protocols. A deeper understanding of the reactive stream implementations leveraged in each part of these systems will help leverage the full potential of protocols such as RSocket. I would recommend diving deeper into these concepts if building highly scalable reactive microservices and real-time interfaces intrigues you.
+Reactive Streams, and similar patterns, such as ReactiveX (implemented as RxJS in JavaScript), have grown on me after discovering RSocket, and I believe we'll continue to see continued growth and adoption of these patterns over the next couple of years. Advancements such as RSocket support the continued adoption of these patterns, as RSocket models a stream of messages moving fluently through polyglot systems, with each leveraging a ReactiveX or React Streams implementation. 
 
-#### The Future of RSocket Flowable
-
-In my previous article [The State of RSocket in JavaScript](/the-state-of-rsocket-in-javascript), we reviewed how the future of rsocket-js may be uncertain, and I feel the same way about RSocket Flowable. One of the maintainers of rsocket-js has stated that RSocket Flowable may be replaced in the future by a [new project](https://github.com/rsocket/rsocket-js/issues/45#issuecomment-522035252). At this point, the project's GitHub repo has not made meaningful contributions for over 16 months. Hence, it is hard to say if this will actually occur, or if the project is potentially in-development behind the scenes as closed source.
-
+I recommend diving deeper into these concepts if building highly scalable reactive microservices and real-time interfaces intrigues you.
