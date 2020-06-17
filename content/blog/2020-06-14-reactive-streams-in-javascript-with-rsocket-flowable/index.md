@@ -94,7 +94,7 @@ As discussed above, the request method is responsible for publishing data as an 
 ```js
 const { Flowable } = require('rsocket-flowable');
 
-const example$ = new Flowable(subscriber => {
+const ints$ = new Flowable(subscriber => {
   subscriber.onSubscribe({
     request: n => {
       for(let i = 0; i < n; i++) {
@@ -104,7 +104,7 @@ const example$ = new Flowable(subscriber => {
   });
 });
 
-example$.subscribe({
+ints$.subscribe({
   onNext: i => console.log(i),
   onSubscribe: sub => sub.request(3)
 });
