@@ -271,7 +271,7 @@ TypeError: this._subscription.cancel is not a function
 
 ### The Future of RSocket Flowable
 
-In my previous article [The State of RSocket in JavaScript](/the-state-of-rsocket-in-javascript), we reviewed how the future of rsocket-js may be uncertain, and I feel the same way about RSocket Flowable. One of the maintainers of rsocket-js has stated that RSocket Flowable may be replaced in the future by a [new project](https://github.com/rsocket/rsocket-js/issues/45#issuecomment-522035252), which is primarily why I feel this way. However, at this point the GitHub repo for the proposed replacement has not received meaningful contributions for over 16 months, so it is hard to say if this will actually occur. It is however possible that the project could be in-development behind the scenes as closed source.
+In a previous article [The State of RSocket in JavaScript](/the-state-of-rsocket-in-javascript), we reviewed how the future of rsocket-js may be uncertain, and with a maintainer of rsocket-js stating that RSocket Flowable may be replaced in the future by a [new project](https://github.com/rsocket/rsocket-js/issues/45#issuecomment-522035252), I feel the same way about RSocket Flowable. However, the GitHub repo for the proposed replacement has not received meaningful contributions for over 16 months, so it is hard to say if this will occur. It is, of course, possible that the project could be in-development behind the scenes as a closed source project to be released as OSS in the future.
 
 ### Final Thoughts
 
