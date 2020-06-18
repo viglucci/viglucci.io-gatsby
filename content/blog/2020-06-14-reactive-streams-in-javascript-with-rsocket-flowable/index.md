@@ -85,11 +85,11 @@ From the Reactive Manifesto:
 
 > ... back-pressure is an important feedback mechanism that allows systems to gracefully respond to load rather than collapse under it https://www.reactivemanifesto.org/glossary#Back-Pressure
 
-This concept of back-pressure isn't exactly unique to observable implementations in JavaScript through rsocket-flowable, but it is simpler compared to the back-pressure support provided through RxJS. In the simplest terms, the back-pressure support in Flowable allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement a request method**. This request method acts as a callback that is responsible for "publishing" values as requested by an observer.
+The concept of back-pressure isn't exactly unique to rsocket-flowable, but it is simpler compared to the back-pressure support provided through RxJS. In the simplest terms, Flowable's back-pressure support allows for an observer to control the rate at which an observable emits or "publishes" values. To support this, **the Flowable interface accepts a subscriber that must implement a request method**. This request method acts as a callback that is responsible for "publishing" values as requested by an observer.
 
 #### The Request Method
 
-As discussed above, the request method is responsible for publishing data as an observer requests it. The observer can control the flow of the data published by passing an integer value when invoking the request method.
+The request method is responsible for publishing data at the rate requested by an observer, with the observer controlling the flow of data by passing an int value representing the number of events it can handle.
 
 ```js
 const { Flowable } = require('rsocket-flowable');
@@ -112,7 +112,7 @@ ints$.subscribe({
 
 In this example, calling `sub.request(3)` would result in `onNext()` being called with the values `0, 1, 2`.
 
-For a more complex "real world" usage example of consuming Flowable, read the detailed explanation of an algorithm leveraging Flowable below labeled "Flowable Code Example Explanation," or jump straight the corresponding code sample labeled "Flowable Code Example."
+For a more complex "real world" usage example, read the detailed explanation of an algorithm leveraging Flowable labeled "Flowable Code Example Explanation," or jump straight the corresponding code sample labeled "Flowable Code Example."
 
 #### Flowable Code Example Explanation
 
@@ -185,7 +185,7 @@ films$.subscribe({
 
 ### Lazy Observables
 
-The observable interfaces implemented by rsocket-flowable are "lazy," meaning that no "work" begins until an observer subscribes to the observable. These observables are "cold observable", which is in contrast to a "hot observable." When working with a hot observable, the observable may emit values regardless of the presence of any observers.
+The observable interfaces implemented by rsocket-flowable are "lazy," meaning that no "work" begins until an observer subscribes to the observable. These observables can also be referred to as "cold observables," which is in contrast to a "hot observable." When working with a hot observable, the observable may emit values regardless of the presence of any observers.
 
 ```js
 const mySingle$ = new Single((subscriber) => {
@@ -198,6 +198,8 @@ const myFlowable$ = new Flowable((subscriber) => {
 ```
 
 In contrast, you may already be familiar with the concept of "eager" or "hot" interfaces in the form of Promises. For promises, the callback passed to the Promise constructor is invoked as soon as the Promise instance is created (or on the next tick of the event loop if you want to get specific).
+
+If a tree falling in the woods was a hot observable, it would make sound regardless of if anyone was around to hear it or not.
 
 ```js
 new Promise((resolve, reject) => {
@@ -215,7 +217,7 @@ In the above example, the `setTimeout` method  in the callback passed to the Pro
 
 ### Cancellation
 
-Cancellation is a powerful feature of observable interfaces, such as rsocket-flowable. Cancellation allows for an observer to indicate to the observable that they are no longer interested in the result of any operations which may be ongoing. Cancellation is useful when programming user interfaces with frameworks such as ReactJS, as being able to cancel in-flight async operations is essential for cleaning up the state to avoid side effects when unmounting components. Cancellation support is also useful when implementing stateful web services with protocols such as WebSockets, where a client could terminate their connection at any time, and continuing to perform operations on their behalf after they've disconnected likely doesn't make sense.
+Cancellation is a powerful feature of observable interfaces, such as rsocket-flowable. Cancellation allows for an observer to indicate to the observable that they are no longer interested in the result of any operations which are ongoing. Cancellation is useful when programming user interfaces with frameworks such as ReactJS, where being able to cancel in-flight async operations is essential for cleaning up state to avoid side effects when unmounting components. Cancellation support is also useful when implementing stateful web services with protocols such as WebSockets, where a client could terminate their connection at any time, and continuing to perform operations on their behalf after they've disconnected likely doesn't make sense.
 
 #### Cancellation Example
 
@@ -261,7 +263,9 @@ ints$.subscribe({
 });
 ```
 
-It is essential to understand that canceling an observable stream only instructs the observable that the subscriber no longer cares to receive updates. However, it does not automatically cancel any operations which the publisher may have been performing. If it is vital for your observable to react to being canceled, then you can implement the cancel callback to perform cleanup as needed.
+#### Cancellation Caveat
+
+It is essential to understand that canceling an observable stream only instructs the observable that the subscriber no longer cares to receive updates, it does not automatically cancel any operations which the publisher may have been performing. If it is vital for your observable to react to being canceled, then you can implement the `subscription.cancel` callback to perform cleanup as needed.
 
 Lastly, with `rsocket-flowable@0.0.14`, to avoid the below TypeError, you must implement the cancel callback on the publisher if you intend to invoke cancel from a subscriber.
 
@@ -275,6 +279,6 @@ In a previous article [The State of RSocket in JavaScript](/the-state-of-rsocket
 
 ### Final Thoughts
 
-Reactive Streams, and similar patterns, such as ReactiveX (implemented as RxJS in JavaScript), have grown on me after discovering RSocket, and I believe we'll continue to see continued growth and adoption of these patterns over the next couple of years. Advancements such as RSocket support the continued adoption of these patterns, as RSocket models a stream of messages moving fluently through polyglot systems, with each leveraging a ReactiveX or React Streams implementation.
+Advancements such as RSocket support the continued adoption of observable patterns. RSocket models a stream of messages moving fluently through a system, with each leveraging a ReactiveX, or a React Streams implementation. Reactive Streams, and ReactiveX (implemented as RxJS in JavaScript), have grown on me after discovering RSocket, and I believe we will continue to see growth and adoption of these patterns over the next couple of years. In the Java ecosystem, it is already clear that Reactive Streams has become more prevalent through the popular Project Reactor.
 
 I recommend diving deeper into these concepts if building highly scalable reactive microservices and real-time interfaces intrigues you.
