@@ -1,7 +1,7 @@
 ---
 title: Reactive Streams in JavaScript with RSocket Flowable
 slug: reactive-streams-in-javascript-with-rsocket-flowable
-date: "2020-06-17T00:00:00.000Z"
+date: "2020-06-18T00:00:00.000Z"
 description: "Message streaming, back-pressure, cancellation, and async programming in JavaScript with rsocket-flowable."
 ogimage: "./rsocket-flowable-overview-og-image.png"
 twitterimage: "./rsocket-flowable-overview-twitter-image.png"
