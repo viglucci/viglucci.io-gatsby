@@ -1,7 +1,7 @@
 ---
 title: Reactive Streams in JavaScript with RSocket Flowable
 slug: reactive-streams-in-javascript-with-rsocket-flowable
-date: "2020-06-14T00:00:00.000Z"
+date: "2020-06-17T00:00:00.000Z"
 description: "Message streaming, back-pressure, cancellation, and async programming in JavaScript with rsocket-flowable."
 ogimage: "./rsocket-flowable-overview-og-image.png"
 twitterimage: "./rsocket-flowable-overview-twitter-image.png"
@@ -25,10 +25,10 @@ At the core of RSocket Flowable is the Observer Pattern, implemented in rsocket-
 const { Single, Flowable } = require('rsocket-flowable');
 
 // construct an instance of a Single
-const mySingle$ = new Single((subscriber) => {});
+const mySingle$ = new Single(subscriber => {});
 
 // constuct an instance of a Flowable
-const myFlowable$ = new Flowable((subscriber) => {});
+const myFlowable$ = new Flowable(subscriber => {});
 ```
 
 #### Single
@@ -144,12 +144,12 @@ const { Flowable } = require('rsocket-flowable');
 const Promise = require('bluebird');
 const fetch = require('node-fetch');
 
-const films$ = new Flowable((subscriber) => {
+const films$ = new Flowable(subscriber => {
 
   let pendingFilms = null;
 
   subscriber.onSubscribe({
-    request: async (requestedFilmsCount) => {
+    request: async requestedFilmsCount => {
       if (!pendingFilms) {
         const response = await fetch('https://swapi.dev/api/people/1');
         const { films } = await response.json();
@@ -160,9 +160,9 @@ const films$ = new Flowable((subscriber) => {
       while (requestedFilmsCount-- && pendingFilms.length) {
         const nextFilm = pendingFilms.splice(0, 1)[0];
         const promise = fetch(nextFilm)
-          .then((response) => response.json())
-          .then((filmData) => subscriber.onNext(filmData))
-          .catch((err) => subscriber.onError(err));
+          .then(response => response.json())
+          .then(filmData => subscriber.onNext(filmData))
+          .catch(err => subscriber.onError(err));
         fetches.push(promise);
       }
 
@@ -188,11 +188,11 @@ films$.subscribe({
 The observable interfaces implemented by rsocket-flowable are "lazy," meaning that no "work" begins until an observer subscribes to the observable. These observables can also be referred to as "cold observables," which is in contrast to a "hot observable." When working with a hot observable, the observable may emit values regardless of the presence of any observers.
 
 ```js
-const mySingle$ = new Single((subscriber) => {
+const mySingle$ = new Single(subscriber => {
   // closure is not invoked until mySingle$.subscribe() is invoked.
 });
 
-const myFlowable$ = new Flowable((subscriber) => {
+const myFlowable$ = new Flowable(subscriber => {
   // closure is not invoked until myFlowable$.subscribe() is invoked.
 });
 ```
@@ -204,10 +204,10 @@ If a tree falling in the woods was a hot observable, it would make sound regardl
 ```js
 new Promise((resolve, reject) => {
   const log = (msg) => console.log(`[${new Date().toISOString()}] ${msg}`);
-  log('callback called');
+  log('Callback called');
   setTimeout(() => {
     const randomInt = Math.floor(Math.random() * Math.floor(10));
-    log(`the random int is ${randomInt}`);
+    log(`The random int is ${randomInt}`);
     resolve(randomInt);
   }, 1000);
 });
