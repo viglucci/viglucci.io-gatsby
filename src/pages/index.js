@@ -82,15 +82,10 @@ const PostList = ({
       <div className="relative max-w-7xl mx-auto">
         <div>
           <h2 className="text-3xl leading-9 tracking-tight font-extrabold text-gray-700 sm:text-4xl sm:leading-10 ">
-            Articles
+            Recent Articles
           </h2>
-          <div className="mt-3 sm:mt-4 lg:grid lg:grid-cols-1 lg:gap-5 lg:items-center">
-            <p className="text-xl leading-7 text-gray-500">
-              Kevin enjoys writing about software architecture, web APIs, JavaScript, and various other topics.
-            </p>
-          </div>
         </div>
-        <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
+        <div className="mt-8 grid gap-5 max-w-lg mx-auto lg:grid-cols-3 lg:max-w-none">
           {posts.map((post) => <PostCard {...post} key={post.fields.slug} />)}
         </div>
       </div>
