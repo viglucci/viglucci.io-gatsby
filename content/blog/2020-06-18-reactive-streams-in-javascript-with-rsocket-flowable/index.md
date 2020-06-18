@@ -7,11 +7,7 @@ ogimage: "./rsocket-flowable-overview-og-image.png"
 twitterimage: "./rsocket-flowable-overview-twitter-image.png"
 ---
 
-When programming async operations, JavaScript developers are generally familiar with Promises, async/await, and callbacks. However, implementations of an async model called ReactiveX, such as [RxJS](https://github.com/ReactiveX/rxjs), are not as widespread. This article digs into something slightly different than RxJS, though; a Reactive Streams implementation called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
-
-### Source Code
-
-The source for rsocket-flowable comes from the [rsocket-js](https://github.com/rsocket/rsocket-js) GitHub repository, which is a monorepo style repository housing a few packages to work with the RSocket application protocol in JavaScript. If you want to dig right into the source, you can find  that over at [https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/](https://github.com/rsocket/rsocket-js/tree/master/packages/rsocket-flowable/).
+When programming async operations, JavaScript developers are generally at least familiar with Promises, async/await, and callbacks. However, newer async models such as ReactiveX ([RxJS](https://github.com/ReactiveX/rxjs) in JavaScript), are not quite as popular. In this article, we dig into something similar but slightly different to RxJS; a Reactive Streams implementation called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
 
 ## Core Concepts
 
