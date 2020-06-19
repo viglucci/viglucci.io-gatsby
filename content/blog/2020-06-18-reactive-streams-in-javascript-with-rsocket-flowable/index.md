@@ -122,14 +122,14 @@ When the request method is invoked for the first time, and on every subsequent c
 
 - Loop over each URL in the `pendingFilms` array to load data about a movie with Luke Skywalker as a character.
   - Break the loop if we have requested the number of movies that the observer requested (`requestedFilmsCount`).
-  - Break the loop if data for all of the movies are loaded.
+  - Break the loop if data for all of the movies is loaded.
 - Remove a URL to a movie from the `pendingFilms` list.
 - Fetch the data about the movie removed from the `pendingFilms` list, and add the resulting promise to the unsettled promises array (`fetches`).
   - Once the promise resolves, pass the resulting data to `filmsSubscriber.onNext(filmData)`.
   - If the promise rejects, pass the resulting error to `filmsSubscriber.onError(err)`.
 - Once all the promises saved to the unsettled promises array (`fetches`) have settled, check if we still have movies we haven't loaded data for yet.
   - If there are movies that still haven't loaded data for yet, do nothing and wait for the observer to perform a subsequent call to `request` on its subscription.
-  - If all of the movies with Luke Skywalker are loaded, call `filmsSubscriber.onComplete()`, which will signify to the observer that all possible data is loaded.
+  - If there are no more movies waiting to be loaded, call `filmsSubscriber.onComplete()`, which will signify to the observer that all possible data is loaded.
 
 This algorithm is substantially more complex than the more straightforward case of leveraging `Single` to forward the result of a Promise.  However, the support for controlling the rate at which we pull additional data, along with the backing for cancellation (with small adjustments), makes the added complexity of Flowable a worthwhile tradeoff.
 
