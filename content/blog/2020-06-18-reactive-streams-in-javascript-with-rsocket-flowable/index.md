@@ -116,7 +116,7 @@ Below we've implemented a Flowable publisher that will emit data retrieved from 
 
 When the request method is invoked for the first time:
 
-- Fetch data about Luke Skywalker from the Starwars API and destructured the array of films from the response. We then save the collection of films to the `pendingFilms` variable so that we can reference it on subsequent calls to `request`.
+- Fetch data about Luke Skywalker from the Starwars API and destructure the array of films from the response. We then save the collection of films to the `pendingFilms` variable so that we can reference it on subsequent calls to `request`.
 
 When the request method is invoked for the first time, and on every subsequent call to request:
 
