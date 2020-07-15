@@ -88,7 +88,7 @@ class BlogPostTemplate extends React.Component {
             twitterImage={twitterImagePath}
             url={url}
           />
-          <article className="markdown">
+          <article className="article prose lg:prose-lg">
             <h1 className="my-0 mb-2 leading-tight text-4xl font-bold">
               {post.frontmatter.title}
             </h1>
@@ -106,8 +106,9 @@ class BlogPostTemplate extends React.Component {
               </div>
             </div>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
-            <hr className="my-4" />
           </article>
+
+          <hr className="my-4" />
 
           <h3 className="mt-6 mb-4 text-xl font-semibold">About the author</h3>
           <Bio />
