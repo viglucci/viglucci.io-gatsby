@@ -9,7 +9,7 @@ twitterimage: "./testing-redis-clients-in-nodejs-with-testcontainers-twitter.jpg
 
 Automated testing is an essential aspect of ensuring the quality of any software product. However, it can often be challenging to test systems that rely on databases or other external resources.
 
-Luckily, [Testcontainers](https://www.testcontainers.org/) is a great project that makes setting up external resources more comfortable by providing a programmatic interface to run Docker containers in testing scenarios. In this article, we'll be looking at a community port of Testcontainers for NodeJS ([testcontainers-node](https://www.npmjs.com/package/testcontainers)), and how we can run tests that rely on both a single Redis and a Redis Cluster.
+Luckily, [Testcontainers](https://www.testcontainers.org/) is a great project that makes setting up external resources more comfortable by providing a programmatic interface to run Docker containers in testing scenarios. In this article, we'll be looking at a community port of Testcontainers for Node.js ([testcontainers-node](https://www.npmjs.com/package/testcontainers)), and how we can run tests that rely on both a single Redis and a Redis Cluster.
 
 The examples below will leverage [mocha](https://www.npmjs.com/package/mocha) as a test runner, [chai](https://www.npmjs.com/package/chai) as an assertion library, and [ioredis](https://github.com/luin/ioredis) as our backing Redis client.
 
