@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import { getSrc } from "gatsby-plugin-image"
 
 import Nav from "../components/nav";
 import Bio from "../components/bio";
@@ -37,12 +38,12 @@ const PostCard = (props) => {
   let cardBody = frontmatter.description || excerpt;
   let { title, ogimage } = frontmatter;
   title = frontmatter.title || fields.slug;
-  const image = ogimage.childImageSharp.fixed.src;
+  const image = ogimage.childImageSharp.gatsbyImageData;
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="flex-shrink-0">
         <Link to={fields.slug} className="block">
-          <img className="h-48 w-full object-cover" src={image} alt="" />
+          <img className="h-48 w-full object-cover" src={getSrc(image)} alt="" />
         </Link>
       </div>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -111,37 +112,34 @@ class BlogIndex extends React.Component {
 
 export default BlogIndex;
 
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
+export const pageQuery = graphql`{
+  site {
+    siteMetadata {
+      title
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            readingTime {
-              text
-            }
+  }
+  allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+    edges {
+      node {
+        excerpt
+        fields {
+          slug
+          readingTime {
+            text
           }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
-            ogimage {
-              childImageSharp {
-                fixed {
-                  src
-                }
-              }
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          description
+          ogimage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FIXED)
             }
           }
         }
       }
     }
   }
+}
 `;

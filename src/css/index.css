@@ -13,3 +13,16 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+/**
+ * Add back the container background-color, border-radius, padding, margin
+ * and overflow that we removed from <pre>.
+ */
+.gatsby-highlight-code-line {
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid #ddc66d;
+}
