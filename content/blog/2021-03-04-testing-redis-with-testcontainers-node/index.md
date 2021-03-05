@@ -59,8 +59,8 @@ describe("RedisTest", () => {
   before(async () => { ... });
 
   after(async () => {
-    await redisClient && redisClient.quit();
-    await container && container.stop();
+    redisClient && (await redisClient.quit());
+    container && (await container.stop());
   });
 });
 ```
@@ -114,8 +114,8 @@ describe("RedisTest", () => {
   });
 
   after(async () => {
-    await redisClient && redisClient.quit();
-    await container && container.stop();
+    redisClient && (await redisClient.quit());
+    container && (await container.stop());
   });
 
   it("should set and retrieve values from Redis", async () => {
@@ -148,13 +148,9 @@ describe("RedisTest", () => {
   let redisClient;
 
   before(async () => {
-
     // "grokzen/redis-cluster" exposes 6 Redis nodes
     // on ports 7000 - 7005
-    const ports = [
-      7000, 7001, 7002,
-      7003, 7004, 7005
-    ];
+    const ports = [7000, 7001, 7002, 7003, 7004, 7005];
 
     // we create a new Docker network so that we have a consistent way
     // to retrieve the internal addresses of the Redis nodes to build
@@ -168,7 +164,7 @@ describe("RedisTest", () => {
       // in `ports` to the host machine
       .withExposedPorts(...ports)
       .withNetworkMode(network.getName())
-      .withWaitStrategy(Wait.forLogMessage('Ready to accept connections'))
+      .withWaitStrategy(Wait.forLogMessage("Ready to accept connections"))
       .start();
 
     const networkIpAddress = container.getIpAddress(network.getName());
@@ -212,9 +208,9 @@ describe("RedisTest", () => {
   before(async () => { ... });
 
   after(async () => {
-    await redisClient && redisClient.quit();
-    await container && container.stop();
-    await network && network.stop();
+    redisClient && (await redisClient.quit());
+    container && (await container.stop());
+    network && (await network.stop());
   });
 });
 ```
@@ -232,13 +228,9 @@ describe("RedisClusterTest", () => {
   let redisClient;
 
   before(async () => {
-
     // "grokzen/redis-cluster" exposes 6 Redis nodes
     // on ports 7000 - 7005
-    const ports = [
-      7000, 7001, 7002,
-      7003, 7004, 7005
-    ];
+    const ports = [7000, 7001, 7002, 7003, 7004, 7005];
 
     // we create a new Docker network so that we have a consistent way
     // to retrieve the internal addresses of the Redis nodes to build
@@ -252,7 +244,7 @@ describe("RedisClusterTest", () => {
       // in `ports` to the host machine
       .withExposedPorts(...ports)
       .withNetworkMode(network.getName())
-      .withWaitStrategy(Wait.forLogMessage('Ready to accept connections'))
+      .withWaitStrategy(Wait.forLogMessage("Ready to accept connections"))
       .start();
 
     const networkIpAddress = container.getIpAddress(network.getName());
@@ -281,9 +273,9 @@ describe("RedisClusterTest", () => {
   });
 
   after(async () => {
-    await redisClient && redisClient.quit();
-    await container && container.stop();
-    await network && network.stop();
+    redisClient && (await redisClient.quit());
+    container && (await container.stop());
+    network && (await network.stop());
   });
 
   it("should set and retrieve values from the Redis cluster", async () => {
