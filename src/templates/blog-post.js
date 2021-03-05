@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import { DiscussionEmbed } from "disqus-react";
+import { getSrc } from "gatsby-plugin-image";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
@@ -54,10 +55,10 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext;
     const { title, description, ogimage, twitterimage } = post.frontmatter;
     const { fields } = post;
-    const ogImagePath = ogimage && ogimage.childImageSharp.gatsbyImageData.src;
+    const ogImagePath = ogimage && getSrc(ogimage.childImageSharp.gatsbyImageData);
     const ogImageWidth = ogimage && ogimage.childImageSharp.gatsbyImageData.width;
     const ogImageHeight = ogimage && ogimage.childImageSharp.gatsbyImageData.height;
-    const twitterImagePath = twitterimage && twitterimage.childImageSharp.gatsbyImageData.src;
+    const twitterImagePath = twitterimage && getSrc(twitterimage.childImageSharp.gatsbyImageData);
     const url = this.props.location.href;
     const disqusConfig = {
       shortname: disgusShortName,
