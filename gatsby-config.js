@@ -69,6 +69,7 @@ module.exports = {
     },
     { resolve: `gatsby-transformer-sharp` },
     { resolve: `gatsby-plugin-sharp` },
+    { resolve: `gatsby-plugin-image` },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

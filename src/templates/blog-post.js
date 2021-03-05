@@ -7,50 +7,43 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Nav from "../components/nav";
 
-export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-        disgus {
-          shortName
-        }
+export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
+  site {
+    siteMetadata {
+      title
+      author
+      disgus {
+        shortName
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      fields {
-        slug
-        readingTime {
-          text
+  }
+  markdownRemark(fields: {slug: {eq: $slug}}) {
+    id
+    excerpt(pruneLength: 160)
+    html
+    fields {
+      slug
+      readingTime {
+        text
+      }
+    }
+    frontmatter {
+      title
+      date(formatString: "MMMM DD, YYYY")
+      description
+      ogimage {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, layout: FIXED)
         }
       }
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-        ogimage {
-          childImageSharp {
-            fixed {
-              src
-              width
-              height
-            }
-          }
-        }
-        twitterimage {
-          childImageSharp {
-            fixed {
-              src
-            }
-          }
+      twitterimage {
+        childImageSharp {
+          gatsbyImageData(placeholder: BLURRED, layout: FIXED)
         }
       }
     }
   }
+}
 `;
 
 class BlogPostTemplate extends React.Component {
@@ -61,10 +54,10 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext;
     const { title, description, ogimage, twitterimage } = post.frontmatter;
     const { fields } = post;
-    const ogImagePath = ogimage && ogimage.childImageSharp.fixed.src;
-    const ogImageWidth = ogimage && ogimage.childImageSharp.fixed.width;
-    const ogImageHeight = ogimage && ogimage.childImageSharp.fixed.height;
-    const twitterImagePath = twitterimage && twitterimage.childImageSharp.fixed.src;
+    const ogImagePath = ogimage && ogimage.childImageSharp.gatsbyImageData.src;
+    const ogImageWidth = ogimage && ogimage.childImageSharp.gatsbyImageData.width;
+    const ogImageHeight = ogimage && ogimage.childImageSharp.gatsbyImageData.height;
+    const twitterImagePath = twitterimage && twitterimage.childImageSharp.gatsbyImageData.src;
     const url = this.props.location.href;
     const disqusConfig = {
       shortname: disgusShortName,
@@ -129,7 +122,7 @@ class BlogPostTemplate extends React.Component {
             >
               <li>
                 {previous && (
-                  <Link to={previous.fields.slug} rel="prev">
+                  <Link to={`/${previous.fields.slug}`} rel="prev">
                     <span className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150 mb-4 md:mb-0">
                       ← {previous.frontmatter.title}
                     </span>
@@ -138,7 +131,7 @@ class BlogPostTemplate extends React.Component {
               </li>
               <li>
                 {next && (
-                  <Link to={next.fields.slug} rel="next">
+                  <Link to={`/${next.fields.slug}`} rel="next">
                     <span className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150">
                       {next.frontmatter.title} →
                     </span>
