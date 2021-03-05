@@ -131,9 +131,9 @@ Testing against a Redis Cluster can be a bit more complicated than against a sin
 
 Using our `before` hook from the previous example, we will need to make a few small changes to run a Redis cluster rather than a single Redis in our Docker container. These changes include:
 
-- Creating a Docker network
-- Changing our Redis Docker image to `grokzen/redis-cluster`
-- Creating a list of Redis nodes to connect to
+- Changing our Redis Docker image to `grokzen/redis-cluster`.
+- Creating a Docker network.
+- Creating a list of Redis nodes to connect to.
 - Create a [NAT](https://en.wikipedia.org/wiki/Network_address_translation) map to map from the internal Docker network to the host network.
 
 It is necessary to create a NAT map as once our backing Redis client is connected to any node in the cluster; it will attempt to auto-discover any other nodes that belong to the cluster. Unfortunately, when the client discovers new nodes, the nodes will be referenced by local addresses to the Docker container rather than the host machine. Our NAT map will allow the client to properly connect to map the internal Docker address to an available address on the host machine.
