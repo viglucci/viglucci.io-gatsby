@@ -13,17 +13,17 @@ npm run develop
 ### Install the now cli
 
 ```bash
-$ npm install -g now
+$ npm install -g vercel
 ```
 
 ### Build & deploy to 'now'
 
 ```bash
-$ now
+$ vercel
 ```
 
 ### Update the DNS alias
 
 ```
-$ now --target production
+$ vercel --target production
 ```
