@@ -3,8 +3,8 @@ title: Testing Redis Clients in NodeJS with Testcontainers Node
 slug: testing-redis-clients-in-nodejs-with-testcontainers-node
 date: "2021-03-04T00:00:00.000Z"
 description: "Write unit tests that consume a real Redis with Testcontainers Node and Docker."
-ogimage: "./rsocket-flowable-overview-og-image.png"
-twitterimage: "./rsocket-flowable-overview-twitter-image.png"
+ogimage: "./testing-redis-clients-in-nodejs-with-testcontainers-og.jpg"
+twitterimage: "./testing-redis-clients-in-nodejs-with-testcontainers-twitter.jpg"
 ---
 
 Automated testing is an essential aspect of ensuring the quality of any software product. However, it can often be challenging to test systems that rely on databases or other external resources.
