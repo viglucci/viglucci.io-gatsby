@@ -1,5 +1,5 @@
 ---
-title: Testing Redis Clients in NodeJS with Testcontainers Node
+title: Testing Redis Clients in Node.js with Testcontainers Node
 slug: testing-redis-clients-in-nodejs-with-testcontainers-node
 date: "2021-03-04T00:00:00.000Z"
 description: "Write unit tests that consume a real Redis with Testcontainers Node and Docker."

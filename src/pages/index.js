@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { getSrc } from "gatsby-plugin-image"
+import { getSrc } from "gatsby-plugin-image";
 
 import Nav from "../components/nav";
 import Bio from "../components/bio";
