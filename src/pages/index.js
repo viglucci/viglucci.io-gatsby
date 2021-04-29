@@ -17,7 +17,7 @@ const Header = () => {
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
           <Nav />
-          <div className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+          <div className="mt-10 mx-auto max-w-screen-xl pl-2 pr-4 sm:mt-12 sm:pl-4 sm:pr-6 md:mt-16 lg:mt-20 lg:pl-6 lg:pr-10 xl:mt-28">
             <Bio avatar={false} />
           </div>
         </div>

@@ -56,18 +56,16 @@ const Bio = ({
         }}
         className="mr-4" />)}
       <div>
-        Kevin is a software engineer from Austin, Texas working at {" "}
-        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://blizzard.com">
-          Blizzard Entertainment
-        </OutboundLink>
-        {" "}
-        where he builds tools, APIs, and experiences that support
-        {" "}
-        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://worldofwarcraft.com">World of Warcraft</OutboundLink>.
-        You can find Kevin around the web on{" "}
+        Hi, I'm Kevin and I am a software engineer from Austin, Texas. I'm currently working on games, tooling, and backend platform services for clients at {" "}
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href="https://gamebreaking.com">
+          Gamebreaking Studios
+        </OutboundLink>.
+        <br />
+        <br />
+        You can find me around the web on{" "}
         <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.twitter.url}>Twitter</OutboundLink>,{" "}
         <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.linkedin.url}>LinkedIn</OutboundLink>, and{" "}
-        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>GitHub</OutboundLink>.
+        <OutboundLink className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" href={social.github.url}>GitHub</OutboundLink>, but Twitter is generally the best way to get ahold of me. Feel free to reach out if you ever want to chat 😄!
       </div>
     </div>
   );
