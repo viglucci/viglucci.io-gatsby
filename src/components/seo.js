@@ -69,23 +69,23 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
       content: `website`,
     },
     {
-      property: `twitter:card`,
+      name: `twitter:card`,
       content: `summary_large_image`,
     },
     {
-      property: `twitter:creator`,
+      name: `twitter:creator`,
       content: site.siteMetadata.social.twitter.username,
     },
     {
-      property: `twitter:title`,
+      name: `twitter:title`,
       content: title,
     },
     {
-      property: `twitter:description`,
+      name: `twitter:description`,
       content: metaDescription,
     },
     {
-      property: "twitter:image",
+      name: "twitter:image",
       content: twitterImageUrl
     },
   ];
