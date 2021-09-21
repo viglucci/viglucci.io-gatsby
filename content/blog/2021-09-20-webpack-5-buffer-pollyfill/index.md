@@ -47,7 +47,7 @@ const webpackConfig = {
 };
 ```
 
-The `/` at the end of `buffer/` may appear strange to you, as it did to me. However, it is recommended by the [`buffer` documentation](https://www.npmjs.com/package/buffer#usage) because the Node.js module lookup algorithm works.
+The `/` at the end of `buffer/` may appear strange to you, as it did to me. However, it is recommended by the [`buffer` documentation](https://www.npmjs.com/package/buffer#usage) because of how the Node.js module lookup algorithm works.
 
 > To require this module explicitly, use require('buffer/') which tells the node.js module lookup algorithm (also used by browserify) to use the npm module named buffer instead of the node.js core module named buffer!
 
