@@ -4,7 +4,7 @@ slug: how-to-polyfill-buffer-with-webpack-5
 date: "2021-09-20T00:00:00.000Z"
 description: "How to polyfill the Node.js Buffer API for usage in browser environments with Webpack 5."
 ogimage: "./how-to-polyfill-buffer-with-webpack-5-og-image.jpg"
-twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter-image.jpg"
+twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter.jpg"
 ---
 
 [Buffer](https://nodejs.org/api/buffer.html) is a core Node.js API useful when working with binary data. This article will briefly overview how to polyfill the Buffer API for browser environments with Webpack 5.
