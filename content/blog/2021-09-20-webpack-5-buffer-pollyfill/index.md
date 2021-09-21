@@ -2,7 +2,7 @@
 title: How to polyfill Buffer with Webpack 5
 slug: how-to-polyfill-buffer-with-webpack-5
 date: "2021-09-20T00:00:00.000Z"
-description: ""
+description: "How to polyfill the Node.js Buffer API for usage in browser environments with Webpack 5."
 ogimage: "./how-to-polyfill-buffer-with-webpack-5-og-image.jpg"
 twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter-image.jpg"
 ---
