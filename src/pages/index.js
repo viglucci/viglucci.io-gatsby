@@ -38,7 +38,7 @@ const PostCard = (props) => {
   let cardBody = frontmatter.description || excerpt;
   let { title, ogimage } = frontmatter;
   title = frontmatter.title || fields.slug;
-  const image = ogimage.childImageSharp.gatsbyImageData;
+  const image = ogimage?.childImageSharp?.gatsbyImageData;
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="flex-shrink-0">
