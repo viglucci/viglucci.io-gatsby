@@ -47,6 +47,37 @@ export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
 }
 `;
 
+function Content({ title, date, readingTimeText, htmlContent }) {
+  return (
+    <article className="article relative lg:py-16 bg-white overflow-hidden">
+      <div className="relative px-0 sm:px-2 lg:px-8">
+        <div className="text-lg max-w-prose mx-auto">
+          <h1 className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            {title}
+          </h1>
+          <div className="flex items-center justify-center text-sm leading-5 text-gray-500 pt-2">
+            <div className="inline">
+              <time>
+                {date}
+              </time>
+              <span className="mx-1">
+                &middot;
+              </span>
+              <span className="font-bold">
+                {readingTimeText}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="mt-8 prose prose-indigo prose-lg text-gray-500 mx-auto"
+          dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      </div>
+    </article>
+  );
+}
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
@@ -82,7 +113,7 @@ class BlogPostTemplate extends React.Component {
             twitterImage={twitterImagePath}
             url={url}
           />
-          <article className="article prose lg:prose-lg">
+          {/* <article className="article prose lg:prose-lg">
             <h1 className="my-0 mb-2 leading-tight text-4xl font-bold">
               {post.frontmatter.title}
             </h1>
@@ -100,7 +131,14 @@ class BlogPostTemplate extends React.Component {
               </div>
             </div>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
-          </article>
+          </article> */}
+
+          <Content
+            title={title}
+            date={post.frontmatter.date}
+            readingTimeText={fields.readingTime.text}
+            htmlContent={post.html}
+          />
 
           <hr className="my-4" />
 
