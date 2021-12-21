@@ -9,7 +9,7 @@ twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter.jpg"
 
 At a high level, this article will overview practices and areas to focus on when navigating a systems design interview. I expect this information to be most helpful to engineers in the 1 - 3 years of experience range or those who have never done a systems design interview.
 
-Lastly, this article is expected to be used as a jumping-off point, and readers will likely need to leverage other resources to dig deeper into the referenced concepts and terms. 
+Lastly, this article is expected to be used as a jumping-off point, and readers will likely need to leverage other resources to dig deeper into the referenced concepts and terms.
 
 ## What you can expect
 
@@ -23,7 +23,7 @@ These interviews are generally conducted in a "whiteboard" style, where the inte
 
 System design questions generally focus on the candidates' ability to either talk about a system they've already worked in or how they would solve a theoretical scenario.
 
-Examples of questions that I've been asked, other's have been asked, or that I've asked myself:
+Examples of questions that I've been asked, others have been asked, or that I've asked myself:
 
 - Can you describe a system you've worked in recently?
 - How would you design the backend for a social media app?
@@ -37,13 +37,13 @@ An interviewer might ask you a question specific to the domain they operate in, 
 
 Like any other interview, the systems design interview can and should be something you deliberately prepare for.
 
-An easy way to practice systems design is to diagram the system you are currently working in, and try to identify the components or areas that are undefined or unknown to you. This excercise should help you identify additional areas of preperation. For instance, maybe your system uses a certain type of database, or leverages AWS S3 for block storage. Do you know why that particular database was chosen, or the benefits of block storage? Looking into these topics more deeply should be part of your interview preperation.
+An easy way to practice systems design is to diagram the system you are currently working in, and try to identify the components or areas that are undefined or unknown to you. This exercise should help you identify additional areas of preparation. For instance, maybe your system uses a certain type of database, or leverages AWS S3 for block storage. Do you know why that particular database was chosen, or the benefits of block storage? Looking into these topics more deeply should be part of your interview preparation.
 
-If the system you are currently working in isn't very complex or interesting, you may be at a small disadvantage when it comes to designing a system from stratch. If this applies to you, it is recommended to spend time trying to answer some of the example questions above, as well as watching mock systems design interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
+If the system you are currently working in isn't very complex or interesting, you may be at a small disadvantage when it comes to designing a system from scratch. If this applies to you, it is recommended to spend time trying to answer some of the example questions above, as well as watching mock systems design interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
 
 ## Seek out the customer
 
-A system is only helpful if it serves a customer's need.
+A system is only helpful if it serves a customer's needs.
 
 ### Identify the customer
 
@@ -59,7 +59,7 @@ The "needs" of the customer can generally be defined as either "functional requi
 
 #### Functional requirements
 
-Generally speaking, you should start by defining the system's functional requirements, and your interviewer should be receptive to your questions about these requirements. For instance, given the question to "design TikTok," you might ask your interviewer if the below list of functional requirements satisfies the customer need. The interview will likely reply, "looks great to me!" and if not, you should try to dig in on what functional requirements you might have missed.
+Generally speaking, you should start by defining the system's functional requirements, and your interviewer should be receptive to your questions about these requirements. For instance, given the question to "design TikTok," you might ask your interviewer if the below list of functional requirements satisfies the customer need. The interviewer will likely reply, "looks great to me!" and if not, you should try to dig in on what functional requirements you might have missed.
 
 - upload short videos (length <= 3 minutes)
 - view a "feed" of videos
