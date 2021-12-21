@@ -78,7 +78,37 @@ Along with functional requirements, non-functional requirements should be identi
 - Low Latency
 - Eventually Consistent (or Strongly Consistent)
 
-When determining which of these requirements are relevant to your system, you should keep in mind to pose them in the framing of how they would alter your design, and how those alterations would impact your end user. For example, in the question to "design TikTok", you might presume that this system could support an architecture which is "Eventually Consistent", as you may argue it is more important that users are able to quickly access videos in their feed than it is that those videos be the latest or most up to date. When making these arguments or assumptions, you should again validate them with your interviewer. If you fail to validate your assumptions, you may be leaving yourself open to a "curveball" later if the interviewer decides to introduce a constraint that is contrary to a assumption you made, and that your design does not support.
+When determining which of these are relevant to your system, you should always ask yourself how would this requirement serve or impact your customer (end user). For example, in the question to "design TikTok", you might presume that this system could support an architecture which is "Eventually Consistent". You could argue that it is more important that users are able to quickly access videos in their feed than it is that those videos be the latest or most up to date, and that would suggest that eventual consistency is sufficient.
+
+When making these arguments or assumptions, you should again validate them with your interviewer. If you fail to validate your assumptions, you may be leaving yourself open to a "curveball" later if the interviewer decides to introduce a constraint that is contrary to a assumption you made, and that your design does not support.
 
 In order to validate your assumptions, you may simply pose the question to your interviewer; "Is it safe to assume that it is more important for the video feed to load quickly, than it is for the videos to be the most up to date?".
 
+### Avoid details until necessary
+
+A common misstep when answering system design question is providing more detail than is currently necessary. For example, chances are that the system you are designing is going to require some type of databse or data storage, and you might be eager to blurt out the first database technology that comes to mind, or maybe whichever is your favorite. Avoid doing this. It is perfectly fine to show that the system includes a database, provide no additional details, and move on. If the interviewer is interested in specifics they will likely ask for them, but if they don't ask, try to avoid providing that information just yet.
+
+By avoiding specifics where they aren't yet necessary, you allow yourself flexibility to make this decision later when you potentially have more information, and you avoid showing a potential bias towards a solution or technology that may not fit the requirements of the system. Additionally, if you do make this mistake, and go as far as to state that the database will be a NoSQL database, and even worse, will specifically use Cassandra, you've made a strong indication that you think these technologies would provide significant value to the system, and the interviewer would be well within their rights to go deep on questioning around these technologies.
+
+### Don't showup with a solution
+
+You've likely worked in a few different architectures, and you might even have a favorite design or pattern that you think works best. Experience and opinions are great, but this can be a trap when answering system design questions. It is best to avoid approaching system design interview questions with rigid pre-existing solutions or designs.
+
+For example, if you are a big fan of event driven architectures, and are already set on or fantasizing about how you'll apply this pattern to whichever scenario the interviewer describes, you'll quickly fall short when the functional or non-functional requirements of the system don't lend themselves to the limitations of your predetermined solution.
+
+Rather than showing up with a architecture already in mind, it is best to understand common components and approaches, and where those components can be employed to satisfy different requirements of any given scenario. While this list is by no means conmprehensive, and the best components and approachs to consider will vary based on the scneario, I would recommend understanding what value and tradeoffs are offerred by each of the below.
+
+- Monolith Architecture
+- Microservices Architecture
+- Serverless/Lambdas
+- Database Approaches (Relational, NoSQL, Graph)
+- Event/Message Queues
+- Load Balancers
+- Block/Cloud Storage
+- Content Delivery Networks (CDN)
+
+## Next Steps
+
+I hope this article provided you with some insights into what to expect from a systems design interview, and strategies for successfully navigating them. As stated at the beginning, this article likely isn't where your preparation ends, but where it has just started. I highly recommend digging deeper into the above concepts via other resources, and maybe watching a mock system design interview (or ten) to gain broader expsoure to common questions and some suitable approaches.
+
+If you landed on this article while preparing for an upcoming interview, or if someone shared it with you, I wish you the best of luck 😊. Please feel free to leave any questions/comments below, or drop me a Tweet!
