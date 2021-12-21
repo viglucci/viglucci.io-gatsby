@@ -1,8 +1,8 @@
 ---
-title: System Design Interviews for Beginners
-slug: system-design-interviews-for-beginners
+title: Introduction to System Design Interviews
+slug: introduction-to-system-design-interviews
 date: "2021-12-20T00:00:00.000Z"
-description: "A high level introduction to navigating a system design interview for beginners"
+description: "A high level introduction to navigating a system design interview"
 ogimage: "./how-to-polyfill-buffer-with-webpack-5-og-image.jpg"
 twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter.jpg"
 ---
@@ -26,22 +26,20 @@ System design questions generally focus on the candidates' ability to either tal
 Examples of questions that I've been asked, other's have been asked, or that I've asked myself:
 
 - Can you describe a system you've worked in recently?
-- How would you design TikTok?
+- How would you design the backend for a social media app?
 - How would you design the system for a parking garage?
-- How would you design Instagram?
-- How would you design a blog?
+- How would you design an ecommerce site?
+- How would you design the content management system for a large blog?
 
 An interviewer might ask you a question specific to the domain they operate in, so it wouldn't hurt to understand some of the complexities of their industry. However, it is just as likely that an interviewer will ask you a generic question, so try not to deep dive too heavily into specialized solutions during your preparation.
 
-## A system you've worked in recently
+## Prepare for the interview
 
-Generally speaking, it's expected that asking a candidate to talk about something they've recently worked in should be somewhat of a "softball" question. However, from recent experience, I've found this question can seem to throw some candidates off. As such, I wanted to take a quick aside and touch more deeply on the "Can you describe a system you've worked in recently?" line of questioning.
+Like any other interview, the systems design interview can and should be something you deliberately prepare for.
 
-In my opinion, this question does a great deal to help an interviewer understand how a candidate thinks about the systems they are working in and how the individual components they work on fit into the overall design.
+An easy way to practice systems design is to diagram the system you are currently working in, and try to identify the components or areas that are undefined or unknown to you. This excercise should help you identify additional areas of preperation. For instance, maybe your system uses a certain type of database, or leverages AWS S3 for block storage. Do you know why that particular database was chosen, or the benefits of block storage? Looking into these topics more deeply should be part of your interview preperation.
 
-If you are preparing for a system design interview, I highly recommend taking some time to answer this question yourself. Draw out the system you are currently working in, and try to identify the components or areas that are undefined or unknown to you. During an interview, you'll need to consider all of the elements of a system, not just the one or two parts you maintain.
-
-If your experiences have been more confined to one or two system components, do your best to describe this to your interviewer, and they hopefully won't hold it against you. If this happens, and the interviewer doesn't move to a new question, be specific about where your knowledge ends. Don't try to guess or make things up on the fly.
+If the system you are currently working in isn't very complex or interesting, you may be at a small disadvantage when it comes to designing a system from stratch. If this applies to you, it is recommended to spend time trying to answer some of the example questions above, as well as watching mock systems design interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
 
 ## Seek out the customer
 
