@@ -3,8 +3,8 @@ title: Introduction to System Design Interviews
 slug: introduction-to-system-design-interviews
 date: "2021-12-20T00:00:00.000Z"
 description: "What to expect when navigating a system design interview, and tips for success."
-ogimage: "./intro-to-system-design-intreivew-social-image.jpg"
-twitterimage: "./intro-to-system-design-intreivew-social-image.jpg"
+ogimage: "./intro-to-system-design-interviews-social-image.jpg"
+twitterimage: "./intro-to-system-design-interviews-social-image.jpg"
 ---
 
 This article will overview practices and areas to focus on when navigating a systems design interview at a high level. I expect this information to be most helpful to engineers in the 1 - 3 years of experience range or those who have never done a systems design interview.
