@@ -285,4 +285,4 @@ describe("RedisClusterTest", () => {
 });
 ```
 
-Now that you are testing your applications with greater confidence using containers don't forget to let me know if you found this article helpful! I appreciate every like, comment, or question you may have to offer!
+Now that you are testing your applications with greater confidence using containers don't forget to let me know if you found this article helpful! Feel free to leave any questions/comments below, and checkout my other [social media accounts](https://linktr.ee/viglucci)!

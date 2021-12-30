@@ -106,4 +106,4 @@ const webpackConfig = {
 
 Now that you've configured Webpack to polyfill the `Buffer` class globally, you should be able to reference and create an instance of the `Buffer` class without the pesky `Uncaught ReferenceError: Buffer is not defined` error. Additionally, any reference to `Buffer` in libraries included in your "bundle" should now also reference the provided polyfill.
 
-Lastly, don't forget to let me know in the below comments (or on Twitter) if this tutorial helped you in any way!
+Please feel free to leave any questions/comments below, and if you enjoyed this article, checkout my other [social media accounts](https://linktr.ee/viglucci) where I share content!
