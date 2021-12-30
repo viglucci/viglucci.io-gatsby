@@ -17,13 +17,13 @@ The shape of a system design interview will likely depend heavily on the company
 
 ### Whiteboarding
 
-These interviews are generally conducted in a "whiteboard" style, where the interviewer will ask the candidate to present their answer as a diagram. Before the increased prevalence of remote work, this would be conducted on a physical whiteboard; however, as more of the engineering workforce moves to remote work, these interviews are more commonly being performed with tools like [Excalidraw](https://excalidraw.com), [tldraw](https://www.tldraw.com/), [diagrams.net](https://app.diagrams.net/), and similar online whiteboarding tools. Ideally, the employer will let you know which tools they use for their interviews, and I highly recommend familiarizing yourself with the tool ahead of time. If the employer doesn't let you know which tool they expect you to use, don't fret, the interviewer shouldn't be grading your proficiency with using it.
+These interviews are generally conducted in a "whiteboard" style, where the interviewer will ask the candidate to present their answer as a diagram. Before the increased prevalence of remote work, this would be conducted on a physical whiteboard; however, as more of the engineering workforce moves to remote work, these interviews are more commonly being performed with tools like [Excalidraw](https://excalidraw.com), [tldraw](https://www.tldraw.com/), [diagrams.net](https://app.diagrams.net/), and similar online whiteboarding tools. Ideally, the employer will let you know which tools they use for their interviews, and I highly recommend familiarizing yourself with the tool ahead of time. If the employer doesn't let you know which tool they expect you to use, don't fret, the interviewer shouldn't be grading your proficiency on using a specific tool.
 
 ### Questions
 
-System design questions generally focus on the candidates' ability to either talk about a system they've already worked in or how they would solve a theoretical scenario.
+System design questions are designed to understand a candidate's ability to think deeply about systems and their requirements. These questions generally require a candidate to talk about a system they've already worked in, or more commonly, about a theoretical scenario.
 
-Examples of questions that I've been asked, others have been asked, or that I've asked myself:
+Below are examples of questions that I've been asked, others have been asked, or that I've asked myself:
 
 - Can you describe a system you've worked in recently?
 - How would you design the backend for a social media app?
@@ -31,15 +31,17 @@ Examples of questions that I've been asked, others have been asked, or that I've
 - How would you design an e-commerce site?
 - How would you design the content management system for a large blog?
 
-An interviewer might ask you a question specific to the domain they operate in, so it wouldn't hurt to understand some of the complexities of their industry. However, it is just as likely that an interviewer will ask you a generic question, so try not to deep dive too heavily into specialized solutions during your preparation.
+For specialized industries, an interviewer might ask you a question specific to the domain they operate in, so it wouldn't hurt to understand some of the complexities of their industry. However, it is just as likely that an interviewer will ask you a generic question, so try not to deep dive too heavily into specialized solutions during your preparation.
 
 ## Prepare for the interview
 
-The systems design interview can and should be something you deliberately prepare for like any other interview.
+The systems design interview can and should be something you deliberately prepare for, just like any other interview.
 
-An easy way to practice systems design is to diagram the system you are currently working in and identify the components or areas that are undefined or unknown to you. This exercise should help you identify additional areas of preparation. For instance, your system may use a specific type of database or leverage AWS S3 for block storage. Do you know why the particular database technology was chosen or the benefits of block storage? Looking into these topics more deeply should be part of your interview preparation.
+An easy way to practice systems design is to diagram the system you are currently working in and identify the components or areas that are undefined or unknown to you. This exercise should help you identify additional areas of preparation. For instance, your system may use a specific type of database or leverage a cloud provider for block storage. Do you know why the original designers chose a particular database technology? Or the benefits and tradeoffs of block storage? Looking into these and related topics more deeply should be part of your interview preparation.
 
-If the system you are currently working in isn't very complex or exciting, you may be slightly disadvantaged when designing a system from scratch. If this applies to you, it is recommended to spend time answering some of the example questions above, watching mock systems design interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
+### Your current work
+
+If the system you are currently working in isn't very complex or exciting, you may be inexperienced and thus disadvantaged when designing a system from scratch. If this applies to you, it is recommended to spend time answering some of the example questions above, watching mock interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
 
 ## Seek out the customer
 
@@ -47,36 +49,36 @@ A system is only helpful if it serves a customer's needs.
 
 ### Identify the customer
 
-A "customer" is any user of the system. These customers could be the actual human being using the mobile app that interacts with your design or other services inside a company's microservices architecture. As the system designer, you will need to ask yourself, "who is my customer?".
+A "customer" is any user of the system. These "customers" could be the actual human being using the mobile app that interacts with your system, or they could be other services inside a company's microservices architecture. As the system designer, you will need to ask yourself, "who is my primary customer?", and then keep the customer in mind as you design the system.
 
-In your answer to a system design interview question, it will be vital that you identify who the primary customer of the system is and what requirements those customers have of the system. You can accomplish this by simply asking the interviewer, "Who is the primary customer of this system?".
+It will be vital that you identify who the primary customer of the system is and what requirements those customers have of the system. If it is not apparent who the customer is during the interview, it is recommended to be direct and ask the interviewer, "Who is the primary customer of this system?". The interviewer should be receptive to these types of questions.
 
-Additionally, you can accomplish this by making assumptions based on statements from the interviewer. For instance, if the interviewer asks you to "design TikTok," you could assume that the customer is users all over the globe, primarily interacting with your system using their smartphone. Once you think you know who the primary customer is, you should validate this assumption with the interviewer; "Is it safe to assume that my primary customer is global users who are using a smartphone application?".
+Additionally, you can identify the primary customer by making assumptions based on statements made by the interviewer. For instance, if the interviewer asks you to "design TikTok" (a popular video-sharing app), you could assume that the customers are global users who primarily interact with the system using their smartphones. Once you think you know who the primary customer is, you should validate this assumption with the interviewer; "Is it safe to assume that my primary customer is global users who are using a smartphone application?".
 
 ### Identify customer needs
 
-The "needs" of the customer can generally be defined as either "functional requirements" or "non-functional requirements." It is imperative to identify and validate requirements with the interviewer, both functional and non-functional before you start drawing your system/solution.
+The "needs" of the customer can generally be defined as either "functional requirements" or "non-functional requirements." It is imperative to identify and validate requirements (both functional and non-functional) with the interviewer before you start providing your solution.
 
 #### Functional requirements
 
-Generally speaking, you should start by defining the system's functional requirements, and your interviewer should be receptive to your questions about these requirements. For instance, given the question to "design TikTok," you might ask your interviewer if the below list of functional requirements satisfies the customer's need. The interviewer will likely reply, "looks great to me!" and if not, you should try to dig in on what functional requirements you might have missed.
+Generally speaking, you should start by defining the system's functional requirements, and your interviewer should be receptive to your questions about these requirements. For instance, given the question to "design TikTok," you might ask your interviewer if the below list of functional requirements satisfies the customer's needs. The interviewer will likely reply, "looks great to me!" and if not, you should try to dig in on what functional requirements you might have missed.
 
 - upload short videos (length <= 3 minutes)
 - view a "feed" of videos
 - "like" videos
 - comment on videos
 
-As you dig into your system design, these functional requirements should also expand to include the fundamental ways they will be satisfied. For example, it would be a good idea to list out the various API endpoints needed to satisfy each requirement and maybe even which database structures (tables, documents, etc.) might be required to support those API endpoints. Later on, we'll touch a bit more on when you should go into detail and leave things vague.
+As you dig into your system design, these functional requirements should also expand to include the fundamental ways they will be satisfied. For example, it would be a good idea to list out the various API endpoints needed to satisfy each requirement and maybe even which database structures (tables, documents, etc.) might be required to support those API endpoints. Later on, we'll touch a bit more on when you should go into detail and also when you should leave things vague.
 
 #### Non-functional requirements
 
-Along with functional requirements, non-functional requirements should be identified and vetted with the interviewer before you dig into or decide on system architecture or start creating a diagram. These non-functional requirements could include concepts such as:
+Along with functional requirements, non-functional requirements should be identified and vetted with the interviewer before you dig into or decide on system architecture and start creating a diagram. These non-functional requirements could include concepts such as:
 
 - High Availability
 - Low Latency
 - Eventually Consistent (or Strongly Consistent)
 
-When determining which of these are relevant to your system, you should always ask yourself how this requirement would serve or impact your customer (end-user). For example, in the question to "design TikTok," you might presume that this system could support an architecture that is "Eventually Consistent." You could argue that it is more important that users can quickly access videos in their feed than those videos are the latest or most up-to-date, suggesting that eventual consistency is sufficient.
+When determining which of these are relevant to your system, you should always ask yourself how this requirement would serve or impact your customer (the end-user). For example, in the question to "design TikTok," you might presume that this system could support an architecture that is "Eventually Consistent." You could argue that it is more important that users can quickly access videos in their feed than for those videos to be the latest or most up-to-date. This argument would suggest that eventual consistency is sufficient.
 
 When making these arguments or assumptions, you should again validate them with your interviewer. If you fail to validate your assumptions, you may be leaving yourself open to a "curveball" later if the interviewer decides to introduce a constraint contrary to an assumption you made and that your design does not support.
 
