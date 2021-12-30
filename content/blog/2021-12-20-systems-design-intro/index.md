@@ -113,4 +113,4 @@ Rather than showing up with an architecture already in mind, it is best to under
 
 I hope this article gave you some insights into what to expect from a systems design interview and strategies for successfully navigating them. As stated at the beginning, this article likely isn't where your preparation ends but where it has just started. I highly recommend digging deeper into the above concepts via other resources and watching a mock system design interview (or ten) to gain broader exposure to common questions and suitable approaches.
 
-If you landed on this article while preparing for an upcoming interview, or if someone shared it with you, I wish you the best of luck 😊. Please feel free to leave any questions/comments below, or drop me a Tweet!
+If you landed on this article while preparing for an upcoming interview, I wish you the best of luck 😊. Please feel free to leave any questions/comments below. If you enjoyed this article, checkout my other [social media accounts](https://linktr.ee/viglucci) where I share content!
