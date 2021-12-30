@@ -9,7 +9,7 @@ twitterimage: "./intro-to-system-design-interviews-social-image.jpg"
 
 This article will overview practices and areas to focus on when navigating a systems design interview at a high level. I expect this information to be most helpful to engineers in the 1 - 3 years of experience range or those who have never done a systems design interview.
 
-Lastly, this article is expected to be used as a jumping-off point, and readers will likely need to leverage other resources to dig deeper into the referenced concepts and terms.
+Additionally, this article is expected to be used as a jumping-off point, and readers will likely need to leverage other resources to dig deeper into the referenced concepts and terms.
 
 ## What you can expect
 
@@ -39,7 +39,7 @@ The systems design interview can and should be something you deliberately prepar
 
 An easy way to practice systems design is to diagram the system you are currently working in and identify the components or areas that are undefined or unknown to you. This exercise should help you identify additional areas of preparation. For instance, your system may use a specific type of database or leverage AWS S3 for block storage. Do you know why the particular database technology was chosen or the benefits of block storage? Looking into these topics more deeply should be part of your interview preparation.
 
-If the system you are currently working in isn't very complex or exciting, you may be at a slight disadvantage when designing a system from scratch. If this applies to you, it is recommended to spend time trying to answer some of the example questions above, watch mock systems design interviews on platforms like YouTube, and even ask your friends or trusted colleagues to run a mock interview with you.
+If the system you are currently working in isn't very complex or exciting, you may be slightly disadvantaged when designing a system from scratch. If this applies to you, it is recommended to spend time answering some of the example questions above, watching mock systems design interviews on platforms like YouTube, and even asking your friends or trusted colleagues to run a mock interview with you.
 
 ## Seek out the customer
 
@@ -86,7 +86,7 @@ To validate your assumptions, you may pose the question to your interviewer; "Is
 
 A common misstep when answering system design questions is when you provide too much or too little detail. Knowing and ascertaining the correct level of detail expected from your interviewer can be vital to answering your question correctly and sufficiently. Remember that interviews are a two-way conversation between the candidate and the interviewer, and becoming comfortable asking these questions will make you more successful. When describing a particular component of the system, take a moment to pause and ask your interviewer, "is this the level of detail you were expecting, or would you like me to give more or less?". 
 
-For example, prematurely giving too much detail can hinder you, especially when digging deep on a particular portion of the system in a sufficiently more detailed way than others. For example, the chances are that the system you are designing will require some database or data storage, and you might be eager to blurt out the first database technology that comes to mind, or maybe whichever is your favorite. Unless you've established with the interviewer that they are interested in these finer details, try your best to avoid doing this. If you feel the urge to recommend a specific solution, be sure to confirm with the interviewer if they would like those details at that time, but it can also be advantageous to defer that decision.
+For example, prematurely giving too much detail can hinder you, especially when digging deep on a particular portion of the system in a sufficiently more detailed way than others. An easy example of this can be when describing databases. The chances are that the system you are designing will require some database or data storage, and you might be eager to blurt out the first database technology that comes to mind, or maybe whichever is your favorite. Unless you've established with the interviewer that they are interested in these finer details, try your best to avoid doing this. If you feel the urge to recommend a specific solution, be sure to confirm with the interviewer if they would like those details at that time, but it can also be advantageous to defer that decision.
 
 By avoiding specifics where they aren't yet necessary, you allow yourself the flexibility to make this decision later when you potentially have more information. You also avoid showing a potential bias towards a solution or technology that may not fit the system's requirements. If you do go as far as to state that the database will be a NoSQL database, and even worse, will specifically use Cassandra, you've made a strong indication that you think these technologies would provide significant value to the system. The interviewer would be well within their rights to go deep on questioning these decisions.
 
@@ -112,4 +112,3 @@ Rather than showing up with an architecture already in mind, it is best to under
 I hope this article gave you some insights into what to expect from a systems design interview and strategies for successfully navigating them. As stated at the beginning, this article likely isn't where your preparation ends but where it has just started. I highly recommend digging deeper into the above concepts via other resources and watching a mock system design interview (or ten) to gain broader exposure to common questions and suitable approaches.
 
 If you landed on this article while preparing for an upcoming interview, or if someone shared it with you, I wish you the best of luck 😊. Please feel free to leave any questions/comments below, or drop me a Tweet!
-
