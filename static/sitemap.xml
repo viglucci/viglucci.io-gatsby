@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+  <url>
+    <loc>https://viglucci.io/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/introduction-to-system-design-interviews</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/how-to-polyfill-buffer-with-webpack-5</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/testing-redis-clients-in-nodejs-with-testcontainers-node</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/reactive-streams-in-javascript-with-rsocket-flowable</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/the-state-of-rsocket-in-javascript</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/reviewing-distributed-system-architectures</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/laravel-captcha-and-unit-testing</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/debugging-adonis-with-vscode</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/framework-x</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/two-years-later</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://viglucci.io/hello-world</loc>
+    <priority>0.80</priority>
+  </url>
+</urlset>
