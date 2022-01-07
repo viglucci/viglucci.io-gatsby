@@ -24,9 +24,6 @@ export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
     html
     fields {
       slug
-      readingTime {
-        text
-      }
     }
     frontmatter {
       title
@@ -47,7 +44,7 @@ export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
 }
 `;
 
-function Content({ title, date, readingTimeText, htmlContent }) {
+function Content({ title, date, htmlContent }) {
   return (
     <article className="article relative lg:py-16 bg-white overflow-hidden">
       <div className="relative px-0 sm:px-2 lg:px-8">
@@ -62,9 +59,6 @@ function Content({ title, date, readingTimeText, htmlContent }) {
               </time>
               <span className="mx-1">
                 &middot;
-              </span>
-              <span className="font-bold">
-                {readingTimeText}
               </span>
             </div>
           </div>
@@ -125,9 +119,6 @@ class BlogPostTemplate extends React.Component {
                 <span className="mx-1">
                   &middot;
                 </span>
-                <span>
-                  {fields.readingTime.text}
-                </span>
               </div>
             </div>
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
@@ -136,7 +127,6 @@ class BlogPostTemplate extends React.Component {
           <Content
             title={title}
             date={post.frontmatter.date}
-            readingTimeText={fields.readingTime.text}
             htmlContent={post.html}
           />
 

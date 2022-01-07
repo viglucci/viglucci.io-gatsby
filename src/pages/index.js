@@ -65,9 +65,6 @@ const PostCard = (props) => {
             <span className="mx-1">
               &middot;
             </span>
-            <span>
-              {fields.readingTime.text}
-            </span>
           </div>
         </div>
       </div>
@@ -124,9 +121,6 @@ export const pageQuery = graphql`{
         excerpt
         fields {
           slug
-          readingTime {
-            text
-          }
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")

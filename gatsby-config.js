@@ -1,9 +1,11 @@
+const SITE_URL = "https://viglucci.io/";
+
 module.exports = {
   siteMetadata: {
     title: `viglucci.io`,
     author: `Kevin Viglucci`,
     description: `Kevin is software engineer working in the games industry, and this is his blog.`,
-    siteUrl: `https://viglucci.io/`,
+    siteUrl: SITE_URL,
     social: {
       twitter: {
         username: `@kviglucci`,
@@ -62,8 +64,7 @@ module.exports = {
           },
           { resolve: `gatsby-remark-prismjs` },
           { resolve: `gatsby-remark-copy-linked-files` },
-          { resolve: `gatsby-remark-smartypants` },
-          { resolve: `gatsby-remark-reading-time` }
+          { resolve: `gatsby-remark-smartypants` }
         ],
       },
     },
@@ -148,6 +149,12 @@ module.exports = {
       resolve: `gatsby-plugin-mailchimp`,
       options: {
         endpoint: 'https://viglucci.us18.list-manage.com/subscribe/post?u=67ef840f69d44e533a8ff6e5c&amp;id=21a097d753',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: SITE_URL,
       },
     },
   ],
