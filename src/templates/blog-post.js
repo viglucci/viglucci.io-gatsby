@@ -57,9 +57,9 @@ function Content({ title, date, htmlContent }) {
               <time>
                 {date}
               </time>
-              <span className="mx-1">
+              {/* <span className="mx-1">
                 &middot;
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
