@@ -7,7 +7,7 @@ ogimage: "./how-to-polyfill-buffer-with-webpack-5-og-image.jpg"
 twitterimage: "./how-to-polyfill-buffer-with-webpack-5-twitter.jpg"
 ---
 
-[Buffer](https://nodejs.org/api/buffer.html) is a core Node.js API useful when working with binary data. This article will briefly overview how to polyfill the Buffer API for browser environments with Webpack 5.
+The "buffer is not defined" error is a common error that can occur when trying to use the [Buffer](https://nodejs.org/api/buffer.html) Node.js API in an environment where it is not natively supported. This article will cover how to fix this error by providing a polyfill with Webpack 5.
 
 ### Why do we need to polyfill Buffer?
 
