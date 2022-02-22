@@ -7,7 +7,11 @@ ogimage: "./intro-to-system-design-interviews-social-image.jpg"
 twitterimage: "./intro-to-system-design-interviews-social-image.jpg"
 ---
 
-This article will provide an overview of how you can build and deploy an [oclif](https://oclif.io/) application via GitHub Actions.
+This article will provide an overview of how you can build and deploy an [oclif](https://oclif.io/) application via GitHub Actions. The pattern we will implement supports the following workflow:
+
+- Create a release on GitHub in our projects repository
+- Trigger a "build" in GitHub actions via the Release Published event
+- Attach the results of the build to our release as "artifacts", allowing them to be downloaded later
 
 ## A quick overview
 
@@ -39,6 +43,178 @@ GitHub actions are capable of running tasks and commands on a repository in resp
 
 ### GitHub Releases
 
-Releases on GitHub allow you to document and communicate meaningful milestones for your project, as well as distribute "artifacts" related to those releases. To view the releases for a repository on GitHub, you can visit the releases page at `github.com/REPOSITORY_NAME/releases`, or click the "releases" header in the right hand sidebar of the repositories index page.
+Releases on GitHub allow maintainers to communicate meaningful milestones for their project, as well as distribute "artifacts" related to those milestones. For our example, we will be creating a new Windows installer for our CLI application, and attaching it to the desired release as an "artifact".
 
-![GitHub releases header example image](./)
+To view the releases for a repository on GitHub, you can visit the releases page at `github.com/REPOSITORY_NAME/releases`, or click the "releases" header on the repositories index page.
+
+#### Releases header
+
+The releases header can difficult to find, so I've provided an example below.
+
+![GitHub releases header example image](./releases-header-example-2.jpg)
+
+### Create the workflows file
+
+To get started, we need to first ensure that we have a `.github/workflows` directory created in our repositories root directory.
+
+example: `project-folder/.github/workflows`
+
+Next, inside of the `.github/workflows` directory create a `release.yml` directory. This yaml file is where we will configure our "actions" that will run in response to the events on our repository.
+
+example: `project-folder/.github/workflows/release.yml`
+
+### Setup event triggers
+
+```yml
+# .github/workflows/release.yml
+
+on:
+  release:
+    types: [published]
+
+...
+```
+
+This configuration will trigger our build anytime a new release is published on the repository.
+
+### Configure jobs
+
+```yml
+# .github/workflows/release.yml
+
+...
+
+jobs:
+  release:
+    name: release ${{ matrix.target }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: win
+            artifact_glob: "./dist/win32/*"
+
+...
+```
+
+This configuration provides a few bits of functionality to our workflow:
+
+- Creates a list of ["jobs"](https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow) that will run when our workflow triggers
+- Defines that the job should run on and use the latest "ubuntu-latest" image as a base
+- Defines a "strategy" which allows us to further define variables that we can reference later
+
+
+#### Strategy matrix variables
+
+The `strategy.matrix` is a special configuration that allows for running workflow jobs with a combination of variables. This is generally useful if you wish to run the same set of tasks with different variables, such as versions of dependencies, or to produce specific outputs for different environments.
+
+For our purposes, we are using a `strategy.matrix` that targets a Windows build, but could be extended with additional entries to target other platforms.
+
+You can learn more about matrix configurations [here](https://docs.github.com/en/actions/using-jobs/using-a-build-matrix-for-your-jobs).
+
+### Steps
+
+Last we will configure the "steps" that will be run when our job is executed.
+
+```yml
+# .github/workflows/release.yml
+
+...
+
+    steps:
+    - run: sudo apt update
+    - run: sudo apt install nsis p7zip-full p7zip-rar -y
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - run: npm install -g yarn
+    - run: yarn
+    - run: yarn global add oclif
+    - run: oclif pack ${{ matrix.target }} -r .
+    - name: Attach artifacts to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ matrix.artifact_glob }}
+        file_glob: true
+        overwrite: true
+        tag: ${{ github.ref }}
+```
+
+The steps breakdown is as follows:
+
+ 1. `run: sudo apt update`
+    - Updates the libraries already installed on the `ubuntu-latest` base image to ensure we have the latest and greatest
+ 2. `run: sudo apt install nsis p7zip-full p7zip-rar -y`
+    - Installs several dependencies which are required to package our application as a Windows installer using `makensis`.
+ 3. `uses: actions/checkout@v2`
+    - Uses a prebuilt GitHub action to checkout our project source code
+ 4. `uses: actions/setup-node@v2`
+    - Sets up node.js and npm, specifically using version `16` of node.js
+ 5. `run: npm install -g yarn`
+    - Installs `yarn` globally so we can use it in later commands
+ 6. `run: yarn`
+    - Calls `yarn` to install our dependencies listed in `package.json`
+ 7. `run: yarn global add oclif`
+    - Installs the `oclif` CLI globally via `yarn`
+ 8. `run: oclif pack ${{ matrix.target }} -r .`
+    - Calls the `oclif` CLI to package our application using the "target" we previously defined in our matric config
+    - example: `oclif pack win -r .` will package for Windows
+ 9. `uses: svenstaro/upload-release-action@v2`
+    - Uses a prebuilt GitHub action ([svenstaro/upload-release-action@v2](https://github.com/svenstaro/upload-release-action)) to attach the artifacts from the `oclif pack` command onto the GitHub release with the tag denoted by `tag: ${{ github.ref }}`
+    - Notice the `file` attribute with the value `matrix.artifact_glob`? This value references the variable we originally defined in our `matrix` configuration. Practically speaking, this will result in every file in the `/dist/win32/` directory being attached to the GitHub release.
+
+### Putting it all together
+
+Below is an example of the entire `release.yml` file.
+
+```yml
+# .github/workflows/release.yml
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: release ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: win
+            artifact_glob: "./dist/win32/*"
+    steps:
+    - run: sudo apt update
+    - run: sudo apt install nsis p7zip-full p7zip-rar -y
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - run: npm install -g yarn
+    - run: yarn
+    - run: yarn global add oclif
+    - run: oclif pack ${{ matrix.target }} -r .
+    - name: Attach artifacts to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ matrix.artifact_glob }}
+        file_glob: true
+        overwrite: true
+        tag: ${{ github.ref }}
+```
+
+## Conclusion
+
+Once you have added the above GitHub Action workflow file to your repository, future published releases will trigger a new build, and the produced artifacts will be attached to the release.
+
+![](./release-attachments-example.jpg)
+
+Note: ensure that you tag your releases with a new Git tag, and add the appropriate tag to your release, as these tags are required by the *svenstaro/upload-release-action@v2* action. This can easily accomplished by using the [npm version](https://docs.npmjs.com/cli/v8/commands/npm-version) or [yarn version](https://classic.yarnpkg.com/en/docs/cli/version) commands.
+
+These artifacts can now be downloaded directly from the release page, and in the case of the Windows target, used to install the CLI on thier computer.
