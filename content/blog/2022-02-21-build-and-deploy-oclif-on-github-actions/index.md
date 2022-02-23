@@ -148,7 +148,7 @@ The steps breakdown is as follows:
  1. `run: sudo apt update
     - Updates the libraries already installed on the `ubuntu-latest` base image to ensure we have the latest and greatest
  2. `run: sudo apt install nsis p7zip-full p7zip-rar -y'
-    - Installs several dependencies required to package the application as a Windows installer using `makensis`.
+    - Installs several dependencies required to package the application as a Windows installer using `makensis`
  3. `uses: actions/checkout@v2`
     - Uses a prebuilt GitHub action to check out the repository source code
  4. `uses: actions/setup-node@v2`
