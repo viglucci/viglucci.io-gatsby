@@ -1,7 +1,7 @@
 ---
 title: Packaging oclif for Windows with GitHub actions
 slug: packaging-oclif-for-windows-with-github-actions
-date: "2022-02-21T00:00:00.000Z"
+date: "2022-02-25T00:00:00.000Z"
 description: "How to build and release a Windows exe for your oclif CLI with GitHub actions."
 ogimage: "./packaging-oclif-for-windows-with-github-actions.jpg"
 twitterimage: "./packaging-oclif-for-windows-with-github-actions.jpg"
