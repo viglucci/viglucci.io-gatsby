@@ -9,5 +9,12 @@
                 "distDir": "public"
             }
         }
+    ],
+    "redirects": [
+        { 
+            "source": "/packaging-oclif-for-windows-with-github-actions",
+            "destination": "/how-to-build-oclif-for-windows-with-github-actions", 
+            "permanent": true
+        }
     ]
 }
