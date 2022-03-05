@@ -1,10 +1,10 @@
 ---
-title: Packaging oclif for Windows with GitHub actions
-slug: packaging-oclif-for-windows-with-github-actions
+title: How to build oclif for windows with GitHub Actions
+slug: how-to-build-oclif-for-windows-with-github-actions
 date: "2022-02-25T00:00:00.000Z"
 description: "How to build and release a oclif CLI Windows Installer with GitHub actions."
-ogimage: "./packaging-oclif-for-windows-with-github-actions.jpg"
-twitterimage: "./packaging-oclif-for-windows-with-github-actions.jpg"
+ogimage: "./how-to-build-oclif-for-windows-with-github-actions.jpg"
+twitterimage: "./how-to-build-oclif-for-windows-with-github-actions.jpg"
 ---
 
 This article will provide an overview of how you can build and release an [oclif](https://oclif.io/) application via GitHub Actions. The pattern we will implement supports the following workflow:
