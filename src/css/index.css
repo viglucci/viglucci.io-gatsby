@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+@import url("https://rsms.me/inter/inter.css");
+
 /* fix tailwind plugin making links in code blocks dark */
 .article code a {
   color: #6a8759;

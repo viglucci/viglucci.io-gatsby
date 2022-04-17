@@ -119,12 +119,7 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
-      link={[
-        {
-          rel: "stylesheet",
-          href: "https://rsms.me/inter/inter.css"
-        }
-      ]}
+      link={[]}
       meta={meta}
     />
   );
