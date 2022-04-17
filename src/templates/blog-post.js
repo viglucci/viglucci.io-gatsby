@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { DiscussionEmbed } from "disqus-react";
 import { getSrc } from "gatsby-plugin-image";
+import loadable from "@loadable/component";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
@@ -43,6 +43,8 @@ export const pageQuery = graphql`query BlogPostBySlug($slug: String!) {
   }
 }
 `;
+
+const DisgusComments = loadable(() => import("../components/comments"));
 
 function Content({ title, date, htmlContent }) {
   return (
@@ -136,7 +138,7 @@ class BlogPostTemplate extends React.Component {
           <Bio />
 
           <div className="mt-8 mb-16">
-            <DiscussionEmbed {...disqusConfig} />
+            <DisgusComments {...disqusConfig} />
           </div>
 
           <div>
