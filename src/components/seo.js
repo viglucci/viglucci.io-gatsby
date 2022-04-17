@@ -45,43 +45,43 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
       content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c"
     },
     {
-      property: `description`,
+      name: "description",
       content: metaDescription,
     },
     {
-      property: "image",
+      name: "image",
       content: ogImageUrl
     },
     {
-      property: `og:url`,
+      property: "og:url",
       content: url,
     },
     {
-      property: `og:title`,
+      property: "og:title",
       content: title,
     },
     {
-      property: `og:description`,
+      property: "og:description",
       content: metaDescription,
     },
     {
-      property: `og:type`,
-      content: `website`,
+      property: "og:type",
+      content: "website",
     },
     {
-      name: `twitter:card`,
-      content: `summary_large_image`,
+      name: "twitter:card",
+      content: "summary_large_image",
     },
     {
-      name: `twitter:creator`,
+      name: "twitter:creator",
       content: site.siteMetadata.social.twitter.username,
     },
     {
-      name: `twitter:title`,
+      name: "twitter:title",
       content: title,
     },
     {
-      name: `twitter:description`,
+      name: "twitter:description",
       content: metaDescription,
     },
     {
@@ -90,17 +90,13 @@ function SEO({ url, description, lang, meta, title, ogImage, ogImageWidth, ogIma
     },
   ];
 
-  meta = [
-    ...meta,
-    {
-      property: "og:image",
-      content: ogImageUrl
-    }
-  ];
-
   if (ogImage) {
     meta = [
       ...meta,
+      {
+        property: "og:image",
+        content: ogImageUrl
+      },
       {
         property: `og:image:width`,
         content: ogImageWidth,
