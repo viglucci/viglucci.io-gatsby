@@ -49,7 +49,7 @@ const DisgusComments = loadable(() => import("../components/comments"));
 function Content({ title, date, htmlContent }) {
   return (
     <article className="article relative lg:py-16 bg-white overflow-hidden">
-      <div className="relative px-0 sm:px-2 lg:px-8">
+      <div className="relative">
         <div className="text-lg max-w-prose mx-auto">
           <h1 className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             {title}
