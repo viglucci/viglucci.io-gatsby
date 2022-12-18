@@ -1,5 +1,5 @@
+import { serialize } from 'next-mdx-remote/serialize'
 import { getAllArticles } from '@/lib/getAllArticles'
-
 import { ArticleLayout } from '@/components/ArticleLayout'
 
 export async function getStaticPaths() {
@@ -16,14 +16,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const articles = await getAllArticles();
-    console.log(articles)
-    const {
-        meta,
-        content,
-    } = articles.find((article) => article.slug === context.params.slug);
+    const { contents, ...rest } = articles.find((article) => {
+        return article.slug === context.params.slug;
+    });
+    const mdxSource = await serialize(contents)
     return {
         props: {
-            
+            source: mdxSource,
+            meta: rest,
         },
     }
 }

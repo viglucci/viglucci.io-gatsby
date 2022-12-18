@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { MDXProvider } from '@mdx-js/react'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
@@ -21,22 +22,24 @@ function ArrowLeftIcon(props) {
 }
 
 const ResponsiveImage = (props) => {
-  console.log(props)
   return (
     <Image alt={props.alt} layout="responsive" {...props} />
   )
 }
 
 const components = {
+  Image: ResponsiveImage,
   img: ResponsiveImage
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
+export function ArticleLayout(props) {
+  const {
+    children,
+    meta,
+    isRssFeed = false,
+    previousPathname,
+  } = props;
+
   let router = useRouter()
 
   if (isRssFeed) {
@@ -76,7 +79,9 @@ export function ArticleLayout({
                     <span className="ml-3">{formatDate(meta?.date)}</span>
                   </time>
                 </header>
-                <Prose className="mt-8">{children}</Prose>
+                <Prose className="mt-8">
+                  <MDXRemote {...props.source} components={components} />
+                </Prose>
               </article>
             </div>
           </div>
