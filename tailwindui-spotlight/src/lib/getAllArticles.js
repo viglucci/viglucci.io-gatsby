@@ -42,5 +42,9 @@ export async function getAllArticles() {
     return article.meta.date;
   })
 
-  return filteredArticles.sort((a, z) => new Date(z.date) - new Date(a.date))
+  const sorted = filteredArticles.sort((a, z) => {
+    return new Date(z.meta.date) - new Date(a.meta.date)
+  })
+
+  return sorted
 }
