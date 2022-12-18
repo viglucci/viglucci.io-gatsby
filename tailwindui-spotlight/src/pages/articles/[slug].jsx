@@ -5,12 +5,13 @@ import mdxConfig from '../../../mdx-config.mjs'
 
 export async function getStaticPaths() {
     const articles = await getAllArticles();
+    const paths = articles.map((article) => ({
+        params: {
+            slug: article.slug,
+        },
+    }));
     return {
-        paths: articles.map((article) => ({
-            params: {
-                slug: article.slug,
-            },
-        })),
+        paths,
         fallback: false,
     }
 }
@@ -20,15 +21,18 @@ export async function getStaticProps(context) {
     const { contents, ...rest } = articles.find((article) => {
         return article.slug === context.params.slug;
     });
-    const mdxSource = await serialize(contents, {
+    const { ...mdxSource } = await serialize(contents, {
         mdxOptions: mdxConfig,
+        parseFrontmatter: false
     })
     return {
         props: {
             source: mdxSource,
-            meta: rest,
+            ...rest
         },
     }
 }
 
-export default (props) => <ArticleLayout meta={props.meta} {...props} />
+export default (props) => {
+    return <ArticleLayout meta={props.meta} {...props} />;
+}

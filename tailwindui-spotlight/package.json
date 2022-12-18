@@ -33,6 +33,7 @@
   "devDependencies": {
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.5",
+    "gray-matter": "^4.0.3",
     "next-remote-watch": "^2.0.0",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11"

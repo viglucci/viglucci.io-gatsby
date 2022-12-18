@@ -1,10 +1,9 @@
-export const meta = {
-  author: 'Kevin Viglucci',
-  date: '2022-02-21',
-  title: 'How to build oclif for windows with GitHub Actions',
-  description:
-    'How to build and release a oclif CLI Windows Installer with GitHub actions.',
-}
+---
+author: "Kevin Viglucci"
+date: "2022-02-21"
+title: "How to build oclif for windows with GitHub Actions"
+description: "How to build and release a oclif CLI Windows Installer with GitHub actions."
+---
 
 This article will provide an overview of how you can build and release an [oclif](https://oclif.io/) application via GitHub Actions. The pattern we will implement supports the following workflow:
 
@@ -204,6 +203,7 @@ jobs:
 
 Once the GitHub Action workflow file has been added to the repository, future published releases will trigger the workflow. The produced artifacts from the workflow will be attached to the release and available for download.
 
-{/* <Image src={releaseAttachmentsExampleImage} alt="example of GitHub releases page with attached artifacts" /> */}
+![GitHub releases page with attached artifacts](
+  /images/articles/2022-02-21-how-to-build-oclif-for-windows-with-github-actions/release-attachments-example.jpg)
 
 Note: Ensure that release versions are tagged with a corresponding Git tag, and the appropriate tag is added to the release on GitHub, as these tags are required by the *svenstaro/upload-release-action@v2* action. Tagging a release version is as easy as using the [npm version](https://docs.npmjs.com/cli/v8/commands/npm-version) or [yarn version](https://classic.yarnpkg.com/en/docs/cli/version) commands.
