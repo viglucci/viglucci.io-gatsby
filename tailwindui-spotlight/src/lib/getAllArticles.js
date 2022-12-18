@@ -35,5 +35,12 @@ export async function getAllArticles() {
 
   let articles = await Promise.all(articleFilenames.map(loadArticle))
 
-  return articles.sort((a, z) => new Date(z.date) - new Date(a.date))
+  const filteredArticles = articles.filter((article) => {
+    if (!article.meta.date) {
+      console.log(`[warn] Article ${article.slug} is missing required property in its frontmatter (date)`)
+    }
+    return article.meta.date;
+  })
+
+  return filteredArticles.sort((a, z) => new Date(z.date) - new Date(a.date))
 }

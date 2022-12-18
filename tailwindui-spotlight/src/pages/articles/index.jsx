@@ -10,25 +10,25 @@ function Article({ article }) {
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
         <Card.Title href={`/articles/${article.slug}`}>
-          {article.title}
+          {article.meta.title}
         </Card.Title>
         <Card.Eyebrow
           as="time"
-          dateTime={article.date}
+          dateTime={article.meta.date}
           className="md:hidden"
           decorate
         >
-          {formatDate(article.date)}
+          {formatDate(article.meta.date)}
         </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
+        <Card.Description>{article.meta.description}</Card.Description>
         <Card.Cta>Read article</Card.Cta>
       </Card>
       <Card.Eyebrow
         as="time"
-        dateTime={article.date}
+        dateTime={article.meta.date}
         className="mt-1 hidden md:block"
       >
-        {formatDate(article.date)}
+        {formatDate(article.meta.date)}
       </Card.Eyebrow>
     </article>
   )
@@ -61,9 +61,13 @@ export default function ArticlesIndex({ articles }) {
 }
 
 export async function getStaticProps() {
+  const articles = await getAllArticles();
+  const mappedArticles = articles.map(({ component, ...meta }) => {
+    return meta
+  });
   return {
     props: {
-      articles: (await getAllArticles()).map(({ component, ...meta }) => meta),
+      articles: mappedArticles,
     },
   }
 }
