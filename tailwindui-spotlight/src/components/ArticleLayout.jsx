@@ -23,7 +23,7 @@ function ArrowLeftIcon(props) {
 
 const ResponsiveImage = (props) => {
   return (
-    <Image alt={props.alt} layout="responsive" {...props} />
+    <Image alt={props.alt} layout="fixed" loading="lazy" {...props} />
   )
 }
 
