@@ -1,14 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const meta = {
-  author: 'Kevin Viglucci',
-  date: '2021-09-20',
-  title: 'How to polyfill Buffer with Webpack 5',
-  description:
-    "How to fix 'buffer is not defined' error and polyfill the Node.js Buffer API for browsers with Webpack 5.",
-}
-
-export default (props) => <ArticleLayout meta={meta} {...props} />
+---
+author: "Kevin Viglucci"
+date: "2021-09-20"
+title: "How to polyfill Buffer with Webpack 5"
+description: "How to fix 'buffer is not defined' error and polyfill the Node.js Buffer API for browsers with Webpack 5."
+---
 
 The "buffer is not defined" error is a common error that can occur when trying to use the [Buffer](https://nodejs.org/api/buffer.html) Node.js API in an environment where it is not natively supported. This article will cover how to fix this error by providing a polyfill with Webpack 5.
 

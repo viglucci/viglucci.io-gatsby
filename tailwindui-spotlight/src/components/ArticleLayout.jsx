@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { MDXProvider } from '@mdx-js/react'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
@@ -21,22 +22,29 @@ function ArrowLeftIcon(props) {
 }
 
 const ResponsiveImage = (props) => {
-  console.log(props)
   return (
-    <Image alt={props.alt} layout="responsive" {...props} />
+    <Image
+      alt={props.alt}
+      layout="responsive"
+      loading="lazy"
+      {...props}
+    />
   )
 }
 
 const components = {
+  Image: ResponsiveImage,
   img: ResponsiveImage
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
+export function ArticleLayout(props) {
+  const {
+    children,
+    meta,
+    isRssFeed = false,
+    previousPathname,
+  } = props;
+
   let router = useRouter()
 
   if (isRssFeed) {
@@ -46,8 +54,8 @@ export function ArticleLayout({
   return (
     <>
       <Head>
-        <title>{`${meta.title} - Kevin Viglucci`}</title>
-        <meta name="description" content={meta.description} />
+        <title>{`${meta?.title} - Kevin Viglucci`}</title>
+        <meta name="description" content={meta?.description} />
       </Head>
       <MDXProvider components={components}>
         <Container className="mt-16 lg:mt-32">
@@ -66,17 +74,19 @@ export function ArticleLayout({
               <article>
                 <header className="flex flex-col">
                   <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                    {meta.title}
+                    {meta?.title}
                   </h1>
                   <time
-                    dateTime={meta.date}
+                    dateTime={meta?.date}
                     className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
                   >
                     <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                    <span className="ml-3">{formatDate(meta.date)}</span>
+                    <span className="ml-3">{formatDate(meta?.date)}</span>
                   </time>
                 </header>
-                <Prose className="mt-8">{children}</Prose>
+                <Prose className="mt-8">
+                  <MDXRemote {...props.source} components={components} />
+                </Prose>
               </article>
             </div>
           </div>

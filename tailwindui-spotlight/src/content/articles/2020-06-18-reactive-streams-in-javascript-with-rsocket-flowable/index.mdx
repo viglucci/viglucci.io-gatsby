@@ -1,14 +1,9 @@
-import { ArticleLayout } from '@/components/ArticleLayout'
-
-export const meta = {
-  author: 'Kevin Viglucci',
-  date: '2020-06-18',
-  title: 'Reactive Streams in JavaScript with RSocket Flowable',
-  description:
-    "Message streaming, back-pressure, cancellation, and async programming in JavaScript with rsocket-flowable.",
-}
-
-export default (props) => <ArticleLayout meta={meta} {...props} />
+---
+author: "Kevin Viglucci"
+date: "2020-06-18"
+title: "Reactive Streams in JavaScript with RSocket Flowable"
+description: "Message streaming, back-pressure, cancellation, and async programming in JavaScript with rsocket-flowable."
+---
 
 When programming async operations, JavaScript developers are generally at least familiar with Promises, async/await, and callbacks. However, newer async models such as ReactiveX ([RxJS](https://github.com/ReactiveX/rxjs) in JavaScript), are not quite as popular. In this article, we dig into something similar but slightly different to RxJS; a Reactive Streams implementation called [RSocket Flowable](https://github.com/rsocket/rsocket-js/blob/master/docs/03-flowable-api.md) (rsocket-flowable on npm).
 
