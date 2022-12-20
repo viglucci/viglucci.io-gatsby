@@ -85,12 +85,12 @@ function Article({ article }) {
   return (
     <Card as="article">
       <Card.Title href={`/articles/${article.slug}`}>
-        {article.title}
+        {article.meta.title}
       </Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
+      <Card.Eyebrow as="time" dateTime={article.meta.date} decorate>
+        {formatDate(article.meta.date)}
       </Card.Eyebrow>
-      <Card.Description>{article.description}</Card.Description>
+      <Card.Description>{article.meta.description}</Card.Description>
       <Card.Cta>Read article</Card.Cta>
     </Card>
   )
