@@ -244,12 +244,12 @@ function Photos() {
 }
 
 export default function Home({ articles }) {
-  const metaDescription = "I'm Kevin, a software engineer based in Austin, TX working in the games industry. I began my career at Blizzard Entertainment, where I spent a number of years on the Battlenet team supporting games such as World of Warcraft. These day's I'm working with Gamebreaking Studios, where we provide consulting and development expertise for online games and platform technologies."
+  const metaDescription = "I'm Kevin, a software engineer based in Austin, TX working in the game industry. I began my career at Blizzard Entertainment, where I spent a number of years on the Battlenet team supporting games such as World of Warcraft. These day's I'm working with Gamebreaking Studios, where we provide consulting and development expertise for online games and platform technologies."
   return (
     <>
       <Head>
         <title>
-          Kevin Viglucci - Software Engineer | Games, Online Platforms and Technologies
+          Kevin Viglucci | Sr. Software Engineer, Games & Online Platforms
         </title>
         <meta
           name="description"
@@ -259,10 +259,10 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software Engineer | Games, Online Platforms & Tech
+            Kevin Viglucci | Sr. Software Engineer
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Kevin, a software engineer based in Austin, TX working in the games industry. I began my career at Blizzard Entertainment, where I spent a number of years on the Battlenet team supporting games such as World of Warcraft. These day's I'm working with <a className="text-teal-500 hover:underline" href="https://www.gamebreaking.com/?utm_source=viglucci-io">Gamebreaking Studios</a>, where we provide consulting and development expertise for online games and platform teams in the games industry.
+            Hi 👋! I'm Kevin, a software engineer based in Austin, TX. I'm currently working at <a className="text-teal-500 hover:underline" href="https://www.gamebreaking.com/?utm_source=viglucci-io">Gamebreaking Studios</a>, where we provide consulting and development expertise to teams & studios in the game industry.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

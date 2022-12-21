@@ -45,7 +45,7 @@ export default function ArticlesIndex({ articles }) {
         />
       </Head>
       <SimpleLayout
-        title="Software development, gamedev, and random thoughts."
+        title="Thoughts on Software Development, Gamedev, and other topics."
         intro="All of my long-form thoughts on programming/software development, gamedev, and more, collected in chronological order."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
