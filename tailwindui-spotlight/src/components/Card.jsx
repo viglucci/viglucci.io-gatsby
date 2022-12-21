@@ -46,9 +46,9 @@ Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
 
 Card.Description = function CardDescription({ children }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <div className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
-    </p>
+    </div>
   )
 }
 

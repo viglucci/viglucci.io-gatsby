@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
@@ -32,84 +33,78 @@ export default function Uses() {
         <title>Uses - Kevin Viglucci</title>
         <meta
           name="description"
-          content="Software I use, gadgets I love, and other things I recommend."
+          content="Software, tools, and other things I use to do my work or would recommend."
         />
       </Head>
       <SimpleLayout
-        title="Software I use, gadgets I love, and other things I recommend."
-        intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+        title="Software, tools, and other things I use to do my work or would recommend."
+        intro="Nobody asks me about the things I use to build software, stay productive, or otherwise, but if they did, this is the page I would send them. Here's a list of stuff and things I use daily."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
+            <Tool title="NZXT Windows PC">
+              Gamedevelopment happens almost exclusively on Windows, so I have a relatively powerful Windows PC from NZXT that I use for my day to day work.
+              <ul className="list-inside list-disc mt-4">
+                <li>AMD Ryzen 9 3900X</li>
+                <li>NVIDIA GeForce RTX 3600</li>
+              </ul>
             </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
+            <Tool title="Dell S2716DG Monitor">
+              This is my main monitor. It's a 1440p 144Hz monitor that I use for everything. It's not really anything special, but gets the job done.
             </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
+            <Tool title="ASUS VN247 Monitor x2">
+              I originally bought three of these monitors almost 10 years ago when I wanted to try out a triple monitor setup for WoW. At the time these monitors offered what was considered a very thin bezel. I've since replaced one of them with a 4K monitor (see above), but I still use the other two for side monitors in a triple monitor setup.
             </Tool>
-            <Tool title="Apple Magic Trackpad">
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
+            <Tool title="Ducky Shine 7 Gunmetal RGB LED Double Shot PBT Mechanical Keyboard">
+              This keyboard is great. I originally bought a different Ducky keyboard, but then I dropped my absolute brick of a phone on the keyboard and it <a href="https://twitter.com/kviglucci/status/1408817692786794498">snapped one of the keys off</a>.
+            </Tool>
+            <Tool title="Razer Naga Chroma Mouse">
+              I've used Razer mice and keyboards for a few years. I'm probably done buying their keyboards, but I'll probably stick with their mice for a while, or at least until I find something better. The extra buttons on the side come in handy when gaming, which I'm still doing a fair bit of.
+            </Tool>
+            <Tool title="Logitech c92 Pro Stream Webcam">
+              This is the same webcam that pretty much everyone else bought when they started working from home during the pandemic. It seems to be a good camera and sufficiently lets me show my cats while in meetings.
+            </Tool>
+            <Tool title="BenQ ScreenBar Plus e-Reading LED Computer Monitor Light">
+              This desk lamp has been awsesome. 10/10 would buy again. Seems to help with eyestrain and lights up what has historically been a very dim and dark desk, and I don't have much natural light that lands on my desk.
             </Tool>
             <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+              I've been using a Herman Miller Aeron Chair for a few years now. Have tried a bunch of other chairs but this is what i'm using right now. I would be interested in trying a Steelcase Gesture chair some day.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Sublime Text 4">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+            <Tool title="Visual Studio Code">
+              Depending on the project, I use either VS Code or one of the Jetbrains IDEs. There are small difference between the two that I prefer in each, but I kind of hop back and forth between them depending on what I'm doing.
             </Tool>
-            <Tool title="iTerm2">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
-            </Tool>
-            <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+            <Tool title="Jetbrains Intellij">
+              I use the full suite of Jetbrains IDE products, and if I had to pick a single IDE it would probably be Intellij. However, like I stated above I sometimes jump back and forth between this and VS Code.
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Design">
-            <Tool title="Figma">
-              We started using Figma as just a design tool but now it’s become
-              our virtual whiteboard for the entire company. Never would have
-              expected the collaboration features to be the real hook.
+          <ToolsSection title="Design/Editing">
+            <Tool title="Photoshop">
+              I've been using photoshop for a number of years, originally to design websites when I was in highschool. I wouldn't say I'm good in any way, but I've found anytime I don't have a Photoshop license I end up missing it, so here we are.
+            </Tool>
+            <Tool title="Davinci Resolve">
+              I'm even worse at video editing than I am photo/image editing, but when I do have to edit a video I've been trying to learn Davinci Resolve.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Alfred">
-              It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
+            <Tool title="Jira">
+              I've had a Atlassian/Jira account for a number of years. Jira is my preferred project management/tracking solution, however I arguebly have not tried many other solutions.
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+            <Tool title="TickTick">
+              A friend put me onto TickTick for daily task/todo list tracking. It gets the job done.
             </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
-            </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+            <Tool title="ForLater">
+              This is actually a tool that I built for myself. I wanted a way to save links to articles, videos, etc. that I wanted to read/watch later. I built a simple web app that allows me to save these links, often directly from my phone, and then I can access them from any device.
+              <p className="mt-4">
+                <Link
+                  href={"https://forlater.io?utm_source=viglucci.io&utm_medium=referral&utm_campaign=uses"}
+                  className="text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+                  target={"_blank"}
+                >
+                  <span>forlater.io</span>
+                </Link>
+              </p>
             </Tool>
           </ToolsSection>
         </div>
