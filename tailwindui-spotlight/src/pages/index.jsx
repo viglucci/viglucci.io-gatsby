@@ -259,6 +259,8 @@ export default function Home({ articles }) {
         <title>
           Kevin Viglucci | Sr. Software Engineer
         </title>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="sitemap" href="/sitemap.xml" />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
