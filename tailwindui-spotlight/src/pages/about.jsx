@@ -6,7 +6,7 @@ import Image from 'next/future/image'
 import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
-import mdxConfig from '@/../mdx-config.mjs'
+import mdxConfig from 'mdx-config.js'
 
 import { Prose } from '@/components/Prose'
 import { Container } from '@/components/Container'

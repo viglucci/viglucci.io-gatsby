@@ -1,5 +1,6 @@
 import nextMDX from '@next/mdx'
 import mdxConfig from './mdx-config.mjs'
+import articlesToRedirect from './article-redirects.js'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,6 +10,15 @@ const nextConfig = {
   experimental: {
     newNextLinkBehavior: true,
     scrollRestoration: true,
+  },
+  async redirects() {
+    return articlesToRedirect.map((slug) => {
+      return {
+        source: `/${slug}`,
+        destination: `/articles/${slug}`,
+        permanent: true,
+      }
+    });
   },
 }
 

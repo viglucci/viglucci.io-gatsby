@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { ArticleLayout } from '@/components/ArticleLayout'
-import mdxConfig from '@/../mdx-config.mjs'
+import mdxConfig from 'mdx-config.mjs'
 
 export async function getStaticPaths() {
     const articles = await getAllArticles();
@@ -33,6 +33,8 @@ export async function getStaticProps(context) {
     }
 }
 
-export default (props) => {
+const ArticlePage = (props) => {
     return <ArticleLayout meta={props.meta} {...props} />;
 }
+
+export default ArticlePage

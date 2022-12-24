@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { MDXProvider } from '@mdx-js/react'
 
 const ResponsiveImage = (props) => {
