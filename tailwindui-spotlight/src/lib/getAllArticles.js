@@ -21,7 +21,7 @@ async function loadArticle(articleFilename) {
   )
   const { data: meta, content } = matter(fileContents);
   const article = {
-    slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
+    slug: meta.slug || articleFilename.replace(/(\/index)?\.mdx$/, ''),
     meta,
     contents: content
   };
@@ -37,9 +37,12 @@ export async function getAllArticles() {
 
   const filteredArticles = articles.filter((article) => {
     if (!article.meta.date) {
-      console.log(`[warn] Article ${article.slug} is missing required property in its frontmatter (date)`)
+      console.log(`[warn] Article ${article.slug} is missing required property (date) in its frontmatter`)
     }
-    return article.meta.date;
+    if (!article.meta.slug) {
+      console.log(`[warn] Article ${article.slug} is missing required property (slug) in its frontmatter`)
+    }
+    return article.meta.date && article.meta.slug;
   })
 
   const sorted = filteredArticles.sort((a, z) => {
