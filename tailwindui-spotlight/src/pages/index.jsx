@@ -1,5 +1,4 @@
 import Image from 'next/future/image'
-import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
 
@@ -21,6 +20,7 @@ import logoGamebreaking from '@/images/logos/gbs_logo_round.png'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
+import Head from '@/components/Head'
 
 function MailIcon(props) {
   return (
@@ -244,17 +244,21 @@ function Photos() {
 }
 
 export default function Home({ articles }) {
-  const metaDescription = "I'm Kevin, a software engineer based in Austin, TX working in the game industry. I began my career at Blizzard Entertainment, where I spent a number of years on the Battlenet team supporting games such as World of Warcraft. These day's I'm working with Gamebreaking Studios, where we provide consulting and development expertise for online games and platform technologies."
+  const metaDescription = "I'm Kevin, a software engineer based in Austin, TX working in the game industry."
   return (
     <>
-      <Head>
+      <Head
+        meta={[
+          { property: "google-site-verification", content: "1ZK7pf2xmibzm7XbahR32ornhr_wAYVIGqtxvZeJq_c" },
+          { property: "description", content: metaDescription },
+          { property: "og:image", content: "/images/2x1-og-image.png" },
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "twitter:image", content: "/images/2x1-og-image.png" },
+        ]}
+      >
         <title>
-          Kevin Viglucci | Sr. Software Engineer, Games & Online Platforms
+          Kevin Viglucci | Sr. Software Engineer
         </title>
-        <meta
-          name="description"
-          content={metaDescription}
-        />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">

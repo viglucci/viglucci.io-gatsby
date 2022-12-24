@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { MDXProvider } from '@mdx-js/react'
@@ -7,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import Head from '@/components/Head'
 
 function ArrowLeftIcon(props) {
   return (
@@ -53,9 +53,16 @@ export function ArticleLayout(props) {
 
   return (
     <>
-      <Head>
+      <Head
+        meta={[
+          { name: 'description', content: meta?.description },
+          { property: 'og:image', content: meta?.og_image },
+          { property: 'og:type', content: 'article' },
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:image', content: meta?.og_image || meta?.twitter_image },
+        ]}
+      >
         <title>{`${meta?.title} - Kevin Viglucci`}</title>
-        <meta name="description" content={meta?.description} />
       </Head>
       <MDXProvider components={components}>
         <Container className="mt-16 lg:mt-32">
