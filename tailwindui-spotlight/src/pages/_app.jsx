@@ -5,6 +5,7 @@ import { Header } from '@/components/Header'
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
+import GTag from '@/components/GTag'
 
 function usePrevious(value) {
   let ref = useRef()
@@ -32,6 +33,7 @@ export default function App({ Component, pageProps, router }) {
           <Component previousPathname={previousPathname} {...pageProps} />
         </main>
         <Footer />
+        <GTag />
       </div>
     </>
   )
