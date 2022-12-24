@@ -1,49 +1,51 @@
+import Link from 'next/link'
 import Image from 'next/future/image'
 import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
+// import logoAnimaginary from '@/images/logos/animaginary.svg'
+// import logoCosmos from '@/images/logos/cosmos.svg'
+// import logoHelioStream from '@/images/logos/helio-stream.svg'
+// import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
+// import logoPlanetaria from '@/images/logos/planetaria.svg'
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'Bespoke CI',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
+      'Bespoke CI is a CI/CD solution designed specifically for game studios. While at Gamebreaking Studios I\'ve been working on developing core technology necessary for Bespoke CI, as well as maintaining and developing the products marketing website and Slack bot.',
+    link: { href: 'https://bespokeci.dev', label: 'bespokeci.dev' },
   },
   {
-    name: 'Animaginary',
+    name: 'RSocket JS',
     description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
+      'RSocket is a binary protocol for use on byte stream transports such as TCP, WebSockets, and Aeron. I\'ve been helping maintain the JS implementation of the protocol since 2020.',
+    link: { href: 'https://github.com/rsocket/rsocket-js', label: 'github.com' },
   },
   {
-    name: 'HelioStream',
+    name: 'Unity RSocket',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
+      'Unity RSocket is a Unity compatible implementation of the RSocket protocol. I was the original author of the project and have been maintaining it since 2022.',
+    link: { href: 'https://github.com/viglucci/unity-rsocket', label: 'github.com' },
   },
   {
-    name: 'cosmOS',
+    name: 'RSocket Website',
     description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoCosmos,
+      'RSocket is an opensource project. I\'ve been helping maintain the website and documentation for the project since 2020.',
+    link: { href: 'https://rsocket.io', label: 'rsocket.io' },
   },
   {
-    name: 'OpenShuttle',
+    name: 'worldofwarcraft.com',
     description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoOpenShuttle,
+      'While at Blizzard Entertainment I spent a lot of time working on the World of Warcraft website and Game Data APIs. I was responsible for the development the character profile pages, marketing & announcement websites, leaderbaords, public APIS, and more.',
+    link: { href: 'https://worldofwarcraft.com', label: 'worldofwarcraft.com' },
+  },
+  {
+    name: 'forlater.io',
+    description:
+      'forlater.io is a link saving application that I built for my own use. The application allows you to save links from your browser and mobile devices, organize them into folders, and then access them from any device.',
+    link: { href: 'https://forlater.io', label: 'forlater.io' },
   },
 ]
 
@@ -58,6 +60,12 @@ function LinkIcon(props) {
   )
 }
 
+const InlineLink = ({ href, label, children, ...props }) => (
+  <Link href={href} target="_blank" rel="noopener" className="inline font-medium transition text-zinc-400 hover:text-teal-500 dark:hover:text-teal-500 dark:text-zinc-200">
+    <span className="relative">{children}</span>
+  </Link>
+);
+
 export default function Projects() {
   return (
     <>
@@ -65,12 +73,16 @@ export default function Projects() {
         <title>Projects - Kevin Viglucci</title>
         <meta
           name="description"
-          content="Things I’ve made trying to put my dent in the universe."
+          content="Professional and personal projects that I've worked on over the years."
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve made trying to put my dent in the universe."
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+        title="Professional and personal projects."
+        intro={
+          <span>
+            My <InlineLink href={"https://github.com/viglucci"}>GitHub</InlineLink> has many repositories for random projects and experiments, but here are a few of the more notable professional and personal projects that I've worked on over the years.
+          </span>
+        }
       >
         <ul
           role="list"
@@ -78,14 +90,16 @@ export default function Projects() {
         >
           {projects.map((project) => (
             <Card as="li" key={project.name}>
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <Image
-                  src={project.logo}
-                  alt=""
-                  className="h-8 w-8"
-                  unoptimized
-                />
-              </div>
+              {project.logo ? (
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                  <Image
+                    src={project.logo}
+                    alt=""
+                    className="h-8 w-8"
+                    unoptimized
+                  />
+                </div>
+              ) : null}
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                 <Card.Link href={project.link.href}>{project.name}</Card.Link>
               </h2>

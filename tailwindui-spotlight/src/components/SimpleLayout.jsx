@@ -1,5 +1,15 @@
 import { Container } from '@/components/Container'
 
+function Intro({ intro }) {
+  if (typeof intro === 'string') {
+    return intro;
+  }
+
+  return (
+    intro
+  );
+}
+
 export function SimpleLayout({ title, intro, children }) {
   return (
     <Container className="mt-16 sm:mt-32">
@@ -11,7 +21,7 @@ export function SimpleLayout({ title, intro, children }) {
         </div>
         <div className="max-w-2xl">
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            {intro}
+            <Intro intro={intro} />
           </p>
         </div>
       </header>
